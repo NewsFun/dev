@@ -1,0 +1,25 @@
+@charset "UTF-8";
+.logo{border-right: 1px solid #fff;}
+.ms-title{font-size: 1.6em;padding-left: 20px;}
+.ms-page{margin-left: 100px;height: 100%;line-height: 60px;}
+.ms-page a{
+    display: inline-block;
+    height: 56px;
+    font-size: 2.4em;
+    padding: 0 20px;
+    color: white;
+    font-weight: bold;
+}
+.ms-page a.on{
+    border-bottom: 4px solid #fff;
+}
+.ms-bar{
+    background-color: #3686e8;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    margin-top: 2px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+}
