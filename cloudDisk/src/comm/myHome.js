@@ -11,16 +11,28 @@ $(document).ready(function(){
     function Disk(){}
     Disk.prototype = {
         init:function(){
-            this._initEast();
+            this.initEast();
         },
-        _initEast:function(){
-            var pd = EAST.css('padding')?parseInt(EAST.css('padding')):0;
-            var sh = SOUTH.height()?SOUTH.height(): 0,
-                ew = W-WEST.width()-pd*2,
-                eh = H-NORTH.height()-sh-pd,
+        initEast:function(){
+            var self = this;
+            var pd = self._getPadding(EAST);
+            var sh = ~~SOUTH.height(),
+                ew = W-WEST.width()-pd[3]-pd[1],
+                eh = H-NORTH.height()-sh-pd[0]-pd[2],
                 wh = H-NORTH.height()-sh;
             WEST.css('height', wh+'px');
-            EAST.css('width',ew+'px').css('height',eh+'px');
+            EAST.css('width', ew+'px').css('height', eh+'px');
+        },
+        _getPadding:function(jquery){
+            var pd = jquery.css('padding').split(' ');
+            //console.log(pd);
+            var ps = {};
+            ps[0] = parseFloat(pd[0]);
+            ps[1] = isNaN(parseFloat(pd[1]))?ps[0]:parseFloat(pd[1]);
+            ps[2] = isNaN(parseFloat(pd[2]))?ps[0]:parseFloat(pd[2]);
+            ps[3] = isNaN(parseFloat(pd[3]))?ps[1]:parseFloat(pd[3]);
+            //console.log(ps);
+            return ps;
         }
     };
 
