@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <!--#include virtual="/common/myHead.html"-->
+    <title>新华云盘-管理中心</title>
+    <link rel="stylesheet" type="text/css" href="../src/tree.css">
+    <link rel="stylesheet" type="text/css" href="../src/myList.css">
+</head>
+<body>
+<!--#include virtual="/common/myHeader.html"-->
+<div id="ui-layout-west" class="ui-layout-west">
+    <div class="ms-bar">
+        <b>通讯录</b>
+    </div>
+    <div class="myList">
+        <ul class="tree_content">
+            <li class="tree_root">
+                <span class="tree_icon icon_hollow">-</span><span class="tree_name">企业</span>
+                <ul class="tree_branch" data-leve="1">
+                    <li>
+                        <span class="tree_icon icon_hollow">-</span><span class="tree_name">新华网</span>
+                        <ul class="tree_branch" data-leve="2">
+                            <li>
+                                <span class="tree_icon icon_hollow">-</span><span class="tree_name">技术研发</span>
+                                <ul class="tree_branch" data-leve="2">
+                                    <li>
+                                        <span class="tree_name">王朝</span>
+                                    </li>
+                                    <li>
+                                        <span class="tree_name">马汉</span>
+                                    </li>
+                                    <li>
+                                        <span class="tree_name">张龙</span>
+                                    </li>
+                                    <li>
+                                        <span class="tree_name">赵虎</span>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <span class="tree_icon icon_solid">+</span><span class="tree_name">编辑部</span>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+            <li class="tree_root">
+                <span class="tree_icon icon_solid">+</span><span class="tree_name">个人</span>
+                <ul></ul>
+            </li>
+        </ul>
+    </div>
+</div>
+<div id="ui-layout-center" class="ui-layout-center">
+    <div class="east-head">
+        <span>新华网</span>
+        <span>产品设计</span>
+        <a class="base-bg">删除</a>
+    </div>
+    <table class="east-content" cellpadding="0" cellspacing="0">
+        <thead>
+        <tr>
+            <th class="tb-check">
+                <label><input type="checkbox"></label>
+                <span>全选</span>
+            </th>
+            <th class="tb-name"><span>用户名</span><span class="tb-id"> (账号) </span></th>
+            <th class="tb-post">职位</th>
+            <th class="tb-phone">手机</th>
+            <th class="tb-email">邮箱</th>
+            <th class="tb-search">
+                <label><input class="search" type="text"></label>
+                <label><input class="base-bg" type="button" value="添加成员"></label>
+                <label><input class="base-bg" type="button" value="删除成员"></label>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td class="tb-check"><label><input type="checkbox"></label></td>
+            <td class="tb-name"><span>张某</span><span class="tb-id"> (zhang01) </span></td>
+            <td class="tb-post"><span>UI设计师</span></td>
+            <td class="tb-phone"><span>15637891023</span></td>
+            <td class="tb-email"><span>www@mmm.com</span></td>
+            <td class="tb-search">
+                <span class="base-color">设为管理员</span>
+                <span class="base-color"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tb-check"><label><input type="checkbox"></label></td>
+            <td class="tb-name"><span>张某</span><span class="tb-id"> (momo) </span></td>
+            <td class="tb-post"><span>UI设计师</span></td>
+            <td class="tb-phone"><span>15637891023</span></td>
+            <td class="tb-email"><span>www@mmm.com</span></td>
+            <td class="tb-search">
+                <span class="base-color">设为管理员</span>
+                <span class="base-color"></span>
+            </td>
+        </tr>
+        <tr>
+            <td class="tb-check"><label><input type="checkbox"></label></td>
+            <td class="tb-name"><span>张某</span><span class="tb-id"> (alibaba@sina.com) </span></td>
+            <td class="tb-post"><span>UI设计师</span></td>
+            <td class="tb-phone"><span>15637891023</span></td>
+            <td class="tb-email"><span>www@mmm.com</span></td>
+            <td class="tb-search">
+                <span class="base-color">设为管理员</span>
+                <span class="base-color"></span>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

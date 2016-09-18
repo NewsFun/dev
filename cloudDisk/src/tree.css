@@ -1,0 +1,35 @@
+.tree_content{
+    margin-top: 4px;
+    color: #000;
+}
+.tree_content li{
+    height: auto;
+    line-height: 28px;
+    font-size: 14px;
+}
+.tree_root{
+    margin-left: 20px;
+    cursor: pointer;
+}
+.tree_icon{
+    display: inline-block;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    margin-right: 4px;
+}
+.icon_hollow{
+    width: 14px;
+    height: 14px;
+    line-height: 12px;
+    border: 1px solid #3686e8;
+    color: #3686e8;
+}
+.icon_solid{
+    width: 16px;
+    height: 16px;
+    line-height: 14px;
+    color: white;
+    background-color: #3686e8;
+}
+ul.tree_branch{display: block;padding-left: 20px;}

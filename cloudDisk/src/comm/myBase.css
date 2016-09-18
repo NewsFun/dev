@@ -1,0 +1,75 @@
+@charset "UTF-8";
+.hidden{display: none;}
+.logo{border-right: 1px solid #fff;}
+.ui-layout-center{padding:10px 25px 0;}
+.ms-title{font-size: 1.6em;padding-left: 20px;}
+.ms-page{margin-left: 100px;height: 100%;line-height: 60px;}
+.ms-page a{
+    display: inline-block;
+    height: 56px;
+    font-size: 2.4em;
+    padding: 0 20px;
+    color: #f0f2f3;
+    font-weight: bold;
+}
+.ms-page a.on{border-bottom: 4px solid #fff;}
+.ms-bar{
+    background-color: #3686e8;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    margin-top: 2px;
+    color: #fff;
+    text-align: center;
+    line-height: 40px;
+}
+.tree_content .icon{
+    float: left;
+    margin: 8px 20px 0;
+}
+.tree_content li{
+    font-size: 14px;
+    height: 40px;
+    line-height: 40px;
+}
+.east-head{
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+}
+.east-head>.base-bg{
+    padding: 4px 20px;
+    color: #fff;
+    font-size: 12px;
+    margin-left: 20px;
+    border-radius: 4px;
+}
+/*-----data-----*/
+.east-content{
+    width: 100%;
+    text-align: center;
+    font-size: 14px;
+    margin-top: 10px;
+    border-collapse: collapse;
+}
+.east-content thead{background-color: #f0f2f3;}
+.east-content tr{height: 40px;}
+.east-content tbody tr{
+    border-bottom: 1px solid #ebebeb;
+}
+.east-content tbody tr:hover{
+    background-color: rgba(0, 153, 255, 0.2);
+}
+.east-content input.search{height: 22px;}
+.east-content input.base-bg{
+    border: none;
+    height: 28px;
+    color: white;
+    border-radius: 4px;
+    text-align: center;
+    margin: 0 4px;
+    padding: 0 10px;
+}
+.east-content img.icon{
+    float: left;
+}

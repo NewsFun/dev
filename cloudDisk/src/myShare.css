@@ -1,0 +1,21 @@
+tbody .tb-name{text-align: left;}
+.myShare{margin-top: 2px;}
+.myShare li{color: #3686e8;font-weight: bold;}
+.myShare li.on{color: #ffffff;background-color: #3686e8;}
+
+.tb-href span{text-decoration: underline;}
+.tb-href .href{
+    color: #00CC00;
+    float: left;
+}
+.tb-href .copy{
+    color: #3399FF;
+    float: right;
+    margin-right: 10px;
+}
+input.member{
+    float: left;
+    margin:2px 10px 0;
+    height: 24px;
+    padding: 0 10px;
+}
