@@ -7,46 +7,93 @@
     <link rel="stylesheet" type="text/css" href="../src/myList.css">
 </head>
 <body>
-<!--#include virtual="/common/myHeader.html"-->
+<div id="ui-layout-north" class="ui-layout-north">
+    <div class="content">
+        <div class="head-top">
+            <a href="" target="_self" title="新华云盘">
+                <p class="logo lf"></p>
+            </a>
+            <div class="userInfo lf">
+                <span class="ms-title">管理中心</span>
+            </div>
+            <div class="ms-page lf">
+                <a href="mySpace.html">群组管理</a>
+                <a href="myShare.html">分享管理</a>
+                <a class="on" href="#">通讯录</a>
+            </div>
+            <div class="userInfo rf">
+                <a target="_blank" href="home.html">返回云盘</a>
+                <span>|</span>
+                <a href="" title="退出">退出</a>
+                <br class="clearboth" />
+            </div>
+        </div>
+    </div>
+</div>
 <div id="ui-layout-west" class="ui-layout-west">
     <div class="ms-bar">
         <b>通讯录</b>
     </div>
     <div class="myList">
-        <ul class="tree_content">
+        <ul id="tree_content" class="tree_content">
             <li class="tree_root">
-                <span class="tree_icon icon_hollow">-</span><span class="tree_name">企业</span>
-                <ul class="tree_branch" data-leve="1">
+                <div class="tree_title" data-level="0"><span class="tree_icon icon_hollow">-</span><span class="tree_name">企业</span></div>
+                <ul class="tree_branch">
                     <li>
-                        <span class="tree_icon icon_hollow">-</span><span class="tree_name">新华网</span>
-                        <ul class="tree_branch" data-leve="2">
+                        <div class="tree_title" data-level="1"><span class="tree_icon icon_hollow">-</span><span class="tree_name">新华网</span></div>
+                        <ul class="tree_branch">
                             <li>
-                                <span class="tree_icon icon_hollow">-</span><span class="tree_name">技术研发</span>
-                                <ul class="tree_branch" data-leve="2">
+                                <div class="tree_title" data-level="2"><span class="tree_icon icon_hollow">-</span><span class="tree_name">技术研发</span></div>
+                                <ul class="tree_branch">
                                     <li>
-                                        <span class="tree_name">王朝</span>
+                                        <div class="tree_title" data-level="3"><span class="tree_name">产品设计</span></div>
                                     </li>
                                     <li>
-                                        <span class="tree_name">马汉</span>
+                                        <div class="tree_title" data-level="3"><span class="tree_name">前端组</span></div>
                                     </li>
                                     <li>
-                                        <span class="tree_name">张龙</span>
+                                        <div class="tree_title" data-level="3"><span class="tree_name">系统</span></div>
                                     </li>
                                     <li>
-                                        <span class="tree_name">赵虎</span>
+                                        <div class="tree_title" data-level="3"><span class="tree_name">运维</span></div>
                                     </li>
                                 </ul>
                             </li>
                             <li>
-                                <span class="tree_icon icon_solid">+</span><span class="tree_name">编辑部</span>
+                                <div class="tree_title"><span class="tree_icon icon_solid">+</span><span class="tree_name">编辑部</span></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="tree_title" data-level="1"><span class="tree_icon icon_hollow">-</span><span class="tree_name">人民网</span></div>
+                        <ul class="tree_branch">
+                            <li>
+                                <div class="tree_title" data-level="2"><span class="tree_icon icon_hollow">-</span><span class="tree_name">技术研发</span></div>
+                                <ul class="tree_branch">
+                                    <li>
+                                        <div class="tree_title" data-level="3"><span class="tree_name">产品设计</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="tree_title" data-level="3"><span class="tree_name">前端组</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="tree_title" data-level="3"><span class="tree_name">系统</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="tree_title" data-level="3"><span class="tree_name">运维</span></div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="tree_title"><span class="tree_icon icon_solid">+</span><span class="tree_name">编辑部</span></div>
                             </li>
                         </ul>
                     </li>
                 </ul>
             </li>
             <li class="tree_root">
-                <span class="tree_icon icon_solid">+</span><span class="tree_name">个人</span>
-                <ul></ul>
+                <div class="tree_title"><span class="tree_icon icon_solid">+</span><span class="tree_name">个人</span></div>
+                <ul class="tree_branch"></ul>
             </li>
         </ul>
     </div>
@@ -112,5 +159,6 @@
         </tbody>
     </table>
 </div>
+<script src="../src/tree.js"></script>
 </body>
 </html>

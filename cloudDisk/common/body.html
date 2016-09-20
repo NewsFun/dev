@@ -1,14 +1,9 @@
-<div id="results1"></div>
 <div id="ui-layout-north" class="ui-layout-north">
     <div class="content">
         <div class="head-top">
             <a href="" target="_self" title="新华云盘">
                 <p class="logo lf"></p>
             </a>
-            <div class="userInfo"  style="float:left;" >
-                <a id="tabview" onclick="tabChange();" title="切换到原始版本">[切换到原始版本]</a>
-                <a id="commonview" onclick="returnView();" style="display:none;" title="还原到新版本">[还原到新版本]</a>
-            </div>
             <div class="userInfo rf">
                 <img src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/headimg.png"/>
                 <span>萌鱼姊姊</span>
@@ -22,28 +17,15 @@
     </div>
 </div>
 <div id="ui-layout-west" class="ui-layout-west">
-    <div id="tabchange">
-        <h3 class="header">
-            <a onmousedown="return false" title="我的云盘" onclick="showTable()" class="s_yun" href="javascript:;"></a>
-            <a onmousedown="return false" onclick="loadNewTab();" title="最新上传" class="s_note" href="javascript:;"></a>
-        </h3>
-    </div>
-    <input type="hidden" id="parentId" name="parentId" value="986284">
-    <input type="hidden" id="rootId" name="rootId" value="986284">
-    <input type="hidden" id="divType" name="divType" value="ros">
-    <input type="hidden" id="pageSize" name="pageSize" value="25"/>
-    <div id="tree_con">
-        <img src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/ajax-loader.gif" width="32" height="32"/>
-    </div>
     <div id="tree_content">
-        <ul>
-            <li onclick="loadNewTab();"><a id="latestupload">最新上传</a></li>
-            <li onclick="showTable()"><a id="myfile" >我的文件</a></li>
-            <li onclick="loadPublicDisk();"><a id="publicdisk" >公共盘</a></li>
-            <li onclick="showTable()"><a id="" >共享空间</a></li>
-            <li onclick="loadCreamVideoTab('1');"><a id="cloudphoto" >云相册</a></li>
-            <li onclick="loadVideoTab('2');"><a id="cloudvideo" >云视频</a></li>
-            <li onclick="loadSortTab();"><a id="cloudnote" >云记事</a></li>
+        <ul class="west-list">
+            <li><a id="latestupload">最新上传</a></li>
+            <li><a id="myfile" >我的文件</a></li>
+            <li><a id="publicdisk" >公共盘</a></li>
+            <li><a id="" >共享空间</a></li>
+            <li><a id="cloudphoto" >云相册</a></li>
+            <li><a id="cloudvideo" >云视频</a></li>
+            <li><a id="cloudnote" >云记事</a></li>
         </ul>
     </div>
 </div>
@@ -52,12 +34,3 @@
         <p align="center">Copyright © 2000-2016 XINHUANET.com All Rights Reserved.　版权所有  新华网</p>
     </div>
 </div>
-<script type="text/javascript">
-    var layoutWestHeight = $(window).height()-87;
-    $("#ui-layout-west").css("height",layoutWestHeight);
-    loadRootTab();
-</script>
-<script type="text/javascript" src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/ligerMenu.js?v=20150202"></script>
-<script type="text/javascript" src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/vx_disk_opera_ext.js?v=20150202"></script>
-<script type="text/javascript" src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/layout.js?v=20150202"></script>
-<script type="text/javascript" src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/jquery.layout.js?v=20150202"></script>

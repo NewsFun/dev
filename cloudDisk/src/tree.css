@@ -4,8 +4,10 @@
 }
 .tree_content li{
     height: auto;
+    /*height: 28px;*/
     line-height: 28px;
     font-size: 14px;
+    overflow: hidden;
 }
 .tree_root{
     margin-left: 20px;

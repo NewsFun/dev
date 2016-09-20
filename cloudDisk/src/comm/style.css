@@ -119,9 +119,9 @@ a.blue:hover { color:#2953a6;}
 
 .userInfo{margin:0 auto;height:60px;line-height:60px;font-size:12px;}
 .userInfo img{float:left; margin-top:10px; margin-right:10px;}
-.userInfo  span{float:left;color:#fff; font-weight:bold; padding-right:15px;}
-.userInfo  a{float:left; color:#22589f; padding-right:20px;}
-.userInfo  a:visited{color:#fff}
+.userInfo span{float:left;color:#fff; font-weight:bold; padding-right:15px;}
+.userInfo a{float:left; color:#22589f; padding-right:20px;}
+.userInfo a:visited{color:#fff}
 .userInfo .login{width:144px;height:24px;line-height:22px;margin-top:6px;background:url(../../images/discbg.png) no-repeat 0px -347px;}
 .userInfo .login span{width:55px;height:20px;line-height:20px;padding:0;color:#fff;text-align:center;display:inline-block}
 .userInfo .login span.register{margin-left:30px;}
@@ -129,28 +129,28 @@ a.blue:hover { color:#2953a6;}
 .userInfo .login span a:hover{color:#f00;text-decoration: underline;}
 
 /*溢出样式*/
-.overflow{overflow-x: hidden;overflow-y: auto; }
+.overflow{overflow-x: hidden;overflow-y: auto;}
 
 /*左边菜单*/
-#tree_content,.leftmenu{padding:0;text-align:left;margin-top:10px !important; overflow-x:hidden;overflow-y:auto;*zoom:1;}
-#tree_content ul{overflow:hidden;}
-#tree_content ul li{width:100%;height:40px; line-height:40px; margin-top:12px;padding-left:30px;  }
-#tree_content ul li:hover,#tree_content ul li.treelibg{background-color: #3686e8;}
-#tree_content ul li a{font-size:14px; color:#3686e8;padding-left:39px;background:url(../../images/discbgnew.png)  0 0 no-repeat;display:block; height:40px;font-weight: bold;}
-#tree_content ul li a#latestupload { background-position:-200px 0;}
-#tree_content ul li a#cloudphoto{ background-position:-200px -50px;}
-#tree_content ul li  a#cloudvideo{ background-position:-200px -100px;}
-#tree_content ul li  a#myfile{ background-position:-200px -150px;}
-#tree_content ul li  a#publicdisk{ background-position:-200px -200px;}
-#tree_content ul li  a#cloudnote{ background-position:-200px -250px;}
-#tree_content ul li.treelibg a{font-weight:bold; color:#fff;}
-#tree_content ul li  a#latestupload:hover,#tree_content ul li  a#latestupload.latestuploaddown{ background-position:0 0; }
-#tree_content ul li  a#cloudphoto:hover,#tree_content ul li  a#cloudphoto.cloudphotodown{ background-position:0 -50px; }
-#tree_content ul li  a#cloudvideo:hover,#tree_content ul li  a#cloudvideo.cloudvideodown{ background-position:0 -100px; }
-#tree_content ul li  a#myfile:hover,#tree_content ul li  a#myfile.myfiledown{ background-position:0 -150px; }
-#tree_content ul li  a#publicdisk:hover,#tree_content ul li a#publicdisk.publicdiskdown{ background-position:0 -200px; }
-#tree_content ul li  a#cloudnote:hover,#tree_content ul li  a#cloudnote.cloudnotedown{ background-position:0 -250px; }
-#tree_content ul li  a:hover{font-weight:bold; color:#fff;}
+.west-list,.leftmenu{padding:0;text-align:left;margin-top:10px; overflow-x:hidden;overflow-y:auto;*zoom:1;}
+.west-list {overflow:hidden;}
+.west-list li{width:100%;height:40px; line-height:40px; margin-top:12px;padding-left:30px;  }
+.west-list li:hover,.west-list li.treelibg{background-color: #3686e8;}
+.west-list li a{font-size:14px; color:#333;padding-left:39px;background:url(../../images/discbgnew.png)  0 0 no-repeat;display:block; height:40px;font-weight: bold;}
+.west-list li a#latestupload { background-position:-200px 0;}
+.west-list li a#cloudphoto{ background-position:-200px -50px;}
+.west-list li  a#cloudvideo{ background-position:-200px -100px;}
+.west-list li  a#myfile{ background-position:-200px -150px;}
+.west-list li  a#publicdisk{ background-position:-200px -200px;}
+.west-list li  a#cloudnote{ background-position:-200px -250px;}
+.west-list li.treelibg a{font-weight:bold; color:#fff;}
+.west-list li  a#latestupload:hover,.west-list li  a#latestupload.latestuploaddown{ background-position:0 0; }
+.west-list li  a#cloudphoto:hover,.west-list li  a#cloudphoto.cloudphotodown{ background-position:0 -50px; }
+.west-list li  a#cloudvideo:hover,.west-list li  a#cloudvideo.cloudvideodown{ background-position:0 -100px; }
+.west-list li  a#myfile:hover,.west-list li  a#myfile.myfiledown{ background-position:0 -150px; }
+.west-list li  a#publicdisk:hover,.west-list li a#publicdisk.publicdiskdown{ background-position:0 -200px; }
+.west-list li  a#cloudnote:hover,.west-list li  a#cloudnote.cloudnotedown{ background-position:0 -250px; }
+.west-list li  a:hover{font-weight:bold; color:#fff;}
 
 .leftmenu ul{margin:0;padding:0; text-align:left;}
 .leftmenu .container{margin:0 auto;padding:0}
@@ -210,7 +210,7 @@ span.select {position: absolute;width: 158px; height: 21px;padding: 0 24px 0 8px
 .ProgressBar .con{ background: url(../../images/barbg.gif) repeat-x; height:20px;line-height:20px;}
 .ProgressBar .rightbar{ background:url(../../images/sbarRight.png) no-repeat; width:7px; height:20px;font-size:7px;}
 .probar{height:20px; width:200px;text-align:left;border: 1px solid #3686e8;overflow: hidden;}
-#p_percent{ background-color: #3686e8; height:100%;line-height:20px;margin-right:-4px;_margin-top:3px;font-family:Arial ;font-size:10px;text-align:center;color:#000}
+#p_percent{ background-color: #3686e8; height:100%;line-height:20px;margin-right:-4px;_margin-top:3px;font-family:Arial ;font-size:10px;text-align:center;color:#fff}
 #p_percent_temp{ background:url(../../images/probg.gif) repeat-x; height:12px;line-height:12px;display:none;padding:0;margin-right:-4px;_margin-top:3px;font-family:Arial ;font-size:10px;text-align:center;color:#000}
 .barright{ background:url(../../images/proright.gif) no-repeat left; height:12px; width:4px;display:inline-block}
 .ui-layout-center .rprobar{padding-left:15px;width:205px;height:56px;text-align:left;margin:0 auto;position: absolute;top:0;right:0;border-left: 1px solid #d1dfe8;}
