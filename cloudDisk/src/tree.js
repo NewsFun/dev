@@ -2,6 +2,25 @@
  * Created by bobo on 2016/9/19.
  */
 (function(){
+    
+    function Node(node){
+        this.node = node;
+        this.open = false;
+        this.tick = false;
+        this.Dafa = false;
+        this.icon = null;
+        this.box = null;
+    }
+    Node.prototype = {
+        addTick:function(){
+            var self = this;
+            self.node.on('click', function(){
+                
+            });
+        }
+    }
+    
+
     function Tree(con){
         this.title = $('.tree_title');
         this.baseH = con.baseH;
@@ -17,17 +36,15 @@
         openTree:function(){
             var self = this;
             self.title.each(function(){
-                if($(this).addOpen) return true;
-                $(this).on('click', function(){
-                    self._nodeClick($(this));
-                    $(this).addOpen = true;
+                $(this).unbind('click').on('click', function(){
+                    var v = $(this);
+                    self._nodeClick(v);
                 });
             });
         },
         _getData:function(url, pid){
             var self = this;
             $.get(url, function(data){
-                //console.log(data);
                 self._addHtml(data, pid);
             },'json');
         },
@@ -41,11 +58,11 @@
             if(title.hasClass(self.closeClass)){
                 title.removeClass(self.closeClass).addClass(self.openClass).html('-');
                 node.parent().removeAttr('style');
-                if(!$(this).data('opened')){
-                var url = '/json/tree'+pid+'.json';
-                //var url = 'http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/address/get_child_address.do?parentId='+pid;
-                self._getData(url, pid);
-                node.data('opened', 'true');
+                if(!node.opened){
+                    var url = '/json/tree'+pid+'.json';
+                    //var url = 'http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/address/get_child_address.do?parentId='+pid;
+                    self._getData(url, pid);
+                    node.opened = true;
                 }
             }else{
                 title.removeClass(self.openClass).addClass(self.closeClass).html('+');
