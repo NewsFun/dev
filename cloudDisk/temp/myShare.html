@@ -38,77 +38,79 @@
     </div>
 </div>
 <div id="ui-layout-center" class="ui-layout-center">
-    <div class="east-head"></div>
-    <table class="east-content" cellpadding="0" cellspacing="0">
-        <thead>
-        <tr>
-            <th class="tb-check">
-                <label><input type="checkbox"></label>
-                <span>全选</span>
-            </th>
-            <th class="tb-name">文件名</th>
-            <th class="tb-href">分享链接</th>
-            <th class="tb-member">
-                <span>分享用户</span>
-                <label><input class="search" type="text"></label>
-                <label><input class="base-bg" type="button" value="取消分享"></label>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td class="tb-check"><label><input type="checkbox"></label></td>
-            <td class="tb-name"><span>文件名.doc</span></td>
-            <td class="tb-href"><span class="href">http://pan.xinhua.com/s/1o8GmPOA</span><span class="copy">复制</span></td>
-            <td class="tb-member">
-                <label class="lf">
-                    <input class="member" type="button" value="张某">
-                    <input class="member" type="button" value="张某">
-                    <input class="member" type="button" value="张某">
-                    <input class="member" type="button" value="张某">
-                </label>
-                <label class="rf">
-                    <input class="base-bg" type="submit" value="添加">
-                    <input class="base-bg hidden" type="submit" value="删除">
-                </label>
-            </td>
-        </tr>
-        <tr>
-            <td class="tb-check"><label><input type="checkbox"></label></td>
-            <td class="tb-name"><span>新建文件.doc</span></td>
-            <td class="tb-href"><span class="href">http://localhost.home.news.cn:7001/vdisk/control/home.do</span><span class="copy">复制</span></td>
-            <td class="tb-member">
-                <label class="lf">
-                    <input class="member" type="button" value="张某">
-                    <input class="member" type="button" value="张某">
-                    <input class="member" type="button" value="张某">
-                    <input class="member" type="button" value="张某">
-                </label>
-                <label class="rf">
-                    <input class="base-bg" type="submit" value="添加">
-                    <input class="base-bg hidden" type="submit" value="删除">
-                </label>
-            </td>
-        </tr>
-        <tr>
-            <td class="tb-check"><label><input type="checkbox"></label></td>
-            <td class="tb-name"><span>张某.doc</span></td>
-            <td class="tb-href"><span class="href">http://localhost:8886/temp/mySpace.html</span><span class="copy">复制</span></td>
-            <td class="tb-member">
-                <label class="lf">
-                    <input class="member" type="button" value="张某">
-                    <input class="member" type="button" value="张某">
-                    <input class="member" type="button" value="张某">
-                    <input class="member" type="button" value="张某">
-                </label>
-                <label class="rf">
-                    <input class="base-bg" type="submit" value="添加">
-                    <input class="base-bg hidden" type="submit" value="删除">
-                </label>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+    <div class="east-main">
+        <div class="east-head"></div>
+        <table class="east-content" cellpadding="0" cellspacing="0">
+            <thead>
+            <tr>
+                <th class="tb-check">
+                    <label><input id="selectAll" type="checkbox"></label>
+                    <span>全选</span>
+                </th>
+                <th class="tb-name">文件名</th>
+                <th class="tb-href">分享链接</th>
+                <th class="tb-member">
+                    <span>分享用户</span>
+                    <label><input class="search" type="text"></label>
+                    <label><input class="base-bg" type="button" value="取消分享"></label>
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>
+                <td class="tb-name"><span>文件名.doc</span></td>
+                <td class="tb-href"><span class="href">http://pan.xinhua.com/s/1o8GmPOA</span><span class="copy">复制</span></td>
+                <td class="tb-member">
+                    <label class="lf">
+                        <input class="member" type="button" value="张某">
+                        <input class="member" type="button" value="张某">
+                        <input class="member" type="button" value="张某">
+                        <input class="member" type="button" value="张某">
+                    </label>
+                    <label class="rf">
+                        <input class="base-bg" type="submit" value="添加">
+                        <input class="base-bg hidden" type="submit" value="删除">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>
+                <td class="tb-name"><span>新建文件.doc</span></td>
+                <td class="tb-href"><span class="href">http://localhost.home.news.cn:7001/vdisk/control/home.do</span><span class="copy">复制</span></td>
+                <td class="tb-member">
+                    <label class="lf">
+                        <input class="member" type="button" value="张某">
+                        <input class="member" type="button" value="张某">
+                        <input class="member" type="button" value="张某">
+                        <input class="member" type="button" value="张某">
+                    </label>
+                    <label class="rf">
+                        <input class="base-bg" type="submit" value="添加">
+                        <input class="base-bg hidden" type="submit" value="删除">
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>
+                <td class="tb-name"><span>张某.doc</span></td>
+                <td class="tb-href"><span class="href">http://localhost:8886/temp/mySpace.html</span><span class="copy">复制</span></td>
+                <td class="tb-member">
+                    <label class="lf">
+                        <input class="member" type="button" value="张某">
+                        <input class="member" type="button" value="张某">
+                        <input class="member" type="button" value="张某">
+                        <input class="member" type="button" value="张某">
+                    </label>
+                    <label class="rf">
+                        <input class="base-bg" type="submit" value="添加">
+                        <input class="base-bg hidden" type="submit" value="删除">
+                    </label>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 </body>
 </html>

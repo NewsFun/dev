@@ -37,13 +37,39 @@
     <div class="myList">
         <ul id="tree_content" class="tree_content">
             <li class="tree_root">
-                <div class="tree_title" data-level="0"><span class="tree_icon icon_hollow">-</span><span class="tree_name">企业</span></div>
-                <ul class="tree_branch">
+                <div class="tree_title" data-id="1"><span class="tree_icon icon_solid">+</span><span class="tree_name">企业</span></div>
+                <ul id="1" class="tree_branch">
+                    <!--
                     <li>
-                        <div class="tree_title" data-level="1"><span class="tree_icon icon_hollow">-</span><span class="tree_name">新华网</span></div>
+                        <div class="tree_title" data-id="3"><span class="tree_icon icon_hollow">-</span><span class="tree_name">新华网</span></div>
                         <ul class="tree_branch">
                             <li>
-                                <div class="tree_title" data-level="2"><span class="tree_icon icon_hollow">-</span><span class="tree_name">技术研发</span></div>
+                                <div class="tree_title" data-id="4"><span class="tree_icon icon_hollow">-</span><span class="tree_name">技术研发</span></div>
+                                <ul class="tree_branch">
+                                    <li>
+                                        <div class="tree_title" data-level="5"><span class="tree_name">产品设计</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="tree_title" data-level="6"><span class="tree_name">前端组</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="tree_title" data-level="7"><span class="tree_name">系统</span></div>
+                                    </li>
+                                    <li>
+                                        <div class="tree_title" data-level="8"><span class="tree_name">运维</span></div>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li>
+                                <div class="tree_title"><span class="tree_icon icon_solid">+</span><span class="tree_name">编辑部</span></div>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <div class="tree_title" data-id="1"><span class="tree_icon icon_hollow">-</span><span class="tree_name">人民网</span></div>
+                        <ul class="tree_branch">
+                            <li>
+                                <div class="tree_title" data-id="2"><span class="tree_icon icon_hollow">-</span><span class="tree_name">技术研发</span></div>
                                 <ul class="tree_branch">
                                     <li>
                                         <div class="tree_title" data-level="3"><span class="tree_name">产品设计</span></div>
@@ -64,101 +90,81 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <div class="tree_title" data-level="1"><span class="tree_icon icon_hollow">-</span><span class="tree_name">人民网</span></div>
-                        <ul class="tree_branch">
-                            <li>
-                                <div class="tree_title" data-level="2"><span class="tree_icon icon_hollow">-</span><span class="tree_name">技术研发</span></div>
-                                <ul class="tree_branch">
-                                    <li>
-                                        <div class="tree_title" data-level="3"><span class="tree_name">产品设计</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="tree_title" data-level="3"><span class="tree_name">前端组</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="tree_title" data-level="3"><span class="tree_name">系统</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="tree_title" data-level="3"><span class="tree_name">运维</span></div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="tree_title"><span class="tree_icon icon_solid">+</span><span class="tree_name">编辑部</span></div>
-                            </li>
-                        </ul>
-                    </li>
+                    -->
                 </ul>
             </li>
             <li class="tree_root">
-                <div class="tree_title"><span class="tree_icon icon_solid">+</span><span class="tree_name">个人</span></div>
-                <ul class="tree_branch"></ul>
+                <div class="tree_title" data-id="2"><span class="tree_icon icon_solid">+</span><span class="tree_name">个人</span></div>
+                <ul id="2" class="tree_branch"></ul>
             </li>
         </ul>
     </div>
 </div>
 <div id="ui-layout-center" class="ui-layout-center">
-    <div class="east-head">
-        <span>新华网</span>
-        <span>产品设计</span>
-        <a class="base-bg">删除</a>
+    <div class="east-main">
+        <div class="east-head">
+            <span>二维码</span>
+            <span>新华网</span>
+            <span>产品设计</span>
+        </div>
+        <table class="east-content" cellpadding="0" cellspacing="0">
+            <thead>
+            <tr>
+                <th class="tb-check">
+                    <label><input id="selectAll" type="checkbox"></label>
+                    <span>全选</span>
+                </th>
+                <th class="tb-name"><span>用户名</span><span class="tb-id"> (账号) </span></th>
+                <th class="tb-post">职位</th>
+                <th class="tb-phone">手机</th>
+                <th class="tb-email">邮箱</th>
+                <th class="tb-search">
+                    <label><input class="search" type="text"></label>
+                    <label><input id="am" class="base-bg" type="button" value="添加成员" data-href="fileUploadDispatch.do?parentId=986284&pageNo=1&divType="></label>
+                    <label><input id="dm" class="base-bg" type="button" value="删除成员"></label>
+                    <input type="hidden" id="divType" name="divType" value="ros">
+                </th>
+            </tr>
+            </thead>
+            <tbody id="data">
+            <tr>
+                <td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>
+                <td class="tb-name"><span>张某</span><span class="tb-id"> (zhang01) </span></td>
+                <td class="tb-post"><span>UI设计师</span></td>
+                <td class="tb-phone"><span>15637891023</span></td>
+                <td class="tb-email"><span>www@mmm.com</span></td>
+                <td class="tb-search">
+                    <span class="base-color">设为管理员</span>
+                    <span class="base-color"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>
+                <td class="tb-name"><span>张某</span><span class="tb-id"> (momo) </span></td>
+                <td class="tb-post"><span>UI设计师</span></td>
+                <td class="tb-phone"><span>15637891023</span></td>
+                <td class="tb-email"><span>www@mmm.com</span></td>
+                <td class="tb-search">
+                    <span class="base-color">设为管理员</span>
+                    <span class="base-color"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>
+                <td class="tb-name"><span>张某</span><span class="tb-id"> (alibaba@sina.com) </span></td>
+                <td class="tb-post"><span>UI设计师</span></td>
+                <td class="tb-phone"><span>15637891023</span></td>
+                <td class="tb-email"><span>www@mmm.com</span></td>
+                <td class="tb-search">
+                    <span class="base-color">设为管理员</span>
+                    <span class="base-color"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-    <table class="east-content" cellpadding="0" cellspacing="0">
-        <thead>
-        <tr>
-            <th class="tb-check">
-                <label><input type="checkbox"></label>
-                <span>全选</span>
-            </th>
-            <th class="tb-name"><span>用户名</span><span class="tb-id"> (账号) </span></th>
-            <th class="tb-post">职位</th>
-            <th class="tb-phone">手机</th>
-            <th class="tb-email">邮箱</th>
-            <th class="tb-search">
-                <label><input class="search" type="text"></label>
-                <label><input class="base-bg" type="button" value="添加成员"></label>
-                <label><input class="base-bg" type="button" value="删除成员"></label>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td class="tb-check"><label><input type="checkbox"></label></td>
-            <td class="tb-name"><span>张某</span><span class="tb-id"> (zhang01) </span></td>
-            <td class="tb-post"><span>UI设计师</span></td>
-            <td class="tb-phone"><span>15637891023</span></td>
-            <td class="tb-email"><span>www@mmm.com</span></td>
-            <td class="tb-search">
-                <span class="base-color">设为管理员</span>
-                <span class="base-color"></span>
-            </td>
-        </tr>
-        <tr>
-            <td class="tb-check"><label><input type="checkbox"></label></td>
-            <td class="tb-name"><span>张某</span><span class="tb-id"> (momo) </span></td>
-            <td class="tb-post"><span>UI设计师</span></td>
-            <td class="tb-phone"><span>15637891023</span></td>
-            <td class="tb-email"><span>www@mmm.com</span></td>
-            <td class="tb-search">
-                <span class="base-color">设为管理员</span>
-                <span class="base-color"></span>
-            </td>
-        </tr>
-        <tr>
-            <td class="tb-check"><label><input type="checkbox"></label></td>
-            <td class="tb-name"><span>张某</span><span class="tb-id"> (alibaba@sina.com) </span></td>
-            <td class="tb-post"><span>UI设计师</span></td>
-            <td class="tb-phone"><span>15637891023</span></td>
-            <td class="tb-email"><span>www@mmm.com</span></td>
-            <td class="tb-search">
-                <span class="base-color">设为管理员</span>
-                <span class="base-color"></span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
 </div>
 <script src="../src/tree.js"></script>
+<script src="../src/myList.js"></script>
 </body>
 </html>

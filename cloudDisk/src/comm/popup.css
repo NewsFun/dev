@@ -1,0 +1,96 @@
+@charset "UTF-8";
+body,html{
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
+}
+a{text-decoration: none;}
+a,button,input[type="button"]{cursor: pointer;}
+.popup .pop-color{ color: #3686e8; }
+.popup .unfix:after { clear: both; }
+.popup .rf{float: right;}
+.popup .unfix:before, .popup .unfix:after {
+    display: table;
+    content: " ";
+}
+.popup ul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    width: 400px;
+}
+.popup ul li{
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+}
+.popup li>div{
+    height: 100%;
+}
+.popup .inline{
+    display: inline-block;
+    float: left;
+}
+.popup .table{
+    margin: 30px auto 0;
+}
+.popup .title{
+    height: 50px;
+    line-height: 50px;
+    font-size: 18px;
+    border-bottom: 2px solid #3686e8;
+}
+.popup .title a{
+    display: inline-block;
+    float: left;
+    width: 100px;
+    text-align: center;
+    color: #3686e8;
+    font-weight: bold;
+}
+.popup .title a.on{
+    color: white;
+    background-color: #3686e8;
+}
+.popup .center{
+    text-align: center;
+}
+.popup .left{
+    text-align: left;
+    width: 320px;
+}
+.popup .left>input{
+    width: 316px;
+    height: 26px;
+}
+.popup .right{
+    width: 80px;
+    text-align: right;
+}
+.popup .submit{
+    width: 120px;
+    height: 50px;
+    background-color: #3686e8;
+    color: #fff;
+    border: none;
+    margin: 20px auto 0;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.popup .button {
+    display: inline-block;
+    width: 80px;
+    height: 24px;
+    line-height: 24px;
+    cursor: pointer;
+    color: #ffffff;
+    background: #3686e8;
+    border-radius: 4px;
+    text-align: center;
+    overflow: hidden;
+    margin-top: 8px;
+    *display: inline;
+    *zoom: 1
+}

@@ -1,7 +1,9 @@
 @charset "UTF-8";
+a,button,input[type="button"]{cursor: pointer;}
 .hidden{display: none;}
 .logo{border-right: 1px solid #fff;}
-.ui-layout-center{padding:10px 25px 0;}
+.ui-layout-center{padding: 0;}
+.ui-layout-center .east-main{padding:10px 25px 0;}
 .ms-title{font-size: 1.6em;padding-left: 20px;}
 .ms-page{margin-left: 100px;height: 100%;line-height: 60px;}
 .ms-page a{
@@ -57,11 +59,12 @@
 .east-content tbody tr{
     border-bottom: 1px solid #ebebeb;
 }
-.east-content tbody tr:hover{
+.east-content tbody tr:hover,.east-content tbody tr.on{
     background-color: rgba(0, 153, 255, 0.2);
 }
 .east-content input.search{height: 22px;}
-.east-content input.base-bg{
+.east-content input.base-bg,
+.east-content a.base-bg{
     border: none;
     height: 28px;
     color: white;
@@ -69,6 +72,7 @@
     text-align: center;
     margin: 0 4px;
     padding: 0 10px;
+    background-color: #3686e8;
 }
 .east-content img.icon{
     float: left;

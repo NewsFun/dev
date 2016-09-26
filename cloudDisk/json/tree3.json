@@ -1,0 +1,51 @@
+[
+  {
+    "id": 7,
+    "level": 3,
+    "name": "研发部",
+    "parentId": 3,
+    "user": true
+  },
+  {
+    "id": 7,
+    "level": 3,
+    "name": "技术部",
+    "parentId": 3,
+    "user": true
+  },
+  {
+    "id": 7,
+    "level": 3,
+    "name": "设计",
+    "parentId": 3,
+    "user": true
+  },
+  {
+    "id": 7,
+    "level": 3,
+    "name": "前端",
+    "parentId": 3,
+    "user": true
+  },
+  {
+    "id": 7,
+    "level": 3,
+    "name": "运维",
+    "parentId": 3,
+    "user": true
+  },
+  {
+    "id": 7,
+    "level": 3,
+    "name": "集成",
+    "parentId": 3,
+    "user": true
+  },
+  {
+    "id": 7,
+    "level": 3,
+    "name": "编辑",
+    "parentId": 3,
+    "user": true
+  }
+]
