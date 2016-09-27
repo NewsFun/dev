@@ -1,7 +1,7 @@
 tbody .tb-name{text-align: left;}
 .myShare{margin-top: 2px;}
 .myShare li{color: #3686e8;font-weight: bold;}
-.myShare li.on{color: #ffffff;background-color: #3686e8;}
+.myShare .on{color: #ffffff;background-color: #3686e8;}
 
 .tb-href span{text-decoration: underline;}
 .tb-href .href{

@@ -38,23 +38,31 @@ $(function(){
             var self = this;
 
             $('#am').on('click', function(){
-                self._initHS();
+                self._initHS('446px','../common/upload.html');
             });
-            $('#dm').on('click', function(){
-
+            $('.tree_leaf').on('click', function(){
+                $.get(url,function(data){
+                    self._addBuddy(data);
+                },'json');
+            });
+            $('#at').on('click', function(){
+                self._initHS('260px','../common/add.html');
             });
         },
-        _initHS:function(){
+        _addBuddy:function(data){
+
+        },
+        _initHS:function(height, path){
             layer.open({
                 type: 2,
                 title: false,
                 closeBtn: 1, //不显示关闭按钮
                 shade: [0.5,'#000'],
-                area: ['650px', '446px'],
+                area: ['650px', height],
                 offset: 'auto', //居中弹出
                 time: 0, //不自动关闭
                 shift: 2,
-                content: ['../common/upload.html', 'no'] //iframe的url，no代表不显示滚动条
+                content: [path, 'no'] //iframe的url，no代表不显示滚动条
             });
         },
         _addData:function(){

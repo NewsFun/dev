@@ -6,10 +6,10 @@ body,html{
     font-family: "Microsoft YaHei", "微软雅黑", sans-serif;
 }
 a{text-decoration: none;}
-a,button,input[type="button"]{cursor: pointer;}
+a,button,input[type="button"],input[type="submit"]{cursor: pointer;}
 .popup .pop-color{ color: #3686e8; }
-.popup .unfix:after { clear: both; }
 .popup .rf{float: right;}
+.popup .unfix:after { clear: both; }
 .popup .unfix:before, .popup .unfix:after {
     display: table;
     content: " ";
@@ -21,12 +21,15 @@ a,button,input[type="button"]{cursor: pointer;}
     width: 400px;
 }
 .popup ul li{
-    height: 40px;
-    line-height: 40px;
+    height: 50px;
+    line-height: 50px;
     text-align: center;
 }
 .popup li>div{
     height: 100%;
+}
+.popup .ft-16{
+    font-size: 16px;
 }
 .popup .inline{
     display: inline-block;
@@ -36,8 +39,8 @@ a,button,input[type="button"]{cursor: pointer;}
     margin: 30px auto 0;
 }
 .popup .title{
-    height: 50px;
-    line-height: 50px;
+    height: 60px;
+    line-height: 60px;
     font-size: 18px;
     border-bottom: 2px solid #3686e8;
 }
@@ -70,7 +73,7 @@ a,button,input[type="button"]{cursor: pointer;}
 }
 .popup .submit{
     width: 120px;
-    height: 50px;
+    height: 40px;
     background-color: #3686e8;
     color: #fff;
     border: none;
@@ -90,7 +93,7 @@ a,button,input[type="button"]{cursor: pointer;}
     border-radius: 4px;
     text-align: center;
     overflow: hidden;
-    margin-top: 8px;
+    margin-top: 13px;
     *display: inline;
     *zoom: 1
 }

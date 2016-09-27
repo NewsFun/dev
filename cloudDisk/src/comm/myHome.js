@@ -13,7 +13,8 @@ $(document).ready(function(){
         init:function(){
             var self = this;
             self.initEast();
-            self.initCbox();
+            self.initCBox();
+            self.initCAll();
         },
         initEast:function(){
             var sh = ~~SOUTH.height(),
@@ -23,13 +24,19 @@ $(document).ready(function(){
             WEST.css('height', wh+'px');
             EAST.css('width', ew+'px').css('height', eh+'px');
         },
-        initCbox:function(){
+        initCAll:function(){
             $('#selectAll').on('click',function(){
-                var check = $(this).is(':checked');
-                console.log(check);
+                var ca = $(this).is(':checked');
                 $('.tb-checkbox').each(function(){
-                    $(this).attr('checked', check);
+                    var ct = $(this).is(':checked');
+                    if(ct!==ca) $(this).trigger('click');
                 });
+            });
+        },
+        initCBox:function(){
+            $('.tb-checkbox').on('click',function(){
+                var tr = $(this).parents('tr');
+                $(this).is(':checked')?tr.addClass('on'):tr.removeClass('on');
             });
         }
     };
