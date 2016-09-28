@@ -25,18 +25,24 @@ $(document).ready(function(){
             EAST.css('width', ew+'px').css('height', eh+'px');
         },
         initCAll:function(){
-            $('#selectAll').on('click',function(){
+            $('#check-all').on('click',function(){
                 var ca = $(this).is(':checked');
-                $('.tb-checkbox').each(function(){
-                    var ct = $(this).is(':checked');
-                    if(ct!==ca) $(this).trigger('click');
-                });
+                var box = $('.tb-checkbox');
+                if(box.length>0){
+                    box.each(function(){
+                        var ct = $(this).is(':checked');
+                        if(ct!==ca) $(this).trigger('click');
+                    });
+                }
             });
         },
         initCBox:function(){
-            $('.tb-checkbox').on('click',function(){
-                var tr = $(this).parents('tr');
-                $(this).is(':checked')?tr.addClass('on'):tr.removeClass('on');
+            $('#data').on('click', function(e){
+                var tg = $(e.target);
+                if(tg.hasClass('tb-checkbox')){
+                    var tr = tg.parents('tr');
+                    tg.is(':checked')?tr.addClass('on'):tr.removeClass('on');
+                }
             });
         }
     };

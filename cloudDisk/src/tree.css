@@ -9,7 +9,7 @@
     font-size: 14px;
     overflow: hidden;
 }
-.tree_root{
+.tree_content>.tree_branch{
     margin-left: 20px;
     cursor: pointer;
 }

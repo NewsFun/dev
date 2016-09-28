@@ -40,17 +40,9 @@ $(function(){
             $('#am').on('click', function(){
                 self._initHS('446px','../common/upload.html');
             });
-            $('.tree_leaf').on('click', function(){
-                $.get(url,function(data){
-                    self._addBuddy(data);
-                },'json');
-            });
             $('#at').on('click', function(){
                 self._initHS('260px','../common/add.html');
             });
-        },
-        _addBuddy:function(data){
-
         },
         _initHS:function(height, path){
             layer.open({

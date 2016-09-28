@@ -38,8 +38,8 @@
     </div>
     <div class="myList">
         <ul id="tree_content" class="tree_content">
-            <li class="tree_root">
-                <div class="tree_title" data-id="1"><span class="tree_icon icon_solid"></span><span class="tree_name">企业</span></div>
+            <li class="tree_branch">
+                <div class="tree_title"><span class="tree_icon icon_solid" data-id="1"></span><span class="tree_name">企业</span></div>
                 <ul id="1" class="tree_branch">
                     <!--
                     <li>
@@ -95,8 +95,8 @@
                     -->
                 </ul>
             </li>
-            <li class="tree_root">
-                <div class="tree_title" data-id="2"><span class="tree_icon icon_solid"></span><span class="tree_name">个人</span></div>
+            <li class="tree_branch">
+                <div class="tree_title"><span class="tree_icon icon_solid" data-id="2"></span><span class="tree_name">个人</span></div>
                 <ul id="2" class="tree_branch"></ul>
             </li>
         </ul>
@@ -113,7 +113,7 @@
             <thead>
             <tr>
                 <th class="tb-check">
-                    <label><input id="selectAll" type="checkbox"></label>
+                    <label><input id="check-all" type="checkbox"></label>
                     <span>全选</span>
                 </th>
                 <th class="tb-name"><span>用户名</span><span class="tb-id"> (账号) </span></th>
@@ -129,6 +129,7 @@
             </tr>
             </thead>
             <tbody id="data">
+            <!--
             <tr>
                 <td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>
                 <td class="tb-name"><span>张某</span><span class="tb-id"> (zhang01) </span></td>
@@ -162,6 +163,7 @@
                     <span class="base-color"></span>
                 </td>
             </tr>
+            -->
             </tbody>
         </table>
     </div>
