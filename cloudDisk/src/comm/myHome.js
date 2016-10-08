@@ -44,6 +44,9 @@ $(document).ready(function(){
                     tg.is(':checked')?tr.addClass('on'):tr.removeClass('on');
                 }
             });
+        },
+        baseReq:function(){
+
         }
     };
 

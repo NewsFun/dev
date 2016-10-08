@@ -48,7 +48,7 @@ $(function(){
             layer.open({
                 type: 2,
                 title: false,
-                closeBtn: 1, //不显示关闭按钮
+                closeBtn: 1, //显示关闭按钮
                 shade: [0.5,'#000'],
                 area: ['650px', height],
                 offset: 'auto', //居中弹出

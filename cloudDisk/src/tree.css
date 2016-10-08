@@ -2,16 +2,13 @@
     margin-top: 4px;
     color: #000;
 }
+.tree_content a{cursor: pointer;}
 .tree_content li{
     height: auto;
     /*height: 28px;*/
     line-height: 28px;
     font-size: 14px;
     overflow: hidden;
-}
-.tree_content>.tree_branch{
-    margin-left: 20px;
-    cursor: pointer;
 }
 .tree_icon{
     display: inline-block;

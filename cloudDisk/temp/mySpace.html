@@ -2,10 +2,10 @@
 <html>
 <head lang="en">
     <!--#include virtual="/common/myHead.html"-->
-    <title>新华云盘-管理中心</title>
+    <title>管理中心-群组管理</title>
     <link rel="stylesheet" type="text/css" href="../src/mySpace.css">
 </head>
-<body>
+<body data-page="space">
 <div id="ui-layout-north" class="ui-layout-north">
     <div class="content">
         <div class="head-top">
@@ -34,18 +34,18 @@
         <b>共享组</b>
     </div>
     <div class="mySpace">
-        <ul class="tree_content">
-            <li class="on"><a><img class="icon" src="../images/u328.png"><span>直播项目资料</span></a></li>
-            <li><a><img class="icon" src="../images/u280.png"><span>搜索项目资料</span></a></li>
-            <li><a><img class="icon" src="../images/u280.png"><span>文库项目资料</span></a></li>
-            <li><a><img class="icon" src="../images/u280.png"><span>百科项目资料</span></a></li>
+        <ul id="js_content" class="tree_content">
+            <li><a><img class="icon" src="../images/u328.png"><span class="my-space on">直播项目资料</span></a></li>
+            <li><a><img class="icon" src="../images/u280.png"><span class="my-space">搜索项目资料</span></a></li>
+            <li><a><img class="icon" src="../images/u280.png"><span class="my-space">文库项目资料</span></a></li>
+            <li><a><img class="icon" src="../images/u280.png"><span class="my-space">百科项目资料</span></a></li>
         </ul>
     </div>
 </div>
 <div id="ui-layout-center" class="ui-layout-center">
     <div class="east-main">
         <div class="east-head">
-            <span>二维码</span>
+            <span class="icon"></span>
             <span>全部组员</span>
             <span>(5)</span>
             <a class="base-bg">删除</a>
@@ -54,7 +54,7 @@
             <thead>
             <tr>
                 <th class="tb-check">
-                    <label><input id="selectAll" type="checkbox"></label>
+                    <label><input id="check-all" type="checkbox"></label>
                     <span>全选</span>
                 </th>
                 <th class="tb-name">姓名</th>
@@ -68,7 +68,7 @@
                 </th>
             </tr>
             </thead>
-            <tbody>
+            <tbody id="data">
             <tr>
                 <td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>
                 <td class="tb-name"><img class="icon" src="../images/u328.png"><span>张某</span></td>
@@ -76,16 +76,28 @@
                 <td class="tb-email"><span>www@mmm.com</span></td>
                 <td class="tb-permission">
                     <label>
-                        <input type="radio" value="up">
+                        <input type="checkbox" value="up">
                         <span>上传</span>
                     </label>
                     <label>
-                        <input type="radio" value="down">
+                        <input type="checkbox" value="down">
                         <span>下载</span>
                     </label>
                     <label>
-                        <input type="radio" value="read">
+                        <input type="checkbox" value="read">
                         <span>预览</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="up">
+                        <span>重命名</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="down">
+                        <span>删除</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="read">
+                        <span>创建</span>
                     </label>
                 </td>
                 <td class="tb-search">
@@ -100,16 +112,28 @@
                 <td class="tb-email"><span>www@mmm.com</span></td>
                 <td class="tb-permission">
                     <label>
-                        <input type="radio" value="up">
+                        <input type="checkbox" value="up">
                         <span>上传</span>
                     </label>
                     <label>
-                        <input type="radio" value="down">
+                        <input type="checkbox" value="down">
                         <span>下载</span>
                     </label>
                     <label>
-                        <input type="radio" value="read">
+                        <input type="checkbox" value="read">
                         <span>预览</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="up">
+                        <span>重命名</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="down">
+                        <span>删除</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="read">
+                        <span>创建</span>
                     </label>
                 </td>
                 <td class="tb-search">
@@ -124,16 +148,28 @@
                 <td class="tb-email"><span>www@mmm.com</span></td>
                 <td class="tb-permission">
                     <label>
-                        <input type="radio" value="up">
+                        <input type="checkbox" value="up">
                         <span>上传</span>
                     </label>
                     <label>
-                        <input type="radio" value="down">
+                        <input type="checkbox" value="down">
                         <span>下载</span>
                     </label>
                     <label>
-                        <input type="radio" value="read">
+                        <input type="checkbox" value="read">
                         <span>预览</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="up">
+                        <span>重命名</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="down">
+                        <span>删除</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" value="read">
+                        <span>创建</span>
                     </label>
                 </td>
                 <td class="tb-search">
@@ -145,5 +181,6 @@
         </table>
     </div>
 </div>
+<script src="../src/myShare.js"></script>
 </body>
 </html>
