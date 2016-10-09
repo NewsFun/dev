@@ -75,11 +75,26 @@ a.blue:hover { color:#2953a6;}
 .menubut input.sort{ background:url(../images/createSort.png) no-repeat }
 
 .userInfo{margin:0 auto;height:61px;line-height:61px;font-size:12px; font-family:"宋体";}
+.userInfo .tips{display: inline-block;height: 60px;position: relative;width: 40px;}
+.userInfo .tips_icon{display:block;position: absolute;width:20px;height:22px;left: 50%;top: 50%;margin-left: -10px;margin-top: -11px;}
+.userInfo .tips_num{
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: url("../../images/u12.png") no-repeat center;
+    background-size: 100% 100%;
+    padding: 0;
+    line-height: 16px;
+    text-align: center;
+    top: 10px;
+    right: 14px;
+}
 .userInfo img{float:left; margin-top:10px; margin-right:10px;}
 .userInfo  span{float:left;color:#fff; font-weight:bold; padding-right:15px;}
 
-.userInfo  a{float:left; color:#22589f; padding-right:20px;}
-.userInfo  a:visited{color:#fff}
+.userInfo  a{float:left;padding-right:20px;color:#fff;}
+.userInfo  a:visited{color:#22589f;}
 
 .userInfo .login{width:144px;height:24px;line-height:22px;margin-top:6px;background:url(../../images/discbg.png) no-repeat 0px -347px;}
 .userInfo .login span{width:55px;height:20px;line-height:20px;padding:0;color:#fff;text-align:center;display:inline-block}

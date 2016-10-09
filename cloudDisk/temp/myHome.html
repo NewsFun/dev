@@ -104,7 +104,7 @@
                 })
                 return false;
             });
-            $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
+//            $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
             changePid('986284');
             var divType = $('#divType').val();
             var pageSize = changePageSize(divType);
@@ -133,7 +133,7 @@
                 })
                 return false;
             });
-            $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
+//            $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
             changePid('986284');
             var divType = $('#divType').val();
             var pageSize = changePageSize(divType);
@@ -170,7 +170,7 @@
                 });
                 return false;
             });
-            $('#disk_upload2_href').html('<img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreateca.png"  />');
+//            $('#disk_upload2_href').html('<img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreateca.png"  />');
             var pageSize = changePageSize(divType);
             var timstamp = (new Date()).valueOf();
             var action = "sortDispatchAction.do?flag=3&pageNo=1&pageSize=" + pageSize + "&divtype=" + divType + "&t=" + timstamp;
@@ -198,7 +198,7 @@
                 })
                 return false;
             });
-            $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
+//            $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
 //	loadMenu();
             changePid('986284');
             var divType = $('#divType').val();
@@ -247,7 +247,7 @@
                             })
                             return false;
                         });
-                        $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
+//                        $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
                         fileLinkEvent(data);
                         var divType = $('#divType').val();
                         var pageSize = changePageSize(divType);
@@ -290,7 +290,7 @@
                             })
                             return false;
                         });
-                        $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
+//                        $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
                         fileLinkEvent(data);
                         var divType = $('#divType').val();
                         var pageSize = changePageSize(divType);
@@ -314,13 +314,20 @@
             <a href="home.do" target="_self" title="新华云盘">
                 <p class="logo lf"></p>
             </a>
+            <!--
             <div class="userInfo" style="float:left;">
                 <a id="tabview" onclick="tabChange();" title="切换到原始版本">[切换到原始版本]</a>
                 <a id="commonview" onclick="returnView();" style="display:none;" title="还原到新版本">[还原到新版本]</a>
             </div>
+            -->
             <div class="userInfo rf">
+                <a class="tips">
+                    <img class="tips_icon" src="../images/u10.png">
+                    <span class="tips_num">3</span>
+                </a>
                 <img src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/headimg.png"/>
                 <span>萌鱼姊姊</span>
+                <a href="mySpace.html" title="管理中心">[管理中心]</a>
                 <a href="../../logout.do?returnurl=/" title="退出">[退出]</a>
                 <a target="_blank" href="http://vdisk.home.news.cn/vdiskhelp.html" title="帮助">[帮助]</a>
                 <a href="feedbackDispatch.do" target="_blank" title="反馈">[反馈]</a>
