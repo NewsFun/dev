@@ -6,10 +6,11 @@
     margin: 6px 8px 0 0;
     width: 19px;
     height: 19px;
-    background: url("../images/u358.png") no-repeat center;
-    background-size: 100% 100%;
 }
-.tb-permission div{
+.east-head span.icon{background: url("../images/u358.png") no-repeat center;background-size: 100% 100%;}
+.east-head .icon-state{display: inline-block;float: right;}
+.tb-permission .button{
+    position: relative;
     display: inline-block;
     width: 60px;
     height: 22px;
@@ -23,7 +24,19 @@
     border: 1px solid #3686e8;
     border-radius: 4px;
 }
-.tb-permission .hidden{display: none;}
-.tb-permission .addButton{
+.tb-permission .color-blue{
     float: right;
+    background-color: #3686e8;
+    color: white;
 }
+.tb-permission .del{
+    position: absolute;
+    display: none;
+    top: -6px;
+    right: -6px;
+    width: 16px;
+    height: 16px;
+    background: url("../images/u259.png") no-repeat center;
+}
+.tb-permission .on{display: block;}
+.tb-permission .off{display: none;}

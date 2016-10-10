@@ -35,7 +35,7 @@
     </div>
     <div class="mySpace">
         <ul id="js_content" class="tree_content">
-            <li><a><img class="icon" src="../images/u328.png"><span class="my-space on">直播项目资料</span></a></li>
+            <li><a><img class="icon" src="../images/u328.png"><span class="my-space on" data-id="1">直播项目资料</span></a></li>
             <li><a><img class="icon" src="../images/u280.png"><span class="my-space">搜索项目资料</span></a></li>
             <li><a><img class="icon" src="../images/u280.png"><span class="my-space">文库项目资料</span></a></li>
             <li><a><img class="icon" src="../images/u280.png"><span class="my-space">百科项目资料</span></a></li>
@@ -49,6 +49,10 @@
             <span>全部组员</span>
             <span>(5)</span>
             <a class="base-bg">删除</a>
+            <div class="icon-state">
+                <img class="icon" src="../images/u328.png">
+                <span>管理员</span>
+            </div>
         </div>
         <table class="east-content" cellpadding="0" cellspacing="0">
             <thead>
@@ -74,37 +78,34 @@
                 <td class="tb-name"><img class="icon" src="../images/u328.png"><span>张某</span></td>
                 <td class="tb-phone"><span>15637891023</span></td>
                 <td class="tb-email"><span>wwwhahahaha@mmm.com</span></td>
-                <td class="tb-permission">
-                    <div data-name="limit" class="hidden">
+                <td class="tb-permission" data-state="true">
+                    <div data-name="limit" class="button">上传
                         <input type="hidden" value="0" name="up">
-                        <span>上传</span>
+                        <div data-name="del" class="del on"></div>
                     </div>
-                    <div data-name="limit" class="on">
+                    <div data-name="limit" class="button">下载
                         <input type="hidden" value="1" name="down">
-                        <span>下载</span>
+                        <div data-name="del" class="del"></div>
                     </div>
-                    <div data-name="limit" class="on">
+                    <div data-name="limit" class="button">预览
                         <input type="hidden" value="1" name="read">
-                        <span>预览</span>
+                        <div data-name="del" class="del"></div>
                     </div>
-                    <div data-name="limit" class="hidden">
+                    <div data-name="limit" class="button off">重命名
                         <input type="hidden" value="0" name="re">
-                        <span>重命名</span>
+                        <div data-name="del" class="del"></div>
                     </div>
-                    <div data-name="limit" class="on">
+                    <div data-name="limit" class="button">删除
                         <input type="hidden" value="1" name="de">
-                        <span>删除</span>
+                        <div data-name="del" class="del"></div>
                     </div>
-                    <div data-name="limit" class="hidden">
+                    <div data-name="limit" class="button off">创建
                         <input type="hidden" value="0" name="make">
-                        <span>创建</span>
+                        <div data-name="del" class="del"></div>
                     </div>
-                    <div data-name="admin" class="addButton color-blue">添加权限</div>
+                    <div data-name="admin" class="button color-blue">管理权限</div>
                 </td>
-                <td class="tb-search">
-                    <span class="base-color">设为管理员</span>
-                    <span class="base-color"></span>
-                </td>
+                <td class="tb-search"></td>
             </tr>
             <tr>
                 <td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>
@@ -112,68 +113,68 @@
                 <td class="tb-phone"><span>15637891023</span></td>
                 <td class="tb-email"><span>www@mmm.com</span></td>
                 <td class="tb-permission">
-                    <div data-name="limit" class="on">
-                        <input type="hidden" value="1" name="up">
-                        <span>上传</span>
-                    </div>
-                    <div data-name="limit" class="on">
-                        <input type="hidden" value="1" name="down">
-                        <span>下载</span>
-                    </div>
-                    <div data-name="limit" class="on">
-                        <input type="hidden" value="1" name="read">
-                        <span>预览</span>
-                    </div>
-                    <div data-name="limit" class="hidden">
-                        <input type="hidden" value="0" name="re">
-                        <span>重命名</span>
-                    </div>
-                    <div data-name="limit" class="hidden">
-                        <input type="hidden" value="0" name="de">
-                        <span>删除</span>
-                    </div>
-                    <div data-name="limit" class="hidden">
-                        <input type="hidden" value="0" name="make">
-                        <span>创建</span>
-                    </div>
-                    <div data-name="admin" class="addButton color-blue">添加权限</div>
-                </td>
-                <td class="tb-search">
-                    <span class="base-color">设为管理员</span>
-                    <span class="base-color"></span>
-                </td>
-            </tr>
-            <tr>
-                <td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>
-                <td class="tb-name"><span>张某</span></td>
-                <td class="tb-phone"><span>15637891023</span></td>
-                <td class="tb-email"><span>www@mmm.com</span></td>
-                <td class="tb-permission">
-                    <div data-name="limit" class="hidden">
+                    <div data-name="limit" class="button">上传
                         <input type="hidden" value="0" name="up">
-                        <span>上传</span>
+                        <div data-name="del" class="del"></div>
                     </div>
-                    <div data-name="limit" class="on">
+                    <div data-name="limit" class="button">下载
                         <input type="hidden" value="1" name="down">
-                        <span>下载</span>
+                        <div data-name="del" class="del"></div>
                     </div>
-                    <div data-name="limit" class="hidden">
-                        <input type="hidden" value="0" name="read">
-                        <span>预览</span>
+                    <div data-name="limit" class="button">预览
+                        <input type="hidden" value="1" name="read">
+                        <div data-name="del" class="del"></div>
                     </div>
-                    <div data-name="limit" class="on">
-                        <input type="hidden" value="1" name="re">
-                        <span>重命名</span>
+                    <div data-name="limit" class="button">重命名
+                        <input type="hidden" value="0" name="re">
+                        <div data-name="del" class="del"></div>
                     </div>
-                    <div data-name="limit" class="hidden">
-                        <input type="hidden" value="0" name="de">
-                        <span>删除</span>
+                    <div data-name="limit" class="button">删除
+                        <input type="hidden" value="1" name="de">
+                        <div data-name="del" class="del"></div>
                     </div>
-                    <div data-name="limit" class="on">
-                        <input type="hidden" value="1" name="make">
-                        <span>创建</span>
+                    <div data-name="limit" class="button">创建
+                        <input type="hidden" value="0" name="make">
+                        <div data-name="del" class="del"></div>
                     </div>
-                    <div data-name="admin" class="addButton color-blue">添加权限</div>
+                    <div data-name="admin" class="button color-blue">管理权限</div>
+                </td>
+                <td class="tb-search">
+                    <span class="base-color">设为管理员</span>
+                    <span class="base-color"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>
+                <td class="tb-name"><span>张某</span></td>
+                <td class="tb-phone"><span>15637891023</span></td>
+                <td class="tb-email"><span>www@mmm.com</span></td>
+                <td class="tb-permission">
+                    <div data-name="limit" class="button off">上传
+                        <input type="hidden" value="0" name="up">
+                        <div data-name="del" class="del"></div>
+                    </div>
+                    <div data-name="limit" class="button">下载
+                        <input type="hidden" value="1" name="down">
+                        <div data-name="del" class="del"></div>
+                    </div>
+                    <div data-name="limit" class="button">预览
+                        <input type="hidden" value="1" name="read">
+                        <div data-name="del" class="del"></div>
+                    </div>
+                    <div data-name="limit" class="button off">重命名
+                        <input type="hidden" value="0" name="re">
+                        <div data-name="del" class="del"></div>
+                    </div>
+                    <div data-name="limit" class="button">删除
+                        <input type="hidden" value="1" name="de">
+                        <div data-name="del" class="del"></div>
+                    </div>
+                    <div data-name="limit" class="button off">创建
+                        <input type="hidden" value="0" name="make">
+                        <div data-name="del" class="del"></div>
+                    </div>
+                    <div data-name="admin" class="button color-blue">管理权限</div>
                 </td>
                 <td class="tb-search">
                     <span class="base-color">设为管理员</span>
