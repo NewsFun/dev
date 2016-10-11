@@ -7,6 +7,7 @@ $(function(){
         this.init = function(){
             this.initClick();
             this.initTab();
+            this.initAddBtn();
         }
     }
     Share.prototype = {
@@ -28,16 +29,31 @@ $(function(){
                 var tar = $(e.target), name = tar.data('name');
                 switch (name){
                     case 'limit':
-                        self.eventLimit(tar);
+                        self.eventOfLimit(tar);
                         break;
                     case 'admin':
-                        self.eventAdmin(tar);
+                        self.eventOfAdmin(tar);
                         break;
                     case 'del':
-                        self.eventDel(tar);
+                        self.eventOfDel(tar);
                         break;
                     default :break;
                 }
+            });
+        },
+        initAddBtn:function(){
+            $('#add_btn').on('click', function(){
+                layer.open({
+                    type: 2,
+                    title: false,
+                    closeBtn: 1, //显示关闭按钮
+                    shade: [0.5,'#000'],
+                    area: ['650px', '540px'],
+                    offset: 'auto', //居中弹出
+                    time: 0, //不自动关闭
+                    shift: 2,
+                    content: ['../common/spaceAdd.html', 'no'] //iframe的url，no代表不显示滚动条
+                });
             });
         },
         getData:function(id){
@@ -50,7 +66,6 @@ $(function(){
                 }else{
                     console.log('no data');
                 }
-
             },'json');
         },
         addTab:function(data){
@@ -60,8 +75,8 @@ $(function(){
                 '<td class="tb-name">'+(data[i].isManager?'<img class="icon" src="../images/u328.png">':'')+'<span>'+data[i].name+'</span></td>' +
                 '<td class="tb-phone"><span>'+data[i].phone+'</span></td>' +
                 '<td class="tb-email"><span>'+data[i].email+'</span></td>' +
-                '<td class="tb-permission" data-state="false">' +self.getAccess(data[i].accesslevel) +
-                '<div data-name="admin" class="button color-blue">管理权限</div></td><td class="tb-search"></td></tr>';
+                '<td class="tb-permission JS_show">' +self.getAccess(data[i].accesslevel) +
+                '<div data-name="admin" class="btn color-blue">管理权限</div></td><td class="tb-search"></td></tr>';
             }
             $('#data').html(html);
         },
@@ -71,48 +86,53 @@ $(function(){
             var html = '';
             for(var i = 0;i<limit.length;i++){
                 if(access[i]=='1'){
-                    html += '<div data-name="limit" class="button">'+limit[i]+
+                    html += '<div data-name="limit" class="btn">'+limit[i]+
                     '<input type="hidden" value="1" name="'+limit[i]+'"><div data-name="del" class="del"></div></div>';
                 }else{
-                    html += '<div data-name="limit" class="button off">'+limit[i]+
+                    html += '<div data-name="limit" class="btn off">'+limit[i]+
                     '<input type="hidden" value="0" name="'+limit[i]+'"><div data-name="del" class="del"></div></div>';
                 }
             }
             return html;
         },
-        eventLimit:function(node){
-            var operate = node.parents('.tb-permission').data('state');
+        eventOfLimit:function(node){
+            var show = node.parents('.tb-permission').hasClass('JS_show');
             //console.log(operate);
-            if(operate){/*管理下*/
-                node.children('input').val('1');
-                node.removeClass('off');/*显示按钮*/
+            if(!show){/*管理下*/
+                node.children('input').val('1');/*权限置为1*/
+                node.removeClass('off');/*去除按钮隐藏样式*/
+                node.children('.del').addClass('on');/*显示关闭按钮*/
             }
-            node.children('.del').addClass('on');
         },
-        eventDel:function(node){
-            var operate = node.parents('.tb-permission').data('state');
-            node.removeClass('on');
-            var parent = node.parent('.button');
-            if(!operate) parent.addClass('off');/*非管理下删除权限*/
-            parent.children('input').val('0');
+        eventOfDel:function(node){
+            var show = node.parents('.tb-permission').hasClass('JS_show');
+            if(!show){
+                node.removeClass('on');/*隐藏关闭按钮*/
+                var parent = node.parent('.btn');
+                parent.children('input').val('0');/*权限置为0*/
+                parent.addClass('off');
+            }
         },
-        eventAdmin:function(node){
+        eventOfAdmin:function(node){
             var parent = node.parents('.tb-permission');
-            var limits = parent.find('.off'), operate = parent.data('state');
-            if(!operate){
-                node.html('关闭管理');
-                parent.data('state', true);
-                limits.each(function(){
-                    $(this).show();
-                });
-            }else{
+            var btn = parent.find('.btn'), show = parent.hasClass('JS_show'), del = parent.find('.del');
+            if(!show){
                 node.html('管理权限');
-                parent.data('state', false);
-                limits.each(function(){
+                parent.addClass('JS_show');/*管理标识改为false*/
+                btn.each(function(){/*清除添加的显示样式*/
                     $(this).removeAttr('style');
                 });
+                del.each(function(){/*关闭按钮重新隐藏*/
+                    $(this).removeClass('on');
+                });
+            }else{
+                node.html('确定');
+                parent.removeClass('JS_show');/*管理标识改为true*/
+                btn.each(function(){/*权限全部显示*/
+                    $(this).show();
+                    if(!$(this).hasClass('off')) $(this).children('.del').addClass('on');
+                });
             }
-
         }
     };
     new Share().init();
