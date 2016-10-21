@@ -15,13 +15,8 @@
             $('#tree_content').on('click', function(e){
                 var tar = $(e.target);
                 if(tar.hasClass('tree_icon')){
+                    self.path = [];
                     self._openTree(tar);
-                    /*if(tar.hasClass(self.openClass)){
-                        var opens = tar.parent().parent('li').find(self.openClass);
-                        opens.each(function(){
-                            $(this).trigger('click');
-                        });
-                    }*/
                 }
                 self._getPath(tar);
                 self._addPath(self.path);
@@ -30,9 +25,13 @@
         _getPath:function(node){
             var self = this;
             var ps = node.next('.tree_name').text();
-            var index = node.parents('.tree_branch').length;
-            self.path.splice(index-1);
-            self.path.push(ps);
+            self.path.unshift(ps);
+
+            var pid = node.data('pid');/*查找父节点*/
+            if(pid){
+                var next = $('#'+pid).prev('.tree_title').children('.tree_icon');
+                self._getPath(next);
+            }
             //console.log(self.path);
         },
         _openTree:function(node){
@@ -66,7 +65,7 @@
                     '<td class="tb-email"><span>'+data[i].email+'</span></td></tr>';
                 }else{/*加载节点*/
                     node += '<li>' +
-                    '<div class="tree_title"><a class="tree_icon icon_solid" data-id="'+data[i].id+'"></a>' +
+                    '<div class="tree_title"><a class="tree_icon icon_solid" data-id="'+data[i].id+'" data-pid="'+pid+'"></a>' +
                     '<span class="tree_name">'+data[i].name+'</span></div>' +
                     '<ul id="'+data[i].id+'" class="tree_branch"></ul></li>';
                 }
