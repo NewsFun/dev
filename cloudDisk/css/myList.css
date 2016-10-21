@@ -1,0 +1,29 @@
+.tb-name{text-align: left;}
+.tb-id{color: #808080;}
+.ms-bar .inline{
+    display: inline-block;
+    float: left;
+    height: 100%;
+    width: 70px;
+}
+.ms-bar img.icon{
+    margin: 8px 0 0 20px;
+    width: 20px;
+    height: 24px;
+}
+.ms-bar a.icon{
+    float: right;
+    width: 18px;
+    height: 18px;
+    margin: 11px 10px;
+    background: url("../images/u595.png") no-repeat;
+}
+.east-head .icon{
+    display: inline-block;
+    float: left;
+    margin: 6px 8px 0 0;
+    width: 19px;
+    height: 19px;
+    background: url("../images/u358.png") no-repeat center;
+    background-size: 100% 100%;
+}

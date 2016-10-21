@@ -64,7 +64,6 @@ a.blue:hover { color:#2953a6;}
     position: absolute;
     top: 60px;
     left: 210px;
-    padding: 25px 25px 0;
     margin:0 auto;
     z-index:2
 }
@@ -81,6 +80,7 @@ a.blue:hover { color:#2953a6;}
     overflow: visible;
     border-top:#d1dfe9 1px solid;
 }
+.ui-layout-center .east-main{padding: 25px 25px 0;}
 .ui-layout-west .header{width: 210px}
 .ui-layout-west .header div{margin:0 auto; width:183px;height:36px;font-weight:500;margin-top:10px;}
 .header a{
@@ -251,7 +251,7 @@ span.select {position: absolute;width: 158px; height: 21px;padding: 0 24px 0 8px
 .loc li.search{background:url(../../images/search.gif) no-repeat;width:164px;height:25px;padding-left:1px;margin-right:5px;text-align:left;margin-top:6px;float:right;overflow:hidden}
 .loc li.search input{border:0 none;width:136px;vertical-align:top;margin-top:4px;color:#666;overflow:hidden}
 .loc li.search .searchbut{width:22px; height:24px;display:inline-block;cursor: pointer;margin:0;padding:0}
-.loc .rightbg{ background:url(../../images/discbg.png ) no-repeat -32px -222px; width:8px; right:0;top:0; height:36px; position:absolute }
+.loc .rightbg{ background:url(../../images/discbg.png) no-repeat -32px -222px; width:8px; right:0;top:0; height:36px; position:absolute }
 
 /*文件列表*/
 .fileList,.fileList2{ margin:0 auto; padding-top:15px }

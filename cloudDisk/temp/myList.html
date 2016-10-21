@@ -2,11 +2,11 @@
 <html>
 <head lang="en">
     <!--#include virtual="/common/myHead.html"-->
-    <title>新华云盘-管理中心</title>
-    <link rel="stylesheet" type="text/css" href="../src/tree.css">
-    <link rel="stylesheet" type="text/css" href="../src/myList.css">
+    <title>管理中心-通讯录</title>
+    <link rel="stylesheet" type="text/css" href="../css/tree.css">
+    <link rel="stylesheet" type="text/css" href="../css/myList.css">
 </head>
-<body>
+<body data-page="list">
 <div id="ui-layout-north" class="ui-layout-north">
     <div class="content">
         <div class="head-top">
@@ -31,102 +31,114 @@
     </div>
 </div>
 <div id="ui-layout-west" class="ui-layout-west">
-    <div class="ms-bar">
-        <b>通讯录</b>
+    <div class="ms-bar unfix">
+        <div class="inline"><img class="icon" src="../images/u593.png"></div>
+        <div class="inline"><b>通讯录</b></div>
+        <div class="inline"><a id="at" class="icon"></a></div>
     </div>
     <div class="myList">
-        <ul id="tree_content" class="tree_content">
-            <li class="tree_root">
-                <div class="tree_title" data-id="1"><span class="tree_icon icon_solid">+</span><span class="tree_name">企业</span></div>
-                <ul id="1" class="tree_branch">
-                    <!--
-                    <li>
-                        <div class="tree_title" data-id="3"><span class="tree_icon icon_hollow">-</span><span class="tree_name">新华网</span></div>
-                        <ul class="tree_branch">
-                            <li>
-                                <div class="tree_title" data-id="4"><span class="tree_icon icon_hollow">-</span><span class="tree_name">技术研发</span></div>
-                                <ul class="tree_branch">
-                                    <li>
-                                        <div class="tree_title" data-level="5"><span class="tree_name">产品设计</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="tree_title" data-level="6"><span class="tree_name">前端组</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="tree_title" data-level="7"><span class="tree_name">系统</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="tree_title" data-level="8"><span class="tree_name">运维</span></div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="tree_title"><span class="tree_icon icon_solid">+</span><span class="tree_name">编辑部</span></div>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <div class="tree_title" data-id="1"><span class="tree_icon icon_hollow">-</span><span class="tree_name">人民网</span></div>
-                        <ul class="tree_branch">
-                            <li>
-                                <div class="tree_title" data-id="2"><span class="tree_icon icon_hollow">-</span><span class="tree_name">技术研发</span></div>
-                                <ul class="tree_branch">
-                                    <li>
-                                        <div class="tree_title" data-level="3"><span class="tree_name">产品设计</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="tree_title" data-level="3"><span class="tree_name">前端组</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="tree_title" data-level="3"><span class="tree_name">系统</span></div>
-                                    </li>
-                                    <li>
-                                        <div class="tree_title" data-level="3"><span class="tree_name">运维</span></div>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li>
-                                <div class="tree_title"><span class="tree_icon icon_solid">+</span><span class="tree_name">编辑部</span></div>
-                            </li>
-                        </ul>
-                    </li>
-                    -->
-                </ul>
-            </li>
-            <li class="tree_root">
-                <div class="tree_title" data-id="2"><span class="tree_icon icon_solid">+</span><span class="tree_name">个人</span></div>
-                <ul id="2" class="tree_branch"></ul>
-            </li>
-        </ul>
+        <div class="tree_content">
+            <ul id="tree_content" class="tree_branch">
+                <li>
+                    <div class="tree_title"><a class="tree_icon icon_solid" data-id="1"></a><span class="tree_name">企业</span></div>
+                    <ul id="1" class="tree_branch">
+                        <!--
+                        <li>
+                            <div class="tree_title" data-id="3"><span class="tree_icon icon_hollow">-</span><span class="tree_name">新华网</span></div>
+                            <ul class="tree_branch">
+                                <li>
+                                    <div class="tree_title" data-id="4"><span class="tree_icon icon_hollow">-</span><span class="tree_name">技术研发</span></div>
+                                    <ul class="tree_branch">
+                                        <li>
+                                            <div class="tree_title" data-level="5"><span class="tree_name">产品设计</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="tree_title" data-level="6"><span class="tree_name">前端组</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="tree_title" data-level="7"><span class="tree_name">系统</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="tree_title" data-level="8"><span class="tree_name">运维</span></div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div class="tree_title"><span class="tree_icon icon_solid">+</span><span class="tree_name">编辑部</span></div>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="tree_title" data-id="1"><span class="tree_icon icon_hollow">-</span><span class="tree_name">人民网</span></div>
+                            <ul class="tree_branch">
+                                <li>
+                                    <div class="tree_title" data-id="2"><span class="tree_icon icon_hollow">-</span><span class="tree_name">技术研发</span></div>
+                                    <ul class="tree_branch">
+                                        <li>
+                                            <div class="tree_title" data-level="3"><span class="tree_name">产品设计</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="tree_title" data-level="3"><span class="tree_name">前端组</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="tree_title" data-level="3"><span class="tree_name">系统</span></div>
+                                        </li>
+                                        <li>
+                                            <div class="tree_title" data-level="3"><span class="tree_name">运维</span></div>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <div class="tree_title"><span class="tree_icon icon_solid">+</span><span class="tree_name">编辑部</span></div>
+                                </li>
+                            </ul>
+                        </li>
+                        -->
+                    </ul>
+                </li>
+                <li>
+                    <div class="tree_title"><a class="tree_icon icon_solid" data-id="2"></a><span class="tree_name tree_root">个人</span></div>
+                    <ul id="2" class="tree_branch"></ul>
+                </li>
+            </ul>
+        </div>
     </div>
 </div>
 <div id="ui-layout-center" class="ui-layout-center">
     <div class="east-main">
         <div class="east-head">
-            <span>二维码</span>
+            <span class="icon"></span>
+            <a id="path">
+
+            </a>
+            <!--
             <span>新华网</span>
             <span>产品设计</span>
+            -->
         </div>
         <table class="east-content" cellpadding="0" cellspacing="0">
             <thead>
             <tr>
                 <th class="tb-check">
-                    <label><input id="selectAll" type="checkbox"></label>
+                    <label><input id="check-all" type="checkbox"></label>
                     <span>全选</span>
                 </th>
                 <th class="tb-name"><span>用户名</span><span class="tb-id"> (账号) </span></th>
                 <th class="tb-post">职位</th>
                 <th class="tb-phone">手机</th>
-                <th class="tb-email">邮箱</th>
-                <th class="tb-search">
-                    <label><input class="search" type="text"></label>
-                    <label><input id="am" class="base-bg" type="button" value="添加成员" data-href="fileUploadDispatch.do?parentId=986284&pageNo=1&divType="></label>
-                    <label><input id="dm" class="base-bg" type="button" value="删除成员"></label>
-                    <input type="hidden" id="divType" name="divType" value="ros">
+                <th class="tb-email">
+                    <span>邮箱</span>
+                    <div class="float_r">
+                        <label><input class="search" type="text"></label>
+                        <label><input id="am" class="base-bg" type="button" value="添加成员" data-href="fileUploadDispatch.do?parentId=986284&pageNo=1&divType="></label>
+                        <label><input id="dm" class="base-bg" type="button" value="删除成员"></label>
+                        <input type="hidden" id="divType" name="divType" value="ros">
+                    </div>
                 </th>
             </tr>
             </thead>
             <tbody id="data">
+            <!--
             <tr>
                 <td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>
                 <td class="tb-name"><span>张某</span><span class="tb-id"> (zhang01) </span></td>
@@ -160,11 +172,12 @@
                     <span class="base-color"></span>
                 </td>
             </tr>
+            -->
             </tbody>
         </table>
     </div>
 </div>
-<script src="../src/tree.js"></script>
-<script src="../src/myList.js"></script>
+<script src="../js/tree.js"></script>
+<script src="../js/myList.js"></script>
 </body>
 </html>
