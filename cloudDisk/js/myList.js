@@ -2,14 +2,15 @@
  * Created by bobo on 2016/9/21.
  */
 $(function(){
-    function myList(){
+    function MyList(){
         this.init = function(){
             var self = this;
             /*初始化文件树*/
             new Tree({
                 openClass:'icon_hollow',
                 closeClass:'icon_solid',
-                baseH:$('.tree_content li').css('line-height')
+                domTags:self.domTags,
+                boxId:'data'
             }).init();
             /*初始化右键菜单*/
             //self.initMenu();
@@ -18,7 +19,7 @@ $(function(){
         }
     }
 
-    myList.prototype = {
+    MyList.prototype = {
         initMenu:function(){
             var self = this;
             var menu = $.ligerMenu(
@@ -38,10 +39,10 @@ $(function(){
             var self = this;
 
             $('#am').on('click', function(){
-                self._initHS('446px','../common/upload.html');
+                self._initHS('446px','../common/pop_upload.html');
             });
             $('#at').on('click', function(){
-                self._initHS('260px','../common/add.html');
+                self._initHS('260px','../common/pop_branch.html');
             });
         },
         _initHS:function(height, path){
@@ -57,6 +58,20 @@ $(function(){
                 content: [path, 'no'] //iframe的url，no代表不显示滚动条
             });
         },
+        domTags:function(data, pid){
+            var html = '';
+            for(var i = 0;i<data.length;i++){
+                if(data[i].user){/*加载数据*/
+                    html += '<tr>' +
+                    '<td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>' +
+                    '<td class="tb-name"><span>'+data[i].name+'</span><span class="tb-id"> ('+data[i].pinyin+') </span></td>' +
+                    '<td class="tb-post"><span>'+data[i].job+'</span></td>' +
+                    '<td class="tb-phone"><span>'+data[i].mobile+'</span></td>' +
+                    '<td class="tb-email"><span>'+data[i].email+'</span></td></tr>'
+                }
+            }
+            $('#data').html(html);
+        },
         _addData:function(){
             //console.log(this.text);
         },
@@ -71,5 +86,5 @@ $(function(){
         }
     };
 
-    new myList().init();
+    new MyList().init();
 });

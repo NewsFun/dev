@@ -7,44 +7,38 @@ body,html{
 }
 a{text-decoration: none;}
 a,button,input[type="button"],input[type="submit"],.button{cursor: pointer;}
-.popup .pop-color{ color: #3686e8; }
-.popup .rf{float: right;}
-.popup .unfix:after { clear: both; }
-.popup .unfix:before, .popup .unfix:after {
+.w_400{width: 400px;}
+.pop-color{ color: #3686e8; }
+.rf{float: right;}
+.unfix:after { clear: both; }
+.unfix:before, .unfix:after {
     display: table;
     content: " ";
 }
-.popup ul{
+ul{
     margin: 0;
     padding: 0;
     list-style: none;
-    width: 400px;
 }
 .popup ul li{
     height: 50px;
     line-height: 50px;
     text-align: center;
 }
-.popup li>div{
-    height: 100%;
-}
-.popup .ft-16{
-    font-size: 16px;
-}
-.popup .inline{
+.popup li>div{height: 100%;}
+.ft-16{font-size: 16px;}
+.inline{
     display: inline-block;
     float: left;
 }
-.popup .table{
-    margin: 30px auto 0;
-}
-.popup .title{
+.table{margin: 30px auto 0;}
+.title{
     height: 60px;
     line-height: 60px;
     font-size: 18px;
     border-bottom: 2px solid #3686e8;
 }
-.popup .title a{
+.title a{
     display: inline-block;
     float: left;
     width: 100px;
@@ -52,13 +46,11 @@ a,button,input[type="button"],input[type="submit"],.button{cursor: pointer;}
     color: #3686e8;
     font-weight: bold;
 }
-.popup .title a.on{
+.title a.on{
     color: white;
     background-color: #3686e8;
 }
-.popup .center{
-    text-align: center;
-}
+.center{text-align: center;}
 .popup .left{
     text-align: left;
     width: 320px;
@@ -71,7 +63,8 @@ a,button,input[type="button"],input[type="submit"],.button{cursor: pointer;}
     width: 80px;
     text-align: right;
 }
-.popup .submit{
+.popup .select_path{width: 320px;height: 32px;}
+.submit{
     width: 120px;
     height: 40px;
     background-color: #3686e8;
@@ -82,7 +75,7 @@ a,button,input[type="button"],input[type="submit"],.button{cursor: pointer;}
     font-size: 20px;
     font-weight: bold;
 }
-.popup .button {
+.button {
     display: inline-block;
     width: 80px;
     height: 24px;
@@ -110,7 +103,7 @@ a,button,input[type="button"],input[type="submit"],.button{cursor: pointer;}
 }
 .space .list{
     height: 300px;
-    overflow: hidden;
+    overflow-y: auto;
     border: 1px solid rgba(121, 121, 121, 1);
 }
 .space .icon{
@@ -126,3 +119,5 @@ a,button,input[type="button"],input[type="submit"],.button{cursor: pointer;}
     margin-left: -17px;
 }
 .space .submit{margin-top: 40px;}
+.space .data_name{height: 28px;line-height: 28px;}
+.space .data_name span{padding-left: 10px;}

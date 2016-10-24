@@ -52,7 +52,7 @@ $(function(){
                     offset: 'auto', //居中弹出
                     time: 0, //不自动关闭
                     shift: 2,
-                    content: ['../common/spaceAdd.html', 'no'] //iframe的url，no代表不显示滚动条
+                    content: ['../common/pop_add.html', 'no'] //iframe的url，no代表不显示滚动条
                 });
             });
         },
@@ -100,37 +100,31 @@ $(function(){
             //console.log(operate);
             if(!show){/*管理下*/
                 node.children('input').val('1');/*权限置为1*/
-                node.removeClass('off');/*去除按钮隐藏样式*/
-                node.children('.del').addClass('on');/*显示关闭按钮*/
+                node.removeClass('off').addClass('on');/*去除按钮隐藏样式，显示关闭按钮*/
             }
         },
         eventOfDel:function(node){
             var show = node.parents('.tb-permission').hasClass('JS_show');
             if(!show){
-                node.removeClass('on');/*隐藏关闭按钮*/
                 var parent = node.parent('.btn');
                 parent.children('input').val('0');/*权限置为0*/
-                parent.addClass('off');
+                parent.removeClass('on').addClass('off');/*隐藏关闭按钮*/
             }
         },
         eventOfAdmin:function(node){
             var parent = node.parents('.tb-permission');
-            var btn = parent.find('.btn'), show = parent.hasClass('JS_show'), del = parent.find('.del');
+            var btn = parent.find('.btn'), show = parent.hasClass('JS_show');
             if(!show){
                 node.html('管理权限');
                 parent.addClass('JS_show');/*管理标识改为false*/
                 btn.each(function(){/*清除添加的显示样式*/
-                    $(this).removeAttr('style');
-                });
-                del.each(function(){/*关闭按钮重新隐藏*/
                     $(this).removeClass('on');
                 });
             }else{
                 node.html('确定');
                 parent.removeClass('JS_show');/*管理标识改为true*/
                 btn.each(function(){/*权限全部显示*/
-                    $(this).show();
-                    if(!$(this).hasClass('off')) $(this).children('.del').addClass('on');
+                    if(!$(this).hasClass('off')) $(this).addClass('on');
                 });
             }
         }

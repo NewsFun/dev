@@ -4,9 +4,9 @@
 (function(){
     function Tree(con){
         this.title = null;
-        this.baseH = con.baseH;
         this.openClass = con.openClass;
         this.closeClass = con.closeClass;
+        this.domTags = con.domTags;
         this.path = [];
     }
     Tree.prototype = {
@@ -39,31 +39,25 @@
             var pid = node.data('id');
             if(node.hasClass(self.closeClass)){/*打开树节点*/
                 node.removeClass(self.closeClass).addClass(self.openClass);
-                node.parent().parent('li').removeAttr('style');
+                $('#'+pid).removeAttr('style');
                 if(!node.opened){
                     var url = '/json/tree'+pid+'.json';
                     //var url = 'http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/address/get_child_address.do?parentId='+pid;
                     $.get(url, function(data){
                         self._addNode(data, pid);
+                        self.domTags(data, pid);
                     },'json');
                     node.opened = true;
                 }
             }else{/*关闭树节点*/
                 node.removeClass(self.openClass).addClass(self.closeClass);
-                node.parent().parent('li').css('height', self.baseH);
+                $('#'+pid).css('height', 0);
             }
         },
         _addNode:function(data, pid){
-            var html = '', node = '';
+            var node = '';
             for(var i = 0;i<data.length;i++){
-                if(data[i].user){/*加载数据*/
-                    html += '<tr>' +
-                    '<td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>' +
-                    '<td class="tb-name"><span>'+data[i].name+'</span><span class="tb-id"> ('+data[i].pinyin+') </span></td>' +
-                    '<td class="tb-post"><span>'+data[i].job+'</span></td>' +
-                    '<td class="tb-phone"><span>'+data[i].mobile+'</span></td>' +
-                    '<td class="tb-email"><span>'+data[i].email+'</span></td></tr>';
-                }else{/*加载节点*/
+                if(!data[i].user){/*加载节点*/
                     node += '<li>' +
                     '<div class="tree_title"><a class="tree_icon icon_solid" data-id="'+data[i].id+'" data-pid="'+pid+'"></a>' +
                     '<span class="tree_name">'+data[i].name+'</span></div>' +
@@ -71,7 +65,6 @@
                 }
             }
             $('#'+pid).html(node);
-            $('#data').html(html);
         },
         _addPath:function(path){
             var html = '';
