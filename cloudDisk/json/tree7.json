@@ -1,12 +1,12 @@
 [
   {
-    "email": "11@qq.com",
+    "email": "7@qq.com",
     "id": 4,
     "job": "工程师",
     "level": 2,
     "mobile": 1268312639,
     "name": "张三",
-    "parentId": 12,
+    "parentId": 7,
     "pinyin": "zhangsan",
     "user": true
   },
@@ -17,7 +17,7 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "李四",
-    "parentId": 11,
+    "parentId": 7,
     "pinyin": "22",
     "user": true
   },
@@ -28,7 +28,7 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "王五",
-    "parentId": 11,
+    "parentId": 7,
     "pinyin": "22",
     "user": true
   },
@@ -39,7 +39,7 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "王朝",
-    "parentId": 11,
+    "parentId": 7,
     "pinyin": "22",
     "user": true
   },
@@ -50,7 +50,7 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "马汉",
-    "parentId": 11,
+    "parentId": 7,
     "pinyin": "22",
     "user": true
   },
@@ -61,18 +61,18 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "张龙",
-    "parentId": 11,
+    "parentId": 7,
     "pinyin": "22",
     "user": true
   },
   {
-    "email": "11@qq.com",
+    "email": "7@qq.com",
     "id": 4,
     "job": "工程师",
     "level": 2,
     "mobile": 1268312639,
     "name": "张三",
-    "parentId": 12,
+    "parentId": 7,
     "pinyin": "zhangsan",
     "user": true
   },
@@ -83,7 +83,7 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "李四",
-    "parentId": 11,
+    "parentId": 7,
     "pinyin": "22",
     "user": true
   },
@@ -94,7 +94,7 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "王五",
-    "parentId": 11,
+    "parentId": 7,
     "pinyin": "22",
     "user": true
   },
@@ -105,7 +105,7 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "王朝",
-    "parentId": 11,
+    "parentId": 7,
     "pinyin": "22",
     "user": true
   },
@@ -116,7 +116,7 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "马汉",
-    "parentId": 11,
+    "parentId": 7,
     "pinyin": "22",
     "user": true
   },
@@ -127,18 +127,18 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "张龙",
-    "parentId": 11,
+    "parentId": 7,
     "pinyin": "22",
     "user": true
   },
   {
-    "email": "11@qq.com",
+    "email": "7@qq.com",
     "id": 4,
     "job": "工程师",
     "level": 2,
     "mobile": 1268312639,
     "name": "张三",
-    "parentId": 12,
+    "parentId": 7,
     "pinyin": "zhangsan",
     "user": true
   },
@@ -149,7 +149,7 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "李四",
-    "parentId": 11,
+    "parentId": 7,
     "pinyin": "22",
     "user": true
   },
@@ -160,7 +160,7 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "王五",
-    "parentId": 11,
+    "parentId": 7,
     "pinyin": "22",
     "user": true
   },
@@ -171,7 +171,7 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "王朝",
-    "parentId": 11,
+    "parentId": 7,
     "pinyin": "22",
     "user": true
   },
@@ -182,7 +182,7 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "马汉",
-    "parentId": 11,
+    "parentId": 7,
     "pinyin": "22",
     "user": true
   },
@@ -193,7 +193,7 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "张龙",
-    "parentId": 11,
+    "parentId": 7,
     "pinyin": "22",
     "user": true
   }

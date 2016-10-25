@@ -51,19 +51,6 @@ ul{
     background-color: #3686e8;
 }
 .center{text-align: center;}
-.popup .left{
-    text-align: left;
-    width: 320px;
-}
-.popup .left>input{
-    width: 316px;
-    height: 26px;
-}
-.popup .right{
-    width: 80px;
-    text-align: right;
-}
-.popup .select_path{width: 320px;height: 32px;}
 .submit{
     width: 120px;
     height: 40px;
@@ -89,7 +76,22 @@ ul{
     *display: inline;
     *zoom: 1
 }
-/*space page*/
+/*upload page*/
+.popup .left{
+    text-align: left;
+    width: 320px;
+}
+.popup .left>input{
+    width: 316px;
+    height: 26px;
+}
+.popup .right{
+    width: 80px;
+    text-align: right;
+}
+.popup .select_path{width: 320px;height: 32px;}
+
+/*add page*/
 .space .table{width: 550px;margin: 0 auto;}
 .space .addr{height: 352px;}
 .space .box{
@@ -119,5 +121,4 @@ ul{
     margin-left: -17px;
 }
 .space .submit{margin-top: 40px;}
-.space .data_name{height: 28px;line-height: 28px;}
-.space .data_name span{padding-left: 10px;}
+.space .on{background-color: #3686e8;color: white;}

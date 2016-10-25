@@ -44,6 +44,9 @@ $(function(){
             $('#at').on('click', function(){
                 self._initHS('260px','../common/pop_branch.html');
             });
+            $('#dm').on('click', function(){
+
+            });
         },
         _initHS:function(height, path){
             layer.open({
@@ -63,7 +66,7 @@ $(function(){
             for(var i = 0;i<data.length;i++){
                 if(data[i].user){/*加载数据*/
                     html += '<tr>' +
-                    '<td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>' +
+                    '<td class="tb-check"><label><input class="tb-checkbox" type="checkbox"><input type="hidden" value="'+data[i].id+'"></label></td>' +
                     '<td class="tb-name"><span>'+data[i].name+'</span><span class="tb-id"> ('+data[i].pinyin+') </span></td>' +
                     '<td class="tb-post"><span>'+data[i].job+'</span></td>' +
                     '<td class="tb-phone"><span>'+data[i].mobile+'</span></td>' +
