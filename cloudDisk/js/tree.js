@@ -7,7 +7,10 @@
         this.openClass = con.openClass;
         this.closeClass = con.closeClass;
         this.domTags = con.domTags;
+        this.pathOperate = con.pathOperate;
         this.path = [];
+        this.id = '';
+        this.pid = 'tree_content';
     }
     Tree.prototype = {
         init:function(){
@@ -18,8 +21,8 @@
                     self.path = [];
                     self._openTree(tar);
                 }
-                self._getPath(tar);
-                self._addPath(self.path);
+                var pm = self._getPath(tar);
+                if(self.pathOperate) self.pathOperate(pm);
             });
         },
         _getPath:function(node){
@@ -32,26 +35,32 @@
                 var next = $('#'+pid).prev('.tree_title').children('.tree_icon');
                 self._getPath(next);
             }
+            return {
+                id:node.data('id'),
+                pid:pid,
+                path:self.path
+            };
             //console.log(self.path);
         },
         _openTree:function(node){
             var self = this;
-            var pid = node.data('id');
+            var id = node.data('id');
+            //var id = self.id;
             if(node.hasClass(self.closeClass)){/*打开树节点*/
                 node.removeClass(self.closeClass).addClass(self.openClass);
-                $('#'+pid).removeAttr('style');
+                $('#'+id).removeAttr('style');
                 if(!node.opened){
-                    var url = '/json/tree'+pid+'.json';
+                    var url = '/json/tree'+id+'.json';
                     //var url = 'http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/address/get_child_address.do?parentId='+pid;
                     $.get(url, function(data){
-                        self._addNode(data, pid);
-                        self.domTags(data, pid);
+                        self._addNode(data, id);
+                        self.domTags(data, id);
                     },'json');
                     node.opened = true;
                 }
             }else{/*关闭树节点*/
                 node.removeClass(self.openClass).addClass(self.closeClass);
-                $('#'+pid).css('height', 0);
+                $('#'+id).css('height', 0);
             }
         },
         _addNode:function(data, pid){
@@ -65,13 +74,6 @@
                 }
             }
             $('#'+pid).html(node);
-        },
-        _addPath:function(path){
-            var html = '';
-            for(var i = 0;i<path.length;i++){
-                html += '<span>'+path[i]+' </span>'
-            }
-            $('#path').html(html);
         }
     };
     window.Tree = Tree;

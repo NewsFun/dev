@@ -1,5 +1,9 @@
 {
   "code": 200,
+  "message":"success",
+  "pageNo":1,
+  "pageSize":18,
+  "totalCount":2,
   "list": [
     {
       "accesslevel": "111111",
@@ -7,7 +11,8 @@
       "isManager": true,
       "name": "buptfhy",
       "phone": "13200025713",
-      "vdiskId": 1
+      "vdiskId": 1,
+      "account":"buptfhy"
     },
     {
       "accesslevel": "101010",
@@ -15,7 +20,8 @@
       "isManager": false,
       "name": "mengyuzi2012",
       "phone": "13200025713",
-      "vdiskId": 1
+      "vdiskId": 1,
+      "account": "mengyuzi2012"
     },
     {
       "accesslevel": "101011",
@@ -23,7 +29,8 @@
       "isManager": false,
       "name": "jiliguala",
       "phone": "13200025713",
-      "vdiskId": 1
+      "vdiskId": 1,
+      "account": "jiliguala"
     },
     {
       "accesslevel": "101100",
@@ -31,7 +38,8 @@
       "isManager": false,
       "name": "mengyuzi",
       "phone": "13200025713",
-      "vdiskId": 1
+      "vdiskId": 1,
+      "account": "mengyuzi"
     },
     {
       "accesslevel": "110",
@@ -39,7 +47,8 @@
       "isManager": false,
       "name": "hiahiajiang",
       "phone": "11011011110",
-      "vdiskId": 1
+      "vdiskId": 1,
+      "account": "hiahiajiang"
     }
   ]
 }

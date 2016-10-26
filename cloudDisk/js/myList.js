@@ -10,7 +10,7 @@ $(function(){
                 openClass:'icon_hollow',
                 closeClass:'icon_solid',
                 domTags:self.domTags,
-                boxId:'data'
+                pathOperate:self._addPath
             }).init();
             /*初始化右键菜单*/
             //self.initMenu();
@@ -44,9 +44,23 @@ $(function(){
             $('#at').on('click', function(){
                 self._initHS('260px','../common/pop_branch.html');
             });
-            $('#dm').on('click', function(){
-
-            });
+            /*$('#dm').on('click', function(){
+                var ids = self._deleteData();
+                if(ids.length>0){
+                    var url = $(this).data('url');
+                    $.ajax({
+                        url:url,
+                        type:'post',
+                        data:ids,
+                        success:function(data){
+                            alert('删除成功');
+                        },
+                        error:function(data){
+                            alert('删除失败');
+                        }
+                    });
+                }
+            });*/
         },
         _initHS:function(height, path){
             layer.open({
@@ -78,14 +92,19 @@ $(function(){
         _addData:function(){
             //console.log(this.text);
         },
-        _deleteData:function(){
-            //console.log(this.text);
-        },
         _changeData:function(){
             //console.log(this.text);
         },
         _close:function(){
             //console.log(this.text);
+        },
+        _addPath:function(data){
+            var html = '', path = data.path;
+            for(var i = 0;i<path.length;i++){
+                html += '<span>'+path[i]+' </span>';
+            }
+            $('#path').html(html).attr('data-id', data.id);
+            //console.log($('#path').data('id'));
         }
     };
 

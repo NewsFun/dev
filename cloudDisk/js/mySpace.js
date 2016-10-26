@@ -4,6 +4,7 @@
 $(function(){
     function Share(){
         this.operate = false;
+        this.groupId = null;
         this.init = function(){
             this.initClick();
             this.initTab();
@@ -19,9 +20,10 @@ $(function(){
                     $(this).removeClass('on');
                 });
                 $(this).addClass('on');
-                var id = $(this).data('id');
-                self.getData(id);
+                self.groupId = $(this).data('id');
+                self.getData(self.groupId);
             });
+            lis.first().trigger('click');
         },
         initTab:function(){
             var self = this;
@@ -64,14 +66,14 @@ $(function(){
                 if(da){
                     self.addTab(da);
                 }else{
-                    console.log('no data');
+                    alert('no data');
                 }
             },'json');
         },
         addTab:function(data){
             var self = this, html = '';
             for(var i = 0;i<data.length;i++){
-                html += '<tr><td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>' +
+                html += '<tr><td class="tb-check"><label><input class="tb-checkbox" type="checkbox"><input type="hidden" value="'+data[i].account+'"></label></td>' +
                 '<td class="tb-name">'+(data[i].isManager?'<img class="icon" src="../images/u328.png">':'')+'<span>'+data[i].name+'</span></td>' +
                 '<td class="tb-phone"><span>'+data[i].phone+'</span></td>' +
                 '<td class="tb-email"><span>'+data[i].email+'</span></td>' +
@@ -99,7 +101,7 @@ $(function(){
             var show = node.parents('.tb-permission').hasClass('JS_show');
             //console.log(operate);
             if(!show){/*管理下*/
-                node.children('input').val('1');/*权限置为1*/
+                node.children('input').attr('value','1');/*权限置为1*/
                 node.removeClass('off').addClass('on');/*去除按钮隐藏样式，显示关闭按钮*/
             }
         },
@@ -107,11 +109,12 @@ $(function(){
             var show = node.parents('.tb-permission').hasClass('JS_show');
             if(!show){
                 var parent = node.parent('.btn');
-                parent.children('input').val('0');/*权限置为0*/
+                parent.children('input').attr('value','0');/*权限置为0*/
                 parent.removeClass('on').addClass('off');/*隐藏关闭按钮*/
             }
         },
         eventOfAdmin:function(node){
+            var self = this;
             var parent = node.parents('.tb-permission');
             var btn = parent.find('.btn'), show = parent.hasClass('JS_show');
             if(!show){
@@ -120,6 +123,9 @@ $(function(){
                 btn.each(function(){/*清除添加的显示样式*/
                     $(this).removeClass('on');
                 });
+                /*获取要提交的信息*/
+                var data = self._limitData(node);
+                self._updateLimit(data);
             }else{
                 node.html('确定');
                 parent.removeClass('JS_show');/*管理标识改为true*/
@@ -127,6 +133,37 @@ $(function(){
                     if(!$(this).hasClass('off')) $(this).addClass('on');
                 });
             }
+        },
+        _limitData:function(node){
+            var self = this;
+            var tr = node.parents('tr');
+            var msg = tr.find('input[type="hidden"]');
+            var account = msg.first().val();
+            var limit = '';
+            for(var i = 1;i<msg.length;i++){
+                limit += $(msg[i]).val();
+            }
+            return {
+                id:self.groupId,
+                account:account,
+                accessLevel:limit
+            }
+        },
+        _updateLimit:function(con){
+            //console.log(con);
+            var url = '';
+            $.ajax({
+                url:url,
+                type:'post',
+                data:con,
+                dataType:'html',
+                success:function(data){
+                    alert('权限修改成功');
+                },
+                error:function(data){
+                    alert('权限修改失败');
+                }
+            })
         }
     };
     new Share().init();

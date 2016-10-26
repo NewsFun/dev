@@ -1,8 +1,7 @@
 /**
- * Created by Administrator on 2016/10/24.
+ * Created by bobo on 2016/10/24.
  */
 function AddMember(){
-    this.mem = null;
     this.init = function(){
         var self = this;
         new Tree({
