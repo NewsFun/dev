@@ -37,30 +37,12 @@ $(function(){
         },
         initClick:function(){
             var self = this;
-
             $('#am').on('click', function(){
                 self._initHS('446px','../common/pop_upload.html');
             });
             $('#at').on('click', function(){
                 self._initHS('260px','../common/pop_branch.html');
             });
-            /*$('#dm').on('click', function(){
-                var ids = self._deleteData();
-                if(ids.length>0){
-                    var url = $(this).data('url');
-                    $.ajax({
-                        url:url,
-                        type:'post',
-                        data:ids,
-                        success:function(data){
-                            alert('删除成功');
-                        },
-                        error:function(data){
-                            alert('删除失败');
-                        }
-                    });
-                }
-            });*/
         },
         _initHS:function(height, path){
             layer.open({
@@ -81,7 +63,7 @@ $(function(){
                 if(data[i].user){/*加载数据*/
                     html += '<tr>' +
                     '<td class="tb-check"><label><input class="tb-checkbox" type="checkbox"><input type="hidden" value="'+data[i].id+'"></label></td>' +
-                    '<td class="tb-name"><span>'+data[i].name+'</span><span class="tb-id"> ('+data[i].pinyin+') </span></td>' +
+                    '<td class="tb-name"><span>'+data[i].name+'</span><span class="tb-id"> ('+data[i].account+') </span></td>' +
                     '<td class="tb-post"><span>'+data[i].job+'</span></td>' +
                     '<td class="tb-phone"><span>'+data[i].mobile+'</span></td>' +
                     '<td class="tb-email"><span>'+data[i].email+'</span></td></tr>'
@@ -103,7 +85,7 @@ $(function(){
             for(var i = 0;i<path.length;i++){
                 html += '<span>'+path[i]+' </span>';
             }
-            $('#path').html(html).attr('data-id', data.id);
+            $('#group').html(html).attr('data-id', data.id);
             //console.log($('#path').data('id'));
         }
     };

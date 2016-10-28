@@ -4,11 +4,12 @@
 $(function(){
     function Share(){
         this.operate = false;
-        this.groupId = null;
+        //this.limits = null;
         this.init = function(){
             this.initClick();
             this.initTab();
             this.initAddBtn();
+            this.initDelGroup();
         }
     }
     Share.prototype = {
@@ -20,8 +21,8 @@ $(function(){
                     $(this).removeClass('on');
                 });
                 $(this).addClass('on');
-                self.groupId = $(this).data('id');
-                self.getData(self.groupId);
+                $('#group').attr('data-id',$(this).data('id'));
+                self.getData($(this).data('id'));
             });
             lis.first().trigger('click');
         },
@@ -58,12 +59,33 @@ $(function(){
                 });
             });
         },
+        initDelGroup:function(){
+            $('#group').on('click', function(){
+                var $this = $(this);
+                var id = $this.data('id');
+                var url = '';
+                $.ajax({
+                    url:url,
+                    data:{id:[id]},
+                    type:'post',
+                    success:function(data){
+                        alert(data);
+                        if(data.code==200){
+                            $('#data').empty();
+                            $this.attr('data-id', '');
+                        }
+                    }
+                })
+            });
+        },
         getData:function(id){
             var self = this;
             var url = '../json/table'+id+'.json';
             $.get(url, function(data){
                 var da = data.list;
                 if(da){
+                    $('#all_mem').text('('+data.totalCount+')');
+                    $('#del_group').data('id', id);
                     self.addTab(da);
                 }else{
                     alert('no data');
@@ -78,7 +100,7 @@ $(function(){
                 '<td class="tb-phone"><span>'+data[i].phone+'</span></td>' +
                 '<td class="tb-email"><span>'+data[i].email+'</span></td>' +
                 '<td class="tb-permission JS_show">' +self.getAccess(data[i].accesslevel) +
-                '<div data-name="admin" class="btn color-blue">管理权限</div></td><td class="tb-search"></td></tr>';
+                '<div data-name="admin" class="btn color-blue" data-old="'+data[i].accesslevel+'">管理权限</div></td></tr>';
             }
             $('#data').html(html);
         },
@@ -125,17 +147,20 @@ $(function(){
                 });
                 /*获取要提交的信息*/
                 var data = self._limitData(node);
-                self._updateLimit(data);
+                if(node.data('old') != data.accessLevel){
+                    node.attr('data-old', data.accessLevel);
+                    self._updateLimit(data);
+                }
             }else{
                 node.html('确定');
                 parent.removeClass('JS_show');/*管理标识改为true*/
                 btn.each(function(){/*权限全部显示*/
                     if(!$(this).hasClass('off')) $(this).addClass('on');
                 });
+                node.data('old', self._limitData(node).accessLevel) ;
             }
         },
         _limitData:function(node){
-            var self = this;
             var tr = node.parents('tr');
             var msg = tr.find('input[type="hidden"]');
             var account = msg.first().val();
@@ -144,13 +169,13 @@ $(function(){
                 limit += $(msg[i]).val();
             }
             return {
-                id:self.groupId,
+                id:$('#group').data('id'),
                 account:account,
                 accessLevel:limit
             }
         },
         _updateLimit:function(con){
-            //console.log(con);
+            console.log(con);
             var url = '';
             $.ajax({
                 url:url,
@@ -158,10 +183,9 @@ $(function(){
                 data:con,
                 dataType:'html',
                 success:function(data){
-                    alert('权限修改成功');
-                },
-                error:function(data){
-                    alert('权限修改失败');
+                    if(data.code==200){
+                        alert('权限修改成功');
+                    }
                 }
             })
         }

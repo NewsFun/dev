@@ -51,10 +51,10 @@
                 $('#'+id).removeAttr('style');
                 if(!node.opened){
                     var url = '/json/tree'+id+'.json';
-                    //var url = 'http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/address/get_child_address.do?parentId='+pid;
+                    //var url = 'http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/address/get_child_address.do?parentId='+id;
                     $.get(url, function(data){
                         self._addNode(data, id);
-                        self.domTags(data, id);
+                        if(self.domTags) self.domTags(data, id);
                     },'json');
                     node.opened = true;
                 }

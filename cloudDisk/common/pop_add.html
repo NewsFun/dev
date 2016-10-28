@@ -15,6 +15,7 @@
     </div>
     <form method="post" action="http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/contacts/add_contact.do">
         <div class="table">
+            <input id="id" type="hidden" name="id" value="">
             <div class="addr unfix">
                 <div class="inline box">
                     <div class="title_2"><b>通讯录</b></div>
@@ -36,7 +37,12 @@
                     <div class="title_2"><b>已选成员</b></div>
                     <div class="list">
                         <ul id="data" class="tree_branch">
-                            <li><div class="tree_title"><span class="tree_name" data-name="name">王朝马汉</span></div></li>
+                            <li>
+                                <div class="tree_title">
+                                    <span class="tree_name" data-name="name">王朝马汉</span>
+                                    <input type="hidden" value="" name="accounts">
+                                </div>
+                            </li>
                         </ul>
                     </div>
                 </div>

@@ -7,7 +7,7 @@
     "mobile": 1268312639,
     "name": "张三",
     "parentId": 7,
-    "pinyin": "zhangsan",
+    "account": "zhangsan",
     "user": true
   },
   {
@@ -18,7 +18,7 @@
     "mobile": 18354203765,
     "name": "李四",
     "parentId": 7,
-    "pinyin": "22",
+    "account": "22",
     "user": true
   },
   {
@@ -29,7 +29,7 @@
     "mobile": 18354203765,
     "name": "王五",
     "parentId": 7,
-    "pinyin": "22",
+    "account": "22",
     "user": true
   },
   {
@@ -40,7 +40,7 @@
     "mobile": 18354203765,
     "name": "王朝",
     "parentId": 7,
-    "pinyin": "22",
+    "account": "22",
     "user": true
   },
   {
@@ -51,7 +51,7 @@
     "mobile": 18354203765,
     "name": "马汉",
     "parentId": 7,
-    "pinyin": "22",
+    "account": "22",
     "user": true
   },
   {
@@ -62,7 +62,7 @@
     "mobile": 18354203765,
     "name": "张龙",
     "parentId": 7,
-    "pinyin": "22",
+    "account": "22",
     "user": true
   },
   {
@@ -73,7 +73,7 @@
     "mobile": 1268312639,
     "name": "张三",
     "parentId": 7,
-    "pinyin": "zhangsan",
+    "account": "zhangsan",
     "user": true
   },
   {
@@ -84,7 +84,7 @@
     "mobile": 18354203765,
     "name": "李四",
     "parentId": 7,
-    "pinyin": "22",
+    "account": "22",
     "user": true
   },
   {
@@ -95,7 +95,7 @@
     "mobile": 18354203765,
     "name": "王五",
     "parentId": 7,
-    "pinyin": "22",
+    "account": "22",
     "user": true
   },
   {
@@ -106,7 +106,7 @@
     "mobile": 18354203765,
     "name": "王朝",
     "parentId": 7,
-    "pinyin": "22",
+    "account": "22",
     "user": true
   },
   {
@@ -117,7 +117,7 @@
     "mobile": 18354203765,
     "name": "马汉",
     "parentId": 7,
-    "pinyin": "22",
+    "account": "22",
     "user": true
   },
   {
@@ -128,7 +128,7 @@
     "mobile": 18354203765,
     "name": "张龙",
     "parentId": 7,
-    "pinyin": "22",
+    "account": "22",
     "user": true
   },
   {
@@ -139,7 +139,7 @@
     "mobile": 1268312639,
     "name": "张三",
     "parentId": 7,
-    "pinyin": "zhangsan",
+    "account": "zhangsan",
     "user": true
   },
   {
@@ -150,7 +150,7 @@
     "mobile": 18354203765,
     "name": "李四",
     "parentId": 7,
-    "pinyin": "22",
+    "account": "22",
     "user": true
   },
   {
@@ -161,7 +161,7 @@
     "mobile": 18354203765,
     "name": "王五",
     "parentId": 7,
-    "pinyin": "22",
+    "account": "22",
     "user": true
   },
   {
@@ -172,7 +172,7 @@
     "mobile": 18354203765,
     "name": "王朝",
     "parentId": 7,
-    "pinyin": "22",
+    "account": "22",
     "user": true
   },
   {
@@ -183,7 +183,7 @@
     "mobile": 18354203765,
     "name": "马汉",
     "parentId": 7,
-    "pinyin": "22",
+    "account": "22",
     "user": true
   },
   {
@@ -194,7 +194,7 @@
     "mobile": 18354203765,
     "name": "张龙",
     "parentId": 7,
-    "pinyin": "22",
+    "account": "22",
     "user": true
   }
 ]
