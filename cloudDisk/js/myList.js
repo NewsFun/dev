@@ -66,7 +66,7 @@ $(function(){
                     '<td class="tb-name"><span>'+data[i].name+'</span><span class="tb-id"> ('+data[i].account+') </span></td>' +
                     '<td class="tb-post"><span>'+data[i].job+'</span></td>' +
                     '<td class="tb-phone"><span>'+data[i].mobile+'</span></td>' +
-                    '<td class="tb-email"><span>'+data[i].email+'</span></td></tr>'
+                    '<td class="tb-email"><span>'+data[i].email+'</span></td></tr>';
                 }
             }
             $('#data').html(html);

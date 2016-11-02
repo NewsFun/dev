@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>添加人员</title>
+    <link rel="stylesheet" type="text/css" href="../css/comm/popup.css">
+    <link rel="stylesheet" type="text/css" href="../css/tree.css">
+    <script src="http://tmisc.home.news.cn/cloudnews/df-news/temp_other/lvyou/src/js/jquery-3.1.0.min.js?"></script>
+</head>
+<body>
+<div class="space">
+    <div class="title">
+        <div class="on"><b>新建共享文件夹</b></div>
+    </div>
+    <div class="group"><span>存储位置：共享协同</span></div>
+    <form method="post" action="http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/contacts/add_contact.do">
+        <div class="table">
+            <div class="group_name">
+                <label>
+                    <span class="ft-16">名称：</span>
+                    <input type="text" name="name">
+                </label>
+            </div>
+            <div class="group_confirm">
+                <label>
+                    <input type="checkbox" name="isconfirm" value="true">
+                    <span class="ft-14">加入该组是否需要验证</span>
+                </label>
+            </div>
+        </div>
+        <div class="border_b"></div>
+        <div class="table">
+            <div class="addr unfix">
+                <div class="inline box">
+                    <div class="title_2"><b>通讯录</b></div>
+                    <div class="list">
+                        <ul id="tree_content" class="tree_branch">
+                            <li>
+                                <div class="tree_title"><a class="tree_icon icon_solid" data-id="1"></a><span class="tree_name">企业</span></div>
+                                <ul id="1" class="tree_branch"></ul>
+                            </li>
+                            <li>
+                                <div class="tree_title"><a class="tree_icon icon_solid" data-id="2"></a><span class="tree_name tree_root">个人</span></div>
+                                <ul id="2" class="tree_branch"></ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="inline icon"><img src="../images/u255.png"></div>
+                <div class="inline box">
+                    <div class="title_2"><b>已选成员</b></div>
+                    <div class="list">
+                        <ul id="data" class="tree_branch">
+                            <li>
+                                <div class="tree_title">
+                                    <span class="tree_name" data-name="name">王朝马汉</span>
+                                    <input type="hidden" value="" name="accounts">
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="center">
+                <input class="submit" type="submit" name="submit" value="确定">
+            </div>
+        </div>
+    </form>
+</div>
+<script src="../js/tree.js"></script>
+<script src="../js/pop_add.js"></script>
+</body>
+</html>

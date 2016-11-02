@@ -51,13 +51,15 @@ $(document).ready(function(){
             $('#dm').on('click', function(){
                 var $this = $(this);
                 var ids = self._delMemData();
-                if(ids.length>0){
+                //console.log(ids);
+                if(ids.accounts.length>0){
                     var url = $this.data('url');
                     //console.log(url);
                     $.ajax({
                         url:url,
                         type:'post',
                         data:ids,
+                        traditional:true,
                         success:function(data){
                             if(data.code == 200){
                                 alert('删除成功');

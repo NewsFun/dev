@@ -10,6 +10,8 @@ $(function(){
             this.initTab();
             this.initAddBtn();
             this.initDelGroup();
+            //var data = new Date(1477881171444);
+            //console.log(data.getFullYear(),data.getMonth(),data.getDate());
         }
     }
     Share.prototype = {
