@@ -10,8 +10,6 @@ $(function(){
             this.initTab();
             this.initAddBtn();
             this.initDelGroup();
-            //var data = new Date(1477881171444);
-            //console.log(data.getFullYear(),data.getMonth(),data.getDate());
         }
     }
     Share.prototype = {
@@ -75,6 +73,7 @@ $(function(){
                         if(data.code==200){
                             $('#data').empty();
                             $this.attr('data-id', '');
+                            location.reload(true);
                         }
                     }
                 })
@@ -177,7 +176,7 @@ $(function(){
             }
         },
         _updateLimit:function(con){
-            console.log(con);
+            //console.log(con);
             var url = '';
             $.ajax({
                 url:url,

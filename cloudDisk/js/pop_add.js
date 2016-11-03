@@ -18,7 +18,7 @@ function AddMember(){
 AddMember.prototype = {
     initGroupId:function(){
         var id = $(this.parent).find('#group').data('id');
-        console.log(id);
+        //console.log(id);
         $('#id').attr('value', id);
     },
     domTags:function(data, pid){

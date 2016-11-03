@@ -15,7 +15,7 @@
     Tree.prototype = {
         init:function(){
             var self = this;
-            $('#tree_content').on('click', function(e){
+            $('#tree_root').on('click', function(e){
                 var tar = $(e.target);
                 if(tar.hasClass('tree_icon')){
                     self.path = [];
