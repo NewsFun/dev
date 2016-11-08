@@ -1,13 +1,13 @@
 .mySpace li{color: #222;}
 .mySpace .on{color: #3686e8;font-weight: bold;}
 .east-head .icon{
-    display: inline-block;
-    float: left;
     margin: 6px 8px 0 0;
     width: 19px;
     height: 19px;
+    background: url("../images/u358.png") no-repeat center;
+    background-size: 100% 100%;
 }
-.east-head span.icon{background: url("../images/u358.png") no-repeat center;background-size: 100% 100%;}
+.east-head img.icon{background: none;}
 .east-head .icon-state{display: inline-block;float: right;}
 .tb-permission .btn{
     position: relative;

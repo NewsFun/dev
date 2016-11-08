@@ -2,8 +2,19 @@
  * Created by bobo on 2016/9/13.
  */
 $(document).ready(function(){
+    window.PageEvent = function (con){
+        $(document).unbind("click").on('click', function(e){
+            console.log('c');
+            var tg = $(e.target);
+            var name = tg.data('name');
+            for(var i in con){
+                if(i == name) con[i](tg);
+            }
+        });
+    };
     var W = $(window).width(),
         H = $(window).height(),
+        V = jQuery.fn.jquery,
         WEST = $('#ui-layout-west'),
         EAST = $('#ui-layout-center'),
         NORTH = $('#ui-layout-north'),
@@ -13,9 +24,13 @@ $(document).ready(function(){
         init:function(){
             var self = this;
             self.initEast();
-            self.initCBox();
+            //self.initCBox();
             self.initCAll();
             self.initDelMem();
+
+            PageEvent({
+                checkbox:self.initCBox
+            });
         },
         initEast:function(){
             var sh = ~~SOUTH.height(),
@@ -37,14 +52,35 @@ $(document).ready(function(){
                 }
             });
         },
-        initCBox:function(){
+        initCBox:function(tg){
+            /*
             $('#data').on('click', function(e){
                 var tg = $(e.target);
-                if(tg.hasClass('tb-checkbox')){
+                var name = tg.data('name');
+                if(name == "checkbox"){
+                    //e.preventDefault();
                     var tr = tg.parents('tr');
-                    tg.is(':checked')?tr.addClass('on'):tr.removeClass('on');
+                    var change = tr.find('.data-change');
+                    if(tg.is(':checked')){
+                        tr.addClass('on');
+                        change && change.show();
+                    }else{
+                        tr.removeClass('on');
+                        change && change.removeAttr('style');
+                    }
                 }
             });
+            */
+
+            var tr = tg.parents('tr');
+            var change = tr.find('.data-change');
+            if(tg.is(':checked')){
+                tr.addClass('on');
+                change && change.show();
+            }else{
+                tr.removeClass('on');
+                change && change.removeAttr('style');
+            }
         },
         initDelMem:function(){
             var self = this;

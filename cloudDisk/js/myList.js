@@ -37,11 +37,22 @@ $(function(){
         },
         initClick:function(){
             var self = this;
-            $('#am').on('click', function(){
-                self._initHS('446px','../common/pop_upload.html');
-            });
-            $('#at').on('click', function(){
+            /*$('#addMem').on('click', function(){
+                self._initHS('500px','../common/pop_upload.html');
+            });*/
+            $('#addBrc').on('click', function(){
                 self._initHS('260px','../common/pop_branch.html');
+            });
+            $('#ui-layout-center').on('click', function(e){
+                var tg = $(e.target);
+                var name = tg.data('name');
+                var TG = tg.hasClass('JS_target');
+                if(!TG){
+                    $('.JS_target').removeClass('JS_target');
+                    tg.addClass('JS_target');
+                    //console.log('change target');
+                }
+                self._dataOperate(name);
             });
         },
         _initHS:function(height, path){
@@ -62,17 +73,30 @@ $(function(){
             for(var i = 0;i<data.length;i++){
                 if(data[i].user){/*加载数据*/
                     html += '<tr>' +
-                    '<td class="tb-check"><label><input class="tb-checkbox" type="checkbox"><input type="hidden" value="'+data[i].id+'"></label></td>' +
+                    '<td class="tb-check"><label><input class="tb-checkbox" type="checkbox" data-name="checkbox">' +
+                    '<input type="hidden" value="'+data[i].id+'"></label></td>' +
                     '<td class="tb-name"><span>'+data[i].name+'</span><span class="tb-id"> ('+data[i].account+') </span></td>' +
                     '<td class="tb-post"><span>'+data[i].job+'</span></td>' +
                     '<td class="tb-phone"><span>'+data[i].mobile+'</span></td>' +
-                    '<td class="tb-email"><span>'+data[i].email+'</span></td></tr>';
+                    '<td class="tb-email"><span>'+data[i].email+'</span><div class="data-change">' +
+                    '<input class="base-bg" type="button" value="修改信息" data-name="change"></div></td></tr>';
                 }
             }
             $('#data').html(html);
         },
-        _addData:function(){
-            //console.log(this.text);
+        _dataOperate:function(name){
+            var self = this;
+            switch (name){
+                case 'change':
+                case 'addMem':
+                    self._initHS('500px','../common/pop_upload.html');
+                    break;
+                case 'addBrc':
+                    self._initHS('260px','../common/pop_branch.html');
+                    break;
+                case 'dm':break;
+                default :break;
+            }
         },
         _changeData:function(){
             //console.log(this.text);
@@ -86,7 +110,6 @@ $(function(){
                 html += '<span>'+path[i]+' </span>';
             }
             $('#group').html(html).attr('data-id', data.id);
-            //console.log($('#path').data('id'));
         }
     };
 

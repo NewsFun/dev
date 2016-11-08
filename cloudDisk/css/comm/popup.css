@@ -87,6 +87,7 @@ ul{
 .popup .left>input{
     width: 316px;
     height: 26px;
+    text-indent: 1em;
 }
 .popup .right{
     width: 80px;

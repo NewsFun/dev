@@ -12,8 +12,8 @@ a,button,input[type="button"]{cursor: pointer;}
     float: left;
 }
 .color-blue{color: #3686e8;}
-.float_r{float: right;}
-.float_l{float: left;}
+.float_r{float: right;display: inline-block;}
+.float_l{float: left;display: inline-block;}
 /*---------------------------*/
 .ui-layout-center{padding: 0;}
 .ui-layout-center .east-main{padding:10px 25px 0;}
@@ -68,7 +68,7 @@ a,button,input[type="button"]{cursor: pointer;}
     border-collapse: collapse;
 }
 .east-content thead{background-color: #f0f2f3;}
-.east-content tr{height: 40px;}
+.east-content tr{height: 40px;line-height: 40px;}
 .east-content tbody tr{
     border-bottom: 1px solid #ebebeb;
 }
@@ -88,5 +88,5 @@ a,button,input[type="button"]{cursor: pointer;}
     background-color: #3686e8;
 }
 .east-content img.icon{
-    float: left;
+    margin-top: 10px;
 }

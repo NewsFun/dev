@@ -34,7 +34,7 @@
     <div class="ms-bar unfix">
         <div class="inline"><img class="icon" src="../images/u593.png"></div>
         <div class="inline"><b>通讯录</b></div>
-        <div class="inline"><a id="at" class="icon"></a></div>
+        <div class="inline"><a id="addBrc" class="icon"></a></div>
     </div>
     <div class="myList">
         <div class="tree_content">
@@ -107,8 +107,8 @@
 <div id="ui-layout-center" class="ui-layout-center">
     <div class="east-main">
         <div class="east-head">
-            <span class="icon"></span>
-            <a id="group" data-id=""></a>
+            <a class="icon" data-name="qr"></a>
+            <span id="group" data-id=""></span>
             <!--
             <span>新华网</span>
             <span>产品设计</span>
@@ -128,7 +128,7 @@
                     <span>邮箱</span>
                     <div class="float_r">
                         <label><input class="search" type="text"></label>
-                        <label><input id="am" class="base-bg" type="button" value="添加成员"></label>
+                        <label><input data-name="addMem" class="base-bg" type="button" value="添加成员"></label>
                         <label><input id="dm" class="base-bg" type="button" value="删除成员" data-url="http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/contacts/delete_contacts_batch.do"></label>
                         <input type="hidden" id="divType" name="divType" value="ros">
                     </div>
@@ -142,7 +142,7 @@
                 <td class="tb-name"><span>张某</span><span class="tb-id"> (zhang01) </span></td>
                 <td class="tb-post"><span>UI设计师</span></td>
                 <td class="tb-phone"><span>15637891023</span></td>
-                <td class="tb-email"><span>www@mmm.com</span></td>
+                <td class="tb-email"><span>www@mmm.com</span><input class="base-bg" type="button" value="添加成员" data-name="change"></td>
                 <td class="tb-search">
                     <span class="base-color">设为管理员</span>
                     <span class="base-color"></span>

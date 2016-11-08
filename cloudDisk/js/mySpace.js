@@ -28,6 +28,7 @@ $(function(){
         },
         initTab:function(){
             var self = this;
+            /*
             $('#data').on('click', function(e){
                 var tar = $(e.target), name = tar.data('name');
                 switch (name){
@@ -42,7 +43,14 @@ $(function(){
                         break;
                     default :break;
                 }
+            });*/
+
+            PageEvent({
+                limit:self.eventOfLimit.bind(this),
+                admin:self.eventOfAdmin.bind(this),
+                del:self.eventOfDel.bind(this)
             });
+
         },
         initAddBtn:function(){
             $('#add_btn').on('click', function(){
@@ -96,7 +104,8 @@ $(function(){
         addTab:function(data){
             var self = this, html = '';
             for(var i = 0;i<data.length;i++){
-                html += '<tr><td class="tb-check"><label><input class="tb-checkbox" type="checkbox"><input type="hidden" value="'+data[i].account+'"></label></td>' +
+                html += '<tr><td class="tb-check"><label><input class="tb-checkbox" type="checkbox" data-name="checkbox">' +
+                '<input type="hidden" value="'+data[i].account+'"></label></td>' +
                 '<td class="tb-name">'+(data[i].isManager?'<img class="icon" src="../images/u328.png">':'')+'<span>'+data[i].name+'</span></td>' +
                 '<td class="tb-phone"><span>'+data[i].phone+'</span></td>' +
                 '<td class="tb-email"><span>'+data[i].email+'</span></td>' +
@@ -158,7 +167,7 @@ $(function(){
                 btn.each(function(){/*权限全部显示*/
                     if(!$(this).hasClass('off')) $(this).addClass('on');
                 });
-                node.data('old', self._limitData(node).accessLevel) ;
+                node.attr('data-old', self._limitData(node).accessLevel);
             }
         },
         _limitData:function(node){
@@ -188,8 +197,9 @@ $(function(){
                         alert('权限修改成功');
                     }
                 }
-            })
+            });
         }
     };
+
     new Share().init();
 });

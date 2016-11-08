@@ -32,7 +32,7 @@ AddMember.prototype = {
         $('#'+pid).prepend(html);
     },
     choseMem:function(){
-        $('#tree_content').on('click', function(e){
+        $('#tree_root').on('click', function(e){
             var tar = $(e.target);
             var name = tar.data('name');
             if(name == 'name'){

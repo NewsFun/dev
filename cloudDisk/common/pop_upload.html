@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>添加人员</title>
     <link rel="stylesheet" type="text/css" href="../css/comm/popup.css">
+    <script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/jquery-1.7.1.js?v=20150202"></script>
 </head>
 <body>
 <div class="popup">
@@ -17,9 +18,6 @@
                 <li class="unfix">
                     <div class="inline right"><span>当前分组：</span></div>
                     <div class="inline left">
-                        <!--<select class="select_path">
-                            <option value="7">新华网-技术研发部</option>
-                        </select>-->
                         <span id="path" class="pop-color">新华网-技术研发部</span>
                         <input id="pid" type="hidden" value="" name="parentId">
                     </div>
@@ -27,31 +25,31 @@
                 <li class="unfix">
                     <div class="inline right"><span>姓名：</span></div>
                     <div class="inline left">
-                        <input type="text" name="name">
+                        <input class="input" type="text" name="name" required="required">
                     </div>
                 </li>
                 <li class="unfix">
                     <div class="inline right"><span>云盘账号：</span></div>
                     <div class="inline left">
-                        <input type="text" name="account">
+                        <input class="input" type="text" name="account" required="required">
                     </div>
                 </li>
                 <li class="unfix">
                     <div class="inline right"><span>职位：</span></div>
                     <div class="inline left">
-                        <input type="text" name="job">
-                    </div>
-                </li>
-                <li class="unfix">
-                    <div class="inline right"><span>邮箱：</span></div>
-                    <div class="inline left">
-                        <input type="text" name="email">
+                        <input class="input" type="text" name="job">
                     </div>
                 </li>
                 <li class="unfix">
                     <div class="inline right"><span>手机号：</span></div>
                     <div class="inline left">
-                        <input type="text" name="phone">
+                        <input class="input" type="text" name="phone">
+                    </div>
+                </li>
+                <li class="unfix">
+                    <div class="inline right"><span>邮箱：</span></div>
+                    <div class="inline left">
+                        <input class="input" type="email" name="email">
                     </div>
                 </li>
                 <li>
@@ -63,5 +61,6 @@
         </div>
     </form>
 </div>
+<script src="../js/pop_upload.js"></script>
 </body>
 </html>
