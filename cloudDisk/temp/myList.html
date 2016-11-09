@@ -109,16 +109,12 @@
         <div class="east-head">
             <a class="icon" data-name="qr"></a>
             <span id="group" data-id=""></span>
-            <!--
-            <span>新华网</span>
-            <span>产品设计</span>
-            -->
         </div>
         <table class="east-content" cellpadding="0" cellspacing="0" width="100%">
             <thead>
             <tr>
                 <th class="tb-check" width="5%">
-                    <label><input id="check-all" type="checkbox"></label>
+                    <label><input data-name="check_all" type="checkbox"></label>
                     <span>全选</span>
                 </th>
                 <th class="tb-name" width="20%"><span>用户名</span><span class="tb-id"> (账号) </span></th>
@@ -127,9 +123,9 @@
                 <th class="tb-email" width="30%">
                     <span>邮箱</span>
                     <div class="float_r">
-                        <label><input class="search" type="text"></label>
+                        <form class="form-search"><label><input class="search" type="text" name="name" value="请输入成员姓名"></label></form>
                         <label><input data-name="addMem" class="base-bg" type="button" value="添加成员"></label>
-                        <label><input id="dm" class="base-bg" type="button" value="删除成员" data-url="http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/contacts/delete_contacts_batch.do"></label>
+                        <label><input data-name="del_mem" class="base-bg" type="button" value="删除成员" data-url="http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/contacts/delete_contacts_batch.do"></label>
                         <input type="hidden" id="divType" name="divType" value="ros">
                     </div>
                 </th>

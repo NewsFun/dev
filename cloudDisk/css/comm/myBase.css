@@ -1,5 +1,6 @@
 @charset "UTF-8";
 a,button,input[type="button"]{cursor: pointer;}
+form.form-search{display: inline-block;}
 .hidden{display: none;!important;}
 .logo{border-right: 1px solid #fff;}
 .unfix:after { clear: both; }

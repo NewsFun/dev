@@ -4,12 +4,16 @@
 $(function(){
     function Share(){
         this.operate = false;
-        //this.limits = null;
         this.init = function(){
+            var self = this;
             this.initClick();
-            this.initTab();
-            this.initAddBtn();
-            this.initDelGroup();
+            PageEvent({
+                limit:self.eventOfLimit,
+                admin:self.eventOfAdmin.bind(this),
+                del:self.eventOfDel,
+                add_btn:self.initAddBtn,
+                space_group:self.initDelGroup
+            });
         }
     }
     Share.prototype = {
@@ -26,65 +30,34 @@ $(function(){
             });
             lis.first().trigger('click');
         },
-        initTab:function(){
-            var self = this;
-            /*
-            $('#data').on('click', function(e){
-                var tar = $(e.target), name = tar.data('name');
-                switch (name){
-                    case 'limit':
-                        self.eventOfLimit(tar);
-                        break;
-                    case 'admin':
-                        self.eventOfAdmin(tar);
-                        break;
-                    case 'del':
-                        self.eventOfDel(tar);
-                        break;
-                    default :break;
-                }
-            });*/
-
-            PageEvent({
-                limit:self.eventOfLimit.bind(this),
-                admin:self.eventOfAdmin.bind(this),
-                del:self.eventOfDel.bind(this)
-            });
-
-        },
         initAddBtn:function(){
-            $('#add_btn').on('click', function(){
-                layer.open({
-                    type: 2,
-                    title: false,
-                    closeBtn: 1, //显示关闭按钮
-                    shade: [0.5,'#000'],
-                    area: ['650px', '540px'],
-                    offset: 'auto', //居中弹出
-                    time: 0, //不自动关闭
-                    shift: 2,
-                    content: ['../common/pop_add.html', 'no'] //iframe的url，no代表不显示滚动条
-                });
+            layer.open({
+                type: 2,
+                title: false,
+                closeBtn: 1, //显示关闭按钮
+                shade: [0.5,'#000'],
+                area: ['650px', '560px'],
+                offset: 'auto', //居中弹出
+                time: 0, //不自动关闭
+                shift: 2,
+                content: ['../common/pop_add.html', 'no'] //iframe的url，no代表不显示滚动条
             });
         },
-        initDelGroup:function(){
-            $('#group').on('click', function(){
-                var $this = $(this);
-                var id = $this.data('id');
-                var url = '';
-                $.ajax({
-                    url:url,
-                    data:{id:[id]},
-                    type:'post',
-                    success:function(data){
-                        alert(data);
-                        if(data.code==200){
-                            $('#data').empty();
-                            $this.attr('data-id', '');
-                            location.reload(true);
-                        }
+        initDelGroup:function(tg){
+            var id = tg.data('id');
+            var url = '';
+            $.ajax({
+                url:url,
+                data:{id:[id]},
+                type:'post',
+                success:function(data){
+                    alert(data);
+                    if(data.code==200){
+                        $('#data').empty();
+                        tg.attr('data-id', '');
+                        location.reload(true);
                     }
-                })
+                }
             });
         },
         getData:function(id){
@@ -97,7 +70,7 @@ $(function(){
                     $('#del_group').data('id', id);
                     self.addTab(da);
                 }else{
-                    alert('no data');
+                    alert('暂无数据');
                 }
             },'json');
         },

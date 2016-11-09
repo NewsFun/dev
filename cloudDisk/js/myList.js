@@ -37,25 +37,28 @@ $(function(){
         },
         initClick:function(){
             var self = this;
-            /*$('#addMem').on('click', function(){
-                self._initHS('500px','../common/pop_upload.html');
-            });*/
-            $('#addBrc').on('click', function(){
-                self._initHS('260px','../common/pop_branch.html');
+            PageEvent({
+                change:self._initHS,
+                addMem:self._initHS
             });
-            $('#ui-layout-center').on('click', function(e){
-                var tg = $(e.target);
-                var name = tg.data('name');
-                var TG = tg.hasClass('JS_target');
-                if(!TG){
-                    $('.JS_target').removeClass('JS_target');
-                    tg.addClass('JS_target');
-                    //console.log('change target');
-                }
-                self._dataOperate(name);
+            $('#addBrc').on('click', function(){
+                self._addBrc('260px','../common/pop_branch.html');
             });
         },
-        _initHS:function(height, path){
+        _initHS:function(){
+            layer.open({
+                type: 2,
+                title: false,
+                closeBtn: 1, //显示关闭按钮
+                shade: [0.5,'#000'],
+                area: ['650px', '500px'],
+                offset: 'auto', //居中弹出
+                time: 0, //不自动关闭
+                shift: 2,
+                content: ['../common/pop_upload.html', 'no'] //iframe的url，no代表不显示滚动条
+            });
+        },
+        _addBrc:function(height, path){
             layer.open({
                 type: 2,
                 title: false,
@@ -83,20 +86,6 @@ $(function(){
                 }
             }
             $('#data').html(html);
-        },
-        _dataOperate:function(name){
-            var self = this;
-            switch (name){
-                case 'change':
-                case 'addMem':
-                    self._initHS('500px','../common/pop_upload.html');
-                    break;
-                case 'addBrc':
-                    self._initHS('260px','../common/pop_branch.html');
-                    break;
-                case 'dm':break;
-                default :break;
-            }
         },
         _changeData:function(){
             //console.log(this.text);

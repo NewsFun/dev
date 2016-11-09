@@ -3,6 +3,7 @@
  */
 function AddMember(){
     this.parent = parent.document;
+    this.tar = $(this.parent).find('.JS_target');
     this.init = function(){
         var self = this;
         self.initGroupId();
@@ -11,15 +12,17 @@ function AddMember(){
             closeClass:'icon_solid',
             domTags: self.domTags
         }).init();
-        self.choseMem();
+        self.chooseMem();
         self.deleteMem();
     };
 }
 AddMember.prototype = {
     initGroupId:function(){
+        var self = this;
         var id = $(this.parent).find('#group').data('id');
         //console.log(id);
         $('#id').attr('value', id);
+        self.chooseColumn();
     },
     domTags:function(data, pid){
         var html = '';
@@ -31,7 +34,7 @@ AddMember.prototype = {
         }
         $('#'+pid).prepend(html);
     },
-    choseMem:function(){
+    chooseMem:function(){
         $('#tree_root').on('click', function(e){
             var tar = $(e.target);
             var name = tar.data('name');
@@ -59,6 +62,17 @@ AddMember.prototype = {
                 //console.log(node);
                 node.find('.tree_name').removeClass('on');
             }
+        });
+    },
+    chooseColumn:function(){
+        var self = this;
+        var name = self.tar && self.tar.data('name');
+        var as = $('#title').children('a'), tab = $('.table');
+        as.each(function(){
+            $(this).data('name')==name?$(this).addClass('on'):$(this).removeClass('on');
+        });
+        tab.each(function(){
+            $(this).data('name')==name?$(this).show():$(this).hide();
         });
     }
 };

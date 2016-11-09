@@ -8,6 +8,8 @@ body,html{
 a{text-decoration: none;}
 a,button,input[type="button"],input[type="submit"],.button{cursor: pointer;}
 .border_b{border-bottom: 1px solid rgba(215, 215, 215, 1);}
+.hidden{display: none;}
+.img-full img{width: 100%;}
 .w_400{width: 400px;}
 .pop-color{ color: #3686e8; }
 .rf{float: right;}
@@ -126,7 +128,9 @@ ul{
 }
 .space .submit{margin-top: 40px;}
 .space .on{background-color: #3686e8;color: white;}
-
+.space .qr .title{border: none;text-align: center;}
+.space .qr .img-full{width: 200px;margin: 0 auto;}
+.space .qr .msg{margin-top: 10px; text-align: center;}
 /*mkdir*/
 .space .group{
     height: 40px;
@@ -144,3 +148,11 @@ ul{
     text-indent: 3em;
 }
 .group_confirm input{position: relative;top: 2px;}
+/*notice*/
+.notice a{text-decoration: underline;padding: 0 10px;}
+.notice .title{height: 40px;line-height: 40px;padding-left: 10px;border-bottom-color: rgba(215, 215, 215, 1);}
+.notice .table{padding: 10px 0;}
+.notice li{padding: 10px;border-bottom: 1px solid rgba(215, 215, 215, 1);}
+.notice .operate{text-align: right;}
+.notice .time{font-size: 12px;}
+.notice .more{text-align: center;}

@@ -10,12 +10,12 @@
 </head>
 <body>
 <div class="space">
-    <div class="title">
-        <a class="on">通讯录</a>
-        <a>二维码</a>
+    <div id="title" class="title">
+        <a class="on" data-name="add_btn">通讯录</a>
+        <a data-name="qr">二维码</a>
     </div>
-    <form method="post" action="http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/contacts/add_contact.do">
-        <div class="table">
+    <div data-name="add_btn" class="table">
+        <form method="post" action="http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/contacts/add_contact.do">
             <input id="id" type="hidden" name="id" value="">
             <div class="addr unfix">
                 <div class="inline box">
@@ -51,8 +51,17 @@
             <div class="center">
                 <input class="submit" type="submit" name="submit" value="确定">
             </div>
+        </form>
+    </div>
+    <div data-name="qr" class="table hidden">
+        <div class="qr">
+            <div class="title"><b>打开微信"扫一扫"，加入文件共享组</b></div>
+            <div class="img-full">
+                <img src="../images/u172.png">
+            </div>
+            <div class="msg">该二维码7天内（8月5日前）有效，重新进入更新</div>
         </div>
-    </form>
+    </div>
 </div>
 <script src="../js/tree.js"></script>
 <script src="../js/pop_add.js"></script>
