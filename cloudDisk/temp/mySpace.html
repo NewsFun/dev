@@ -36,9 +36,9 @@
     <div class="mySpace">
         <ul id="js_content" class="tree_content">
             <li><a><img class="icon" src="../images/u328.png"><span class="my-space on" data-id="1">直播项目资料</span></a></li>
-            <li><a><img class="icon" src="../images/u280.png"><span class="my-space">搜索项目资料</span></a></li>
-            <li><a><img class="icon" src="../images/u280.png"><span class="my-space">文库项目资料</span></a></li>
-            <li><a><img class="icon" src="../images/u280.png"><span class="my-space">百科项目资料</span></a></li>
+            <li><a><img class="icon" src="../images/u280.png"><span class="my-space" data-id="2">搜索项目资料</span></a></li>
+            <li><a><img class="icon" src="../images/u280.png"><span class="my-space" data-id="3">文库项目资料</span></a></li>
+            <li><a><img class="icon" src="../images/u280.png"><span class="my-space" data-id="4">百科项目资料</span></a></li>
         </ul>
     </div>
 </div>
@@ -67,7 +67,12 @@
                 <th class="tb-permission" width="40%">
                     <span>权限</span>
                     <div class="float_r">
-                        <label><input class="search" type="text"></label>
+                        <div class="fm">
+                            <span class="search-box">
+                                <input class="search" type="text" name="searchName" value="请输入成员姓名" data-name="search">
+                                <span class="submit" data-name="submit"></span>
+                            </span>
+                        </div>
                         <label><input data-name="add_btn" class="base-bg" type="button" value="添加成员"></label>
                         <label><input data-name="del_mem" class="base-bg" type="button" value="删除成员" data-url=""></label>
                     </div>

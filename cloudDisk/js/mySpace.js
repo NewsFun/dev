@@ -8,11 +8,12 @@ $(function(){
             var self = this;
             this.initClick();
             PageEvent({
-                limit:self.eventOfLimit,
+                add_btn:self.initAddBtn,
                 admin:self.eventOfAdmin.bind(this),
                 del:self.eventOfDel,
-                add_btn:self.initAddBtn,
-                space_group:self.initDelGroup
+                limit:self.eventOfLimit,
+                space_group:self.initDelGroup,
+                submit:self.submitSearch.bind(this)
             });
         }
     }
@@ -26,6 +27,7 @@ $(function(){
                 });
                 $(this).addClass('on');
                 $('#group').attr('data-id',$(this).data('id'));
+                $('#search-id').attr('value',$(this).data('id'));
                 self.getData($(this).data('id'));
             });
             lis.first().trigger('click');
@@ -142,6 +144,22 @@ $(function(){
                 });
                 node.attr('data-old', self._limitData(node).accessLevel);
             }
+        },
+        submitSearch:function(tg){
+            var self = this;
+            var name = $('input[name="searchName"]').val();
+            var id = $('#group').data('id');
+            //console.log(name, id);
+            $.ajax({
+                url:tg.data('url'),
+                data:{id:id,searchName:name},
+                type:'get',
+                success:function(data){
+                    if(data.code == 200){
+                        self.addTab(data.list);
+                    }
+                }
+            });
         },
         _limitData:function(node){
             var tr = node.parents('tr');

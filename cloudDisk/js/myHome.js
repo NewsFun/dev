@@ -37,7 +37,8 @@ $(document).ready(function(){
                 checkbox:self.initCBox,
                 check_all:self.initCAll,
                 del_mem:self.initDelMem.bind(this),
-                qr:self.initQrBtn
+                qr:self.initQrBtn,
+                search:self.initSearchBox
             });
         },
         initEast:function(){
@@ -92,7 +93,7 @@ $(document).ready(function(){
         },
         initQrBtn:function(){
             var pid = $('#group').attr('data-id');
-            console.log(pid);
+            //console.log(pid);
             if(pid){
                 layer.open({
                     type: 2,
@@ -104,8 +105,12 @@ $(document).ready(function(){
                     time: 0, //不自动关闭
                     shift: 2,
                     content: ['../common/pop_add.html', 'no'] //iframe的url，no代表不显示滚动条
+                    //content: ['addMembersForward.do', 'no']
                 });
             }
+        },
+        initSearchBox:function(tg){
+            tg.val('');
         },
         _delMemData:function(){
             var ids = [], data = $('#data');

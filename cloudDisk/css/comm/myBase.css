@@ -1,6 +1,5 @@
 @charset "UTF-8";
 a,button,input[type="button"]{cursor: pointer;}
-form.form-search{display: inline-block;}
 .hidden{display: none;!important;}
 .logo{border-right: 1px solid #fff;}
 .unfix:after { clear: both; }
@@ -90,4 +89,40 @@ form.form-search{display: inline-block;}
 }
 .east-content img.icon{
     margin-top: 10px;
+}
+/*搜索模块*/
+.fm{
+    display: inline-block;
+    float:left;
+    width: 144px;
+    height: 40px;
+    margin-right: 4px;
+}
+.fm .search-box{
+    display: block;
+    height: 28px;
+    position: relative;
+    top: 7px;
+    background: url("../../images/search-box.png")no-repeat;
+    background-size: 100% 100%;
+}
+.fm input.search{
+    display: block;
+    position: absolute;
+    outline: none;
+    border: none;
+    width: 110px;
+    left: 10px;
+    top: 2px;
+}
+.fm .submit{
+    display: block;
+    position: absolute;
+    height: 14px;
+    width: 14px;
+    top: 7px;
+    right: 6px;
+    background: url("../../images/search-btn.png")no-repeat;
+    background-size: 100% 100%;
+    cursor: pointer;
 }

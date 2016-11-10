@@ -15,7 +15,14 @@ $(function(){
             /*初始化右键菜单*/
             //self.initMenu();
             /*初始化删除按钮*/
-            self.initClick();
+            PageEvent({
+                change:self._initHS,
+                addMem:self._initHS,
+                submit_list:self.submitSearch.bind(this)
+            });
+            $('#addBrc').on('click', function(){
+                self._addBrc('260px','../common/pop_branch.html');
+            });
         }
     }
 
@@ -35,14 +42,20 @@ $(function(){
                 return false;
             });
         },
-        initClick:function(){
+        submitSearch:function(tg){
             var self = this;
-            PageEvent({
-                change:self._initHS,
-                addMem:self._initHS
-            });
-            $('#addBrc').on('click', function(){
-                self._addBrc('260px','../common/pop_branch.html');
+            var name = $('input[name="searchName"]').val();
+            var id = $('#group').data('id');
+            //console.log(name, id);
+            $.ajax({
+                url:tg.data('url'),
+                data:{id:id,searchName:name},
+                type:'get',
+                success:function(data){
+                    if(data.code == 200){
+                        self.domTags(data.list);
+                    }
+                }
             });
         },
         _initHS:function(){
@@ -87,18 +100,13 @@ $(function(){
             }
             $('#data').html(html);
         },
-        _changeData:function(){
-            //console.log(this.text);
-        },
-        _close:function(){
-            //console.log(this.text);
-        },
         _addPath:function(data){
             var html = '', path = data.path;
             for(var i = 0;i<path.length;i++){
                 html += '<span>'+path[i]+' </span>';
             }
             $('#group').html(html).attr('data-id', data.id);
+            $('#search-id').attr('value', data.id);
         }
     };
 

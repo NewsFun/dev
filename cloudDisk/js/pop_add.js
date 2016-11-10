@@ -4,6 +4,8 @@
 function AddMember(){
     this.parent = parent.document;
     this.tar = $(this.parent).find('.JS_target');
+    this.as = $('#title').children('a');
+    this.tab = $('.table');
     this.init = function(){
         var self = this;
         self.initGroupId();
@@ -22,7 +24,9 @@ AddMember.prototype = {
         var id = $(this.parent).find('#group').data('id');
         //console.log(id);
         $('#id').attr('value', id);
-        self.chooseColumn();
+        self.initQrSrc();
+        self.chooseColumn(self.tar && self.tar.data('name'));
+        self.titleClick();
     },
     domTags:function(data, pid){
         var html = '';
@@ -64,16 +68,27 @@ AddMember.prototype = {
             }
         });
     },
-    chooseColumn:function(){
+    chooseColumn:function(con){
         var self = this;
-        var name = self.tar && self.tar.data('name');
-        var as = $('#title').children('a'), tab = $('.table');
-        as.each(function(){
+        var name = con ||'add_btn';
+        self.as.each(function(){
             $(this).data('name')==name?$(this).addClass('on'):$(this).removeClass('on');
         });
-        tab.each(function(){
+        self.tab.each(function(){
             $(this).data('name')==name?$(this).show():$(this).hide();
         });
+    },
+    titleClick:function(){
+        var self = this;
+        self.as.on('click', function(){
+             self.chooseColumn($(this).data('name'));
+        });
+    },
+    initQrSrc:function(){
+        var qr = $('#qr');
+        var src = qr.attr('src')+'?id='+$('#id').val();
+        //console.log(src);
+        qr.attr('src', src);
     }
 };
 new AddMember().init();

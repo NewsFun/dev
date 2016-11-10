@@ -129,7 +129,9 @@ ul{
 .space .submit{margin-top: 40px;}
 .space .on{background-color: #3686e8;color: white;}
 .space .qr .title{border: none;text-align: center;}
-.space .qr .img-full{width: 200px;margin: 0 auto;}
+.space .qr .img-box{position: relative;}
+.space .qr .img-full{width: 200px;height:200px;margin: 0 auto;overflow: hidden;}
+.space .qr .download{color: #3686e8;position: absolute;right: 100px;bottom: 0;}
 .space .qr .msg{margin-top: 10px; text-align: center;}
 /*mkdir*/
 .space .group{

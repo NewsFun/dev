@@ -123,7 +123,12 @@
                 <th class="tb-email" width="30%">
                     <span>邮箱</span>
                     <div class="float_r">
-                        <form class="form-search"><label><input class="search" type="text" name="name" value="请输入成员姓名"></label></form>
+                        <div class="fm">
+                            <span class="search-box">
+                                <input class="search" type="text" name="searchName" value="请输入成员姓名" data-name="search">
+                                <span class="submit" data-name="submit_list"></span>
+                            </span>
+                        </div>
                         <label><input data-name="addMem" class="base-bg" type="button" value="添加成员"></label>
                         <label><input data-name="del_mem" class="base-bg" type="button" value="删除成员" data-url="http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/contacts/delete_contacts_batch.do"></label>
                         <input type="hidden" id="divType" name="divType" value="ros">
