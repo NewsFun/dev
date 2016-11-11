@@ -7,22 +7,19 @@ body,html{
 }
 a{text-decoration: none;}
 a,button,input[type="button"],input[type="submit"],.button{cursor: pointer;}
+ul{margin: 0;padding: 0;list-style: none;}
+.bg_white{background-color: #ffffff;}
 .border_b{border-bottom: 1px solid rgba(215, 215, 215, 1);}
 .hidden{display: none;}
 .img-full img{width: 100%;}
-.w_400{width: 400px;}
 .pop-color{ color: #3686e8; }
 .rf{float: right;}
 .unfix:after { clear: both; }
 .unfix:before, .unfix:after {
     display: table;
-    content: " ";
+    content: "";
 }
-ul{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
+.w_400{width: 400px;}
 .popup ul li{
     height: 50px;
     line-height: 50px;
@@ -146,15 +143,53 @@ ul{
     line-height: 40px;
 }
 .group_name input{width: 80%;height: 24px;}
-.space .group_confirm{
-    text-indent: 3em;
-}
+.space .group_confirm{text-indent: 3em;}
 .group_confirm input{position: relative;top: 2px;}
 /*notice*/
-.notice a{text-decoration: underline;padding: 0 10px;}
-.notice .title{height: 40px;line-height: 40px;padding-left: 10px;border-bottom-color: rgba(215, 215, 215, 1);}
-.notice .table{padding: 10px 0;}
-.notice li{padding: 10px;border-bottom: 1px solid rgba(215, 215, 215, 1);}
+.notice {
+    position: fixed;
+    display: none;
+    width: 400px;
+    z-index: 99;
+    border: 1px solid rgba(215, 215, 215, 1);
+    overflow: hidden;
+}
+.notice a{
+    text-decoration: underline;
+    padding: 0 10px;
+}
+.notice .title{
+    height: 40px;
+    line-height: 40px;
+    text-indent: 1em;
+    border-bottom-color: rgba(215, 215, 215, 1);
+    position: absolute;
+    width: 100%;
+}
+.notice .table{
+    padding: 42px 0 10px 0;
+    max-height: 450px;
+    overflow: auto;
+}
+.notice li{
+    padding: 10px;
+    border-bottom: 1px solid rgba(215, 215, 215, 1);
+}
 .notice .operate{text-align: right;}
 .notice .time{font-size: 12px;}
-.notice .more{text-align: center;}
+.notice .more{
+    text-align: center;
+    width: 100%;
+    line-height: 40px;
+    height: 40px;
+}
+.notice .close-btn{
+    background: url("../../js/layer/skin/default/icon.png")no-repeat 0 -40px;
+    cursor: pointer;
+    display: block;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    right: 16px;
+    top: 12px;
+}
