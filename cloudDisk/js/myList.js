@@ -45,7 +45,7 @@ $(function(){
         submitSearch:function(tg){
             var self = this;
             var name = $('input[name="searchName"]').val();
-            var id = $('#group').data('id');
+            var id = $('#group').attr('data-id');
             //console.log(name, id);
             $.ajax({
                 url:tg.data('url'),

@@ -7,7 +7,6 @@ function Upload(){
     this.path = $(this.doc.getElementById('group'));
     this.url = this.tar.data('url');
     this.init = function(){
-        //console.log(this.tar);
         this.initPath();
         this.initForm();
     }
@@ -16,7 +15,6 @@ Upload.prototype = {
     initForm:function(){
         var self = this;
         var name = self.tar.data('name');
-        //console.log(name);
         if(name == 'change'){
             var data = self.getMemData();
             self.setFormData(data);
@@ -51,4 +49,97 @@ Upload.prototype = {
         if(self.url) form.attr('action', self.url);
     }
 };
+
 new Upload().init();
+
+function Checkout(){
+    this.inputs = $('.checkout').find('.input');
+    this.msg = null;
+    this.init = function(){
+        var self = this;
+        self.inputs.each(function(){
+            self.setResultCss($(this));
+            $(this).on('blur',function(){
+                self.checkCode($(this));
+            });
+        });
+    };
+}
+Checkout.prototype = {
+    checkCode:function(tg){
+        var self = this;
+        var req = tg.attr('required');
+        var name = tg.attr('name');
+        if(req) self.checkEmpty(tg);
+        switch (name){
+            case "email":
+                self.checkEmail(tg);
+                break;
+            case "mobile":
+                self.checkMobile(tg);
+                break;
+            default :
+                //self.checkEmpty(tg);
+                break;
+        }
+        self.setCheckMsg(tg, self.msg);
+    },
+    setResultCss:function(node){
+        var result = '<div class="checkout-result"></div>';
+        node.after(result);
+        var next = node.next('.checkout-result');
+        var width = next.width(),
+            height = next.height();
+        next.css({
+            left:width+'px',
+            top:-height+'px'
+        });
+        if(node.attr('required')) next.text('*');
+    },
+    checkLength:function(tg){
+        var self = this;
+        var max = tg.data('max');
+        var val = tg.val();
+        if(max && val.length>max){
+            self.msg = '最多输入'+max+'个字符';
+        }
+    },
+    checkEmpty:function(tg){
+        var self = this;
+        var val = tg.val();
+        if(val){
+            var reg = "^[ ]+$";
+            var re = new RegExp(reg);
+            var result = re.test(val);
+            //console.log(result);
+            self.msg = result?"不能为空":null;
+        }else{
+            self.msg = '不能为空';
+        }
+    },
+    checkEmail:function(tg){
+        var self = this;
+        var val = tg.val().trim();
+        if(val.length>0){
+            var reg = /^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$/;
+            var res = reg.test(val);
+            //console.log(res);
+            self.msg = res?null:"请输入正确的邮箱";
+        }
+    },
+    checkMobile:function(tg){
+        var self = this;
+        var val = tg.val().trim();
+        if(val.length>0){
+            var reg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
+            var res = reg.test(val);
+            self.msg = res?null:"请输入正确的手机号码";
+        }
+    },
+    setCheckMsg:function(tg, message){
+        var next = tg.next('.checkout-result');
+        //var msg = message.replace(/(^\s*)|(\s*$)/g, "");
+        message?next.removeClass('pass').text(message):next.addClass('pass').text('√');
+    }
+};
+new Checkout().init();

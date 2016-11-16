@@ -126,3 +126,14 @@ a,button,input[type="button"]{cursor: pointer;}
     background-size: 100% 100%;
     cursor: pointer;
 }
+/*表单校验*/
+.checkout .checkout-result{
+    position:relative;
+    width:100%;
+    height:100%;
+    color: red;
+    text-indent: 0.5em;
+}
+.checkout .pass{
+    color:green;
+}

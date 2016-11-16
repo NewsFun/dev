@@ -50,8 +50,8 @@
                 node.removeClass(self.closeClass).addClass(self.openClass);
                 $('#'+id).removeAttr('style');
                 if(!node.opened){
-                    var url = '/json/tree'+id+'.json';
-                    //var url = 'http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/address/get_child_address.do?parentId='+id;
+                    //var url = 'address/get_child_address.do?parentId='+id;
+                    var url = '../json/tree'+id+'.json';
                     $.get(url, function(data){
                         self._addNode(data, id);
                         if(self.domTags) self.domTags(data, id);

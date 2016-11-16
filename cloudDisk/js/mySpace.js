@@ -42,18 +42,18 @@ $(function(){
                 offset: 'auto', //居中弹出
                 time: 0, //不自动关闭
                 shift: 2,
-                content: ['../common/pop_add.html', 'no'] //iframe的url，no代表不显示滚动条
+                content: ['addMembersForward.do;', 'no'] //iframe的url，no代表不显示滚动条
             });
         },
         initDelGroup:function(tg){
             var id = tg.data('id');
-            var url = '';
+            var url = 'deleteShareVdisk.do';
             $.ajax({
                 url:url,
                 data:{id:[id]},
                 type:'post',
                 success:function(data){
-                    alert(data);
+                	 alert(data.message);
                     if(data.code==200){
                         $('#data').empty();
                         tg.attr('data-id', '');
@@ -64,12 +64,12 @@ $(function(){
         },
         getData:function(id){
             var self = this;
-            var url = '../json/table'+id+'.json';
+            var url = 'getShareVdiskMembers.do?id='+id+"&pageNo=1&pageSize=18";
             $.get(url, function(data){
                 var da = data.list;
                 if(da){
                     $('#all_mem').text('('+data.totalCount+')');
-                    $('#del_group').data('id', id);
+                    $('#del_group').attr('data-id', id);
                     self.addTab(da);
                 }else{
                     alert('暂无数据');
@@ -81,7 +81,7 @@ $(function(){
             for(var i = 0;i<data.length;i++){
                 html += '<tr><td class="tb-check"><label><input class="tb-checkbox" type="checkbox" data-name="checkbox">' +
                 '<input type="hidden" value="'+data[i].account+'"></label></td>' +
-                '<td class="tb-name">'+(data[i].isManager?'<img class="icon" src="../images/u328.png">':'')+'<span>'+data[i].name+'</span></td>' +
+                '<td class="tb-name">'+(data[i].isManager?'<img class="icon" src="../../cloudDisk/images/u328.png">':'')+'<span>'+data[i].name+'</span></td>' +
                 '<td class="tb-phone"><span>'+data[i].phone+'</span></td>' +
                 '<td class="tb-email"><span>'+data[i].email+'</span></td>' +
                 '<td class="tb-permission JS_show">' +self.getAccess(data[i].accesslevel) +
@@ -148,15 +148,17 @@ $(function(){
         submitSearch:function(tg){
             var self = this;
             var name = $('input[name="searchName"]').val();
-            var id = $('#group').data('id');
-            //console.log(name, id);
+            var id = $('#group').attr('data-id');
+            var url='getShareVdiskMembers.do';
             $.ajax({
-                url:tg.data('url'),
+                url:url,
                 data:{id:id,searchName:name},
                 type:'get',
                 success:function(data){
                     if(data.code == 200){
                         self.addTab(data.list);
+                    }else{
+                    	alert(data.message);
                     }
                 }
             });
@@ -170,22 +172,24 @@ $(function(){
                 limit += $(msg[i]).val();
             }
             return {
-                id:$('#group').data('id'),
+                id:$('#group').attr('data-id'),
                 account:account,
                 accessLevel:limit
             }
         },
         _updateLimit:function(con){
             //console.log(con);
-            var url = '';
+            var url = 'updateAccessLevel.do';
             $.ajax({
                 url:url,
                 type:'post',
                 data:con,
-                dataType:'html',
+                dataType:'json',
                 success:function(data){
                     if(data.code==200){
-                        alert('权限修改成功');
+                        alert("更新权限成功");
+                    }else{
+                    	alert(data.message);
                     }
                 }
             });

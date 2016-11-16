@@ -21,7 +21,7 @@ function AddMember(){
 AddMember.prototype = {
     initGroupId:function(){
         var self = this;
-        var id = $(this.parent).find('#group').data('id');
+        var id = $(this.parent).find('#group').attr('data-id');
         //console.log(id);
         $('#id').attr('value', id);
         self.initQrSrc();

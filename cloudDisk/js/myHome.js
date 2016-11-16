@@ -104,8 +104,7 @@ $(document).ready(function(){
                     offset: 'auto', //居中弹出
                     time: 0, //不自动关闭
                     shift: 2,
-                    content: ['../common/pop_add.html', 'no'] //iframe的url，no代表不显示滚动条
-                    //content: ['addMembersForward.do', 'no']
+                    content: ['addMembersForward.do', 'no'] //iframe的url，no代表不显示滚动条
                 });
             }
         },
@@ -124,7 +123,7 @@ $(document).ready(function(){
                 $(this).hide();
             });
             return {
-                id:$('#group').data('id'),
+                id:$('#group').attr('data-id'),
                 accounts:ids
             };
         }

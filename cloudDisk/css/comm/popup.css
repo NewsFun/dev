@@ -86,7 +86,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 .popup .left>input{
     width: 316px;
     height: 26px;
-    text-indent: 1em;
+    text-indent: 0.4em;
 }
 .popup .right{
     width: 80px;
@@ -192,4 +192,16 @@ ul{margin: 0;padding: 0;list-style: none;}
     height: 16px;
     right: 16px;
     top: 12px;
+}
+/*表单校验*/
+.checkout .checkout-result{
+    position:relative;
+    width:100%;
+    height:100%;
+    color: red;
+    font-size: 12px;
+    text-indent: 0.25em;
+}
+.checkout .pass{
+    color:green;
 }
