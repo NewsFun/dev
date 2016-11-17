@@ -5,10 +5,11 @@ function AddMember(){
     this.parent = parent.document;
     this.tar = $(this.parent).find('.JS_target');
     this.as = $('#title').children('a');
-    this.tab = $('.table');
+    this.tab = $('.pop_tab');
     this.init = function(){
         var self = this;
-        self.initGroupId();
+        if($('#qrcode').length>0) self.initGroupId();
+        if($('#treeList').length>0)
         new Tree({
             openClass:'icon_hollow',
             closeClass:'icon_solid',
@@ -85,10 +86,12 @@ AddMember.prototype = {
         });
     },
     initQrSrc:function(){
-        var qr = $('#qr');
-        var src = qr.attr('src')+'?id='+$('#id').val();
+        var qr = $('#qr'), dqr = $('#qr_download');
+        var src = qr.attr('data-url')+'?id='+$('#id').val();
         //console.log(src);
-        qr.attr('src', src);
+        qr.append('<img src="'+src+'">');
+        var downloadSrc = dqr.attr('href')+'?id='+id;
+        dqr.attr('href', downloadSrc);
     }
 };
 new AddMember().init();

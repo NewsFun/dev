@@ -2,19 +2,23 @@
  * Created by bobo on 2016/11/11.
  */
 $(function(){
-    var getData = true, fps = 30000;
+    var getData = true, fps = 10000;
     setInterval(hasNotice, fps);
     function hasNotice(){
         if(getData){
-            var url = 'get_notice_num.do';
+            //var url = 'notice/get_notice_num.do';
+            var url = "../json/get_notice_num.json";
             $.ajax({
                 type:'get',
                 url:url,
                 dataType:'json',
                 success:function(data){
-                    var notice = data.notice;
-                    if(notice && notice>0){
-                        $('#tips_num').text(notice).show();
+                    if(data&&data.code == 200){
+                        var notice = data.data.notice;
+                        if(notice && notice>0){
+                            $('#tips_num').text(notice).show();
+                            getData = false;
+                        }
                     }
                 }
             });
@@ -62,7 +66,7 @@ $(function(){
         },
         getNotice:function(){
             var self = this;
-            //var url = 'get_notice.do?page='+self.page+'&&isRead='+self.isRead;
+            //var url = 'notice/get_notice.do?page='+self.page+'&&isRead='+self.isRead;
             var url = '../json/notice.json?page='+self.page+'&&isRead='+self.isRead;
             $.ajax({
                 type:'get',
@@ -88,7 +92,6 @@ $(function(){
                     '<span>'+data[i].content+'</span></div><div class="operate">' +
                     '<a class="pop-color" href="'+data[i].params+'">查看</a><a class="pop-color">确认</a></div></li>';
             }
-
             $('#data').append(html);
         }
     };

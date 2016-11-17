@@ -8,11 +8,11 @@ $(function(){
             var self = this;
             this.initClick();
             PageEvent({
-                add_btn:self.initAddBtn,
-                admin:self.eventOfAdmin.bind(this),
                 del:self.eventOfDel,
+                add_btn:self.initAddBtn,
                 limit:self.eventOfLimit,
                 space_group:self.initDelGroup,
+                admin:self.eventOfAdmin.bind(this),
                 submit:self.submitSearch.bind(this)
             });
         }
@@ -42,7 +42,8 @@ $(function(){
                 offset: 'auto', //居中弹出
                 time: 0, //不自动关闭
                 shift: 2,
-                content: ['addMembersForward.do;', 'no'] //iframe的url，no代表不显示滚动条
+                //content: ['addMembersForward.do', 'no']
+                content: ['../common/pop_add.html', 'no'] //iframe的url，no代表不显示滚动条
             });
         },
         initDelGroup:function(tg){
@@ -64,7 +65,8 @@ $(function(){
         },
         getData:function(id){
             var self = this;
-            var url = 'getShareVdiskMembers.do?id='+id+"&pageNo=1&pageSize=18";
+            //var url = 'getShareVdiskMembers.do?id='+id+"&pageNo=1&pageSize=18";
+            var url = "../json/table"+id+".json";
             $.get(url, function(data){
                 var da = data.list;
                 if(da){
@@ -81,7 +83,10 @@ $(function(){
             for(var i = 0;i<data.length;i++){
                 html += '<tr><td class="tb-check"><label><input class="tb-checkbox" type="checkbox" data-name="checkbox">' +
                 '<input type="hidden" value="'+data[i].account+'"></label></td>' +
-                '<td class="tb-name">'+(data[i].isManager?'<img class="icon" src="../../cloudDisk/images/u328.png">':'')+'<span>'+data[i].name+'</span></td>' +
+                '<td class="tb-name">'+
+                //(data[i].isManager?'<img class="icon" src="../../cloudDisk/images/u328.png">':'')+
+                (data[i].isManager?'<img class="icon" src="../images/u328.png">':'')+
+                '<span>'+data[i].name+'</span></td>' +
                 '<td class="tb-phone"><span>'+data[i].phone+'</span></td>' +
                 '<td class="tb-email"><span>'+data[i].email+'</span></td>' +
                 '<td class="tb-permission JS_show">' +self.getAccess(data[i].accesslevel) +

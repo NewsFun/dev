@@ -16,7 +16,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 .rf{float: right;}
 .unfix:after { clear: both; }
 .unfix:before, .unfix:after {
-    display: table;
+    display: pop_tab;
     content: "";
 }
 .w_400{width: 400px;}
@@ -32,7 +32,7 @@ ul{margin: 0;padding: 0;list-style: none;}
     display: inline-block;
     float: left;
 }
-.table{padding: 30px 0;margin: 0 auto;}
+.pop_tab{padding: 30px 0;margin: 0 auto;}
 .title{
     height: 60px;
     line-height: 60px;
@@ -95,7 +95,7 @@ ul{margin: 0;padding: 0;list-style: none;}
 .popup .select_path{width: 320px;height: 32px;}
 
 /*add page*/
-.space .table{width: 550px;margin: 0 auto;}
+.space .pop_tab{width: 550px;margin: 0 auto;}
 .space .addr{height: 352px;}
 .space .box{
     width: 233px;
@@ -166,7 +166,7 @@ ul{margin: 0;padding: 0;list-style: none;}
     position: absolute;
     width: 100%;
 }
-.notice .table{
+.notice .pop_tab{
     padding: 42px 0 10px 0;
     max-height: 450px;
     overflow: auto;

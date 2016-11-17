@@ -30,7 +30,7 @@ a.blue:hover { color:#2953a6;}
 .pane-north {border-bottom: none;}
 .pane-north .content {text-align: center;}
 .pane-south .content {text-align: left;background:#fff;color: #333;padding-top: 4px;padding-left: 10px;font-size:12px}
-.pane-center {padding: 0px;}
+.pane-center {padding: 0;}
 .ui-layout-resizer-west{ width:0; display:none}
 .ui-layout-west {background:url(../images/westbg.gif) repeat-x top #f9fafc;border-right:#d1dfe9 1px solid; }
 .ui-layout-center{background:url(../images/centerbg.gif) repeat-x top #fff;margin:0 auto; padding:25px 25px 0;z-index:2}
@@ -78,7 +78,7 @@ a.blue:hover { color:#2953a6;}
 .userInfo .tips{display: inline-block;height: 60px;position: relative;width: 40px;}
 .userInfo .tips_icon{display:block;position: absolute;width:20px;height:22px;left: 50%;top: 50%;margin-left: -10px;margin-top: -11px;}
 .userInfo .tips_num{
-    display: block;
+    display: none;
     position: absolute;
     width: 16px;
     height: 16px;

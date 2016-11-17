@@ -14,7 +14,7 @@
         <a class="on" data-name="add_btn">通讯录</a>
         <a data-name="qr">二维码</a>
     </div>
-    <div data-name="add_btn" class="table">
+    <div id="treeList" data-name="add_btn" class="pop_tab">
         <form method="post" action="http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/contacts/add_contact.do">
             <input id="id" type="hidden" name="id" value="">
             <div class="addr unfix">
@@ -53,14 +53,12 @@
             </div>
         </form>
     </div>
-    <div data-name="qr" class="table hidden">
+    <div id="qrcode" data-name="qr" class="pop_tab hidden">
         <div class="qr">
             <div class="title"><b>打开微信"扫一扫"，加入文件共享组</b></div>
             <div class="img-box">
-                <div class="img-full">
-                    <img id="qr" src="../images/u172.png">
-                </div>
-                <a class="download" href="../images/u172.png">下载</a>
+                <div id="qr" class="img-full" data-url="../images/u172.png"></div>
+                <a id="qr_download" class="download" href="../images/u172.png">下载</a>
             </div>
             <div class="msg">该二维码7天内（8月5日前）有效，重新进入更新</div>
         </div>

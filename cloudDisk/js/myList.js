@@ -18,7 +18,8 @@ $(function(){
             PageEvent({
                 change:self._initHS,
                 addMem:self._initHS,
-                submit_list:self.submitSearch.bind(this)
+                submit_list:self.submitSearch.bind(this),
+                qr_list:self.qrPage
             });
             $('#addBrc').on('click', function(){
                 self._addBrc('260px','../common/pop_branch.html');
@@ -57,6 +58,22 @@ $(function(){
                     }
                 }
             });
+        },
+        qrPage:function(){
+            var pid = $('#group').attr('data-id');
+            if(pid){
+                layer.open({
+                    type: 2,
+                    title: false,
+                    closeBtn: 1, //显示关闭按钮
+                    shade: [0.5,'#000'],
+                    area: ['650px', '500px'],
+                    offset: 'auto', //居中弹出
+                    time: 0, //不自动关闭
+                    shift: 2,
+                    content: ['../common/pop_qr.html', 'no'] //iframe的url，no代表不显示滚动条
+                });
+            }
         },
         _initHS:function(){
             layer.open({

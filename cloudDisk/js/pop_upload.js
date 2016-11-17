@@ -79,7 +79,7 @@ Checkout.prototype = {
                 self.checkMobile(tg);
                 break;
             default :
-                //self.checkEmpty(tg);
+                self.checkLength(tg);
                 break;
         }
         self.setCheckMsg(tg, self.msg);
@@ -137,9 +137,11 @@ Checkout.prototype = {
         }
     },
     setCheckMsg:function(tg, message){
+        var self = this;
         var next = tg.next('.checkout-result');
         //var msg = message.replace(/(^\s*)|(\s*$)/g, "");
         message?next.removeClass('pass').text(message):next.addClass('pass').text('√');
+        self.msg = null;
     }
 };
 new Checkout().init();
