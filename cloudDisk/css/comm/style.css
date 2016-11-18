@@ -1,7 +1,7 @@
 @charset "utf-8";
 /*全局样式*/
 body,ul,ol,li,p,span,h1,h2,h3,h4,h5,h6,form,fieldset,table,img,div,dl,em{margin:0; padding:0;}
-html,body {font-size: 12px;font-family: "微软雅黑", Arial, sans-serif, Verdana, Tahoma; background:#fff}
+html,body {font-size: 12px;font-family: "微软雅黑", Arial, sans-serif, Verdana, Tahoma; background:#fff;}
 ul,li{list-style: none;}
 img {border: 0;}
 em{ font-style:normal; }

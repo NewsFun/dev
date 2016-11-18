@@ -1,7 +1,7 @@
 @charset "utf-8";
 /*全局样式*/
 body,ul,ol,li,p,span,h1,h2,h3,h4,h5,h6,form,fieldset,table,img,div,dl,em{margin:0; padding:0;}
-html,body {font-size: 10px;font-family: "微软雅黑", Arial, sans-serif, Verdana, Tahoma; background:#fff;height: 100%;width: 100%;overflow: hidden;}
+html,body {font-size: 10px;font-family: "微软雅黑", Arial, sans-serif, Verdana, Tahoma; background:#fff;height: 100%;width: 100%;min-width: 1366px;}
 ul,li{list-style: none;}
 img {border: 0;}
 em{ font-style:normal; }
@@ -38,11 +38,8 @@ a.blue:hover { color:#2953a6;}
 .ui-layout-north{
     visibility: visible;
     display: block;
-    position: absolute;
     margin: 0;
     z-index: 4;
-    top: 0;
-    left: 0;
     height: 60px;
     overflow: visible;
     width: 100%;

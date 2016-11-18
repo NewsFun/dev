@@ -2,8 +2,8 @@
  * Created by bobo on 2016/9/13.
  */
 $(document).ready(function(){
-    var W = $(window).width(),
-        H = $(window).height(),
+    var W = $('body').width(),
+        H = $('body').height(),
         V = jQuery.fn.jquery,
         WEST = $('#ui-layout-west'),
         EAST = $('#ui-layout-center'),
@@ -18,16 +18,14 @@ $(document).ready(function(){
             $('.JS_target').removeClass('JS_target');
             tg.addClass('JS_target');
         }
-        for(var i in fun){
-            if(i == name) fun[i](tg);
-        }
+        fun[name]&&fun[name](tg);
     });
     window.PageEvent = function (con){
         for ( var i in con) {
             fun[i] = con[i];
         }
     };
-
+    console.log(W, H);
     function Disk(){}
     Disk.prototype = {
         init:function(){

@@ -11,7 +11,7 @@
         <a>添加分组</a>
     </div>
     <form method="post" action="">
-        <div class="table w_400">
+        <div class="pop_tab w_400">
             <ul>
                 <li class="unfix">
                     <div class="inline right"><span class="ft-16">名称：</span></div>
@@ -32,10 +32,8 @@
 <script>
     var path = parent.document.getElementById('group');
     var pid = path.getAttribute('data-id');
-//    console.log(pid);
     var branch = document.getElementById('branch_pid');
     branch.setAttribute('value', pid);
-//    console.log($('#branch_pid').val());
 </script>
 </body>
 </html>
