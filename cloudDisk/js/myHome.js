@@ -25,7 +25,6 @@ $(document).ready(function(){
             fun[i] = con[i];
         }
     };
-    console.log(W, H);
     function Disk(){}
     Disk.prototype = {
         init:function(){
