@@ -24,10 +24,11 @@
     border: 1px solid #3686e8;
     border-radius: 4px;
 }
-.tb-permission .color-blue{
+.tb-permission .limit-btn{
     float: right;
     background-color: #3686e8;
     color: white;
+    display: none;
 }
 .tb-permission .del{
     position: absolute;

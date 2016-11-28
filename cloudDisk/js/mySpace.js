@@ -4,9 +4,13 @@
 $(function(){
     function Share(){
         this.operate = false;
+        this.lis = $('.my-space');
+        this.group = this.lis.first();
+        this.host = false;
         this.init = function(){
             var self = this;
             this.initClick();
+            this.initHost();
             PageEvent({
                 del:self.eventOfDel,
                 add_btn:self.initAddBtn,
@@ -20,9 +24,10 @@ $(function(){
     Share.prototype = {
         initClick:function(){
             var self = this;
-            var lis = $('.my-space');
-            lis.on('click',function(){
-                lis.each(function(){
+            self.lis.on('click',function(){
+                self.group = $(this);
+                self.host = self.group.data('host');
+                self.lis.each(function(){
                     $(this).removeClass('on');
                 });
                 $(this).addClass('on');
@@ -30,7 +35,7 @@ $(function(){
                 $('#search-id').attr('value',$(this).data('id'));
                 self.getData($(this).data('id'));
             });
-            lis.first().trigger('click');
+            self.group.trigger('click');
         },
         initAddBtn:function(){
             layer.open({
@@ -63,6 +68,19 @@ $(function(){
                 }
             });
         },
+        initHost:function(){
+            var self = this,host = self.host;
+            var limits = $('.limit-btn');
+            if(host){
+                limits.each(function(){
+                    $(this).show();
+                });
+            }else{
+                limits.each(function(){
+                    $(this).hide();
+                });
+            }
+        },
         getData:function(id){
             var self = this;
             //var url = 'getShareVdiskMembers.do?id='+id+"&pageNo=1&pageSize=18";
@@ -73,6 +91,7 @@ $(function(){
                     $('#all_mem').text('('+data.totalCount+')');
                     $('#del_group').attr('data-id', id);
                     self.addTab(da);
+                    self.initHost();
                 }else{
                     alert('暂无数据');
                 }
@@ -90,7 +109,7 @@ $(function(){
                 '<td class="tb-phone"><span>'+data[i].phone+'</span></td>' +
                 '<td class="tb-email"><span>'+data[i].email+'</span></td>' +
                 '<td class="tb-permission JS_show">' +self.getAccess(data[i].accesslevel) +
-                '<div data-name="admin" class="btn color-blue" data-old="'+data[i].accesslevel+'">管理权限</div></td></tr>';
+                '<div data-name="admin" class="btn limit-btn" data-old="'+data[i].accesslevel+'">管理权限</div></td></tr>';
             }
             $('#data').html(html);
         },

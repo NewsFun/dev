@@ -2,8 +2,9 @@
  * Created by bobo on 2016/9/13.
  */
 $(document).ready(function(){
-    var W = $('body').width(),
-        H = $('body').height(),
+    var BODY = $('body'),
+        W = BODY.width(),
+        H = BODY.height(),
         V = jQuery.fn.jquery,
         WEST = $('#ui-layout-west'),
         EAST = $('#ui-layout-center'),
@@ -25,6 +26,7 @@ $(document).ready(function(){
             fun[i] = con[i];
         }
     };
+    //console.log(W, H);
     function Disk(){}
     Disk.prototype = {
         init:function(){
