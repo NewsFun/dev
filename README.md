@@ -7,7 +7,7 @@
   
 #### tree.js(文件树组件)
 ######参数说明:  
-  * openClass--点击打开的图标样式名
+  * openClass--点击打开的图标样式名
   * closeClass--点击关闭的图标样式名
   * domTag--节点数据的回调方法
   * pathOperate--路径操作(返回节点路径数组)
