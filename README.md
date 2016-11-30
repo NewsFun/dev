@@ -3,9 +3,8 @@
 #### 自封装组件及插件说明：
 #### myHome.js：所有管理中心页面的共用js,用来添加共用方法.
   
-  * 全局事件代理方法:PageEvent(),对全动态数据框<div id="ui-layout-center">(全局变量名EAST)进行click监听.
-  * 用法:在EAST内部需要添加点击事件的元素上添加data-name属性值,然后将 {属性值(data-name):callback} 作为参数传入该方法,即可实现点击事件.  
-callback默认将点击元素作为参数传入,并给点击元素添加class="JS_target"属性(方便弹窗进行定位和数据交互).
+  * 全局事件代理方法:PageEvent()，对全动态数据框<div id="ui-layout-center">(全局变量名EAST)进行click监听.
+  * 用法:在EAST内部需要添加点击事件的元素上添加data-name属性值,然后将 {属性值(data-name):callback} 作为参数传入该方法,即可实现点击事件.callback默认将点击元素作为参数传入,并给点击元素添加class="JS_target"属性(方便弹窗进行定位和数据交互).
   
 #### tree.js:文件树组件
 ######参数说明:  
