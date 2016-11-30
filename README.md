@@ -1,6 +1,6 @@
 # dev
-### 所用插件及组件:jQuery-3.1.1,layer
-### 自封装组件及插件说明:
+#### 所用插件及组件:jQuery-3.1.1,layer
+#### 自封装组件及插件说明:
 #### myHome.js:所有管理中心页面的共用js,用来添加共用方法.
   
   * 全局事件代理方法:PageEvent(),对全动态数据框<div id="ui-layout-center">(全局变量名EAST)进行click监听.
