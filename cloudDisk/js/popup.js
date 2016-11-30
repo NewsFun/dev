@@ -1,7 +1,7 @@
 /**
  * Created by bobo on 2016/11/20.
  */
-$(function(){
+(function(){
     function Popup(con){
         this.initCol = con.initCol;
         this.activeCol = con.activeCol;
@@ -48,4 +48,4 @@ $(function(){
     };
     window.Popup = Popup;
     // new Popup().init();
-});
+})();

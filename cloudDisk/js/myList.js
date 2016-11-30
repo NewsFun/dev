@@ -11,7 +11,7 @@ $(function(){
                 closeClass:'icon_solid',
                 domTags:self.domTags,
                 pathOperate:self._addPath
-            }).init();
+            });
             /*初始化右键菜单*/
             //self.initMenu();
             /*初始化删除按钮*/

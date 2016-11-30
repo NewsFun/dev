@@ -15,29 +15,28 @@ $(document).ready(function(){
         var tg = $(e.target);
         var name = tg.data('name');
         var TG = tg.hasClass('JS_target');
-        if(!TG){
+        if(!TG){/*更改目标DOM*/
             $('.JS_target').removeClass('JS_target');
             tg.addClass('JS_target');
         }
-        fun[name]&&fun[name](tg);
+        fun[name]&&fun[name](tg);/*触发目标事件*/
     });
     window.PageEvent = function (con){
         for ( var i in con) {
-            fun[i] = con[i];
+            fun[i] = con[i];/*页面注册事件*/
         }
     };
-    //console.log(W, H);
     function Disk(){}
     Disk.prototype = {
         init:function(){
             var self = this;
             self.initEast();
             PageEvent({
+                qr:self.initQrBtn,
                 checkbox:self.initCBox,
                 check_all:self.initCAll,
-                del_mem:self.initDelMem.bind(this),
-                qr:self.initQrBtn,
-                search:self.initSearchBox
+                search:self.initSearchBox,
+                del_mem:self.initDelMem.bind(this)
             });
         },
         initEast:function(){
@@ -48,7 +47,7 @@ $(document).ready(function(){
             WEST.css('height', wh+'px');
             EAST.css('width', ew+'px').css('height', eh+'px');
         },
-        initCAll:function(tg){
+        initCAll:function(tg){/*全选按钮点击事件*/
             var ca = tg.is(':checked');
             var box = $('.tb-checkbox');
             if(box.length>0){
@@ -58,7 +57,7 @@ $(document).ready(function(){
                 });
             }
         },
-        initCBox:function(tg){
+        initCBox:function(tg){/*选择框点击事件*/
             var tr = tg.parents('tr');
             var change = tr.find('.data-change');
             if(tg.is(':checked')){
@@ -69,7 +68,7 @@ $(document).ready(function(){
                 change && change.removeAttr('style');
             }
         },
-        initDelMem:function(tg){
+        initDelMem:function(tg){/*删除按钮点击事件*/
             var self = this;
             var ids = self._delMemData();
             if(ids.accounts.length>0){
@@ -90,7 +89,7 @@ $(document).ready(function(){
                 });
             }
         },
-        initQrBtn:function(){
+        initQrBtn:function(){/*二维码点击事件*/
             var pid = $('#group').attr('data-id');
             //console.log(pid);
             if(pid){
@@ -108,10 +107,10 @@ $(document).ready(function(){
                 });
             }
         },
-        initSearchBox:function(tg){
+        initSearchBox:function(tg){/*搜索框点击事件*/
             tg.val('');
         },
-        _delMemData:function(){
+        _delMemData:function(){/*删除成员数据打包*/
             var ids = [], data = $('#data');
             var cbs = data.find('.tb-checkbox:checked'),
                 ons = data.children('tr.on');

@@ -4,17 +4,24 @@
 (function(){
     function Tree(con){
         this.title = null;
+        this.param = {
+            openClass:'',
+            closeClass:'',
+            domTags:null,/*节点数据处理方法*/
+            pathOperate:null/*路径数据处理方法*/
+        };
+        /*
         this.openClass = con.openClass;
         this.closeClass = con.closeClass;
         this.domTags = con.domTags;
         this.pathOperate = con.pathOperate;
+        */
         this.path = [];
         this.id = '';
         this.pid = 'tree_content';
-    }
-    Tree.prototype = {
-        init:function(){
-            var self = this;
+        var self = this;
+        var init = function(){
+            self.initConfig(con);
             $('#tree_root').on('click', function(e){
                 var tar = $(e.target);
                 if(tar.hasClass('tree_icon')){
@@ -24,6 +31,19 @@
                 var pm = self._getPath(tar);
                 if(self.pathOperate) self.pathOperate(pm);
             });
+        };
+        init();
+    }
+    Tree.prototype = {
+        initConfig:function(con){
+            var self = this;
+            for(var i in con){
+                self.param[i] = con[i];
+            }
+            self.domTags = self.param.domTags;
+            self.openClass = self.param.openClass;
+            self.closeClass = self.param.closeClass;
+            self.pathOperate = self.param.pathOperate;
         },
         _getPath:function(node){
             var self = this;
