@@ -1,119 +1,504 @@
 <!DOCTYPE html>
-<html>
-<head lang="en">
-    <!--#include virtual="/common/head.html"-->
-    <title>新华云盘</title>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>新华云盘 - 新华网</title>
+    <script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/jquery-1.7.1.js?"></script>
+    <link rel="stylesheet" type="text/css" href="../css/comm/style.css?v=20130614"/>
+    <style type="text/css">
+        body {
+            background: url("http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/poptip_bg.png") repeat-x scroll 0 0;
+        }
+    </style>
+    <link rel="stylesheet" type="text/css" href="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/highslide/highslide.css?v=20130614 "/>
+    <link rel="stylesheet" type="text/css" href="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/css/ligerui-menu.css?v=20130614"/>
+    <link rel="stylesheet" type="text/css" href="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/css/Stip.css?v=20130614"/>
+    <script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/swfobject.js?v=20150202"></script>
+    <script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/swfupload/common.js?v=20150202"></script>
+    <script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/vx_disk_opera.js?v=20150202"></script>
+    <script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/sort.js?v=20150202"></script>
+    <script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/jquery.pngFix.pack.js?v=20150202"></script>
+    <script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/jquery-jtemplates_uncompressed.js?v=20150202"></script>
+    <script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/tab.js?v=20150202"></script>
+    <!--[if lte IE 6]>
+    <script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/pngfix.js?" type="text/javascript"></script>
+    <script type="text/javascript">
+        pngfix.fix('div, ul, img, li, input , a ,span, p');
+    </script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            document.getElementById('tree_content').style.display = "block";
+            document.getElementById('tree_con').style.display = "none";
+            document.getElementById('tabchange').style.display = "none";
+            document.getElementById('tabview').style.display = "block";
+            document.getElementById('commonview').style.display = "none";
+        });
+        function s_resize() {
+            $('#tree_con .leftmenu').height($(window).height() - 195);
+        }
+        $(window).bind('resize', s_resize);
+        function loadRootTab() {
+            //loadMenu();
+            var hash = window.location.hash;
+            if (hash == '#notes') {
+                loadSortTab();
+            } else if (hash == '#newfile') {
+                loadNewTab();
+            } else {
+                showTable();
+            }
+            showUserDiskInfo();//refresh userInfo;
+        }
+        function showTable() {
+            $("#tree_content ul li").removeClass("treelibg");
+            $("#tree_content ul a").removeClass();
+            $("#myfile").parent().addClass("treelibg");
+            $("#myfile").addClass("myfiledown");
+            $('#disk_upload2_href').attr("title", "创建目录");
+            $('#disk_upload2_href').attr("href", "folderCreateDispatch.do?parentId=986284&divType=");
+            $('#disk_upload2_href').bind("click", function (e) {
+                hs.htmlExpand(this, {
+                    headingText: '创建文件夹',
+                    objectType: 'ajax',
+                    width: 650,
+                    height: 450,
+                    src: document.getElementById('disk_upload2_href').href
+                })
+                return false;
+            });
+            $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
+            changePid('986284');
+            var divType = $('#divType').val();
+            var pageSize = changePageSize(divType);
+            var action = "tabList.do?fid=986284&orderBy=1" + "&time=" + Math.random() + "&share=0&pageNo=1&pageSize=" + pageSize + "&divType=" + divType;
+            ajaxJump(action);
+            showUserDiskInfo();//refresh userInfo;
+        }
+        function isOpenNotes() {
+            var hash = window.location.hash;
+            if (hash == '#notes') {
+                loadSotemenu();
+                loadNotepadTab();
+            }
+        }
+        ;
+
+
+        function loadNewTab() {
+            loadMenu();
+            $("#tree_content ul li").removeClass("treelibg");
+            $("#tree_content ul a").removeClass();
+            $("#latestupload").parent().addClass("treelibg");
+            $("#latestupload").addClass("latestuploaddown");
+            $('#disk_upload2_href').attr("title", "创建目录");
+            $('#disk_upload2_href').attr("href", "folderCreateDispatch.do?parentId=986284&divType=");
+            $('#disk_upload2_href').bind("click", function (e) {
+                hs.htmlExpand(this, {
+                    headingText: '创建文件夹',
+                    objectType: 'ajax',
+                    width: 650,
+                    height: 450,
+                    src: document.getElementById('disk_upload2_href').href
+                })
+                return false;
+            });
+//            $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
+            changePid('986284');
+            var divType = $('#divType').val();
+            var pageSize = changePageSize(divType);
+            var action = "tabNewList.do?fid=986284&orderBy=1" + "&time=" + Math.random() + "&share=0&pageNo=1&pageSize=" + pageSize + "&divType=" + divType;
+            ajaxJump(action);
+            showUserDiskInfo();//refresh userInfo;
+        }
+
+
+        function loadDelTab() {
+            loadMenu();
+            $("#tree_content ul li").removeClass("treelibg");
+            $("#tree_content ul a").removeClass();
+        //	$("#myfile").parent().addClass("treelibg");
+        //	$("#myfile").addClass("myfiledown");
+
+            $('#disk_upload2_href').attr("title", "创建目录");
+            $('#disk_upload2_href').attr("href", "folderCreateDispatch.do?parentId=986284&divType=");
+            $('#disk_upload2_href').bind("click", function (e) {
+                hs.htmlExpand(this, {
+                    headingText: '创建文件夹',
+                    objectType: 'ajax',
+                    width: 650,
+                    height: 450,
+                    src: document.getElementById('disk_upload2_href').href
+                })
+                return false;
+            });
+//            $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
+            changePid('986284');
+            var divType = $('#divType').val();
+            var pageSize = changePageSize(divType);
+            var action = "tabDelList.do?orderBy=1" + "&time=" + Math.random() + "&share=0&pageNo=1&pageSize=" + pageSize + "&divType=" + divType;
+            ajaxJump(action);
+            showUserDiskInfo();//refresh userInfo;
+        }
+
+
+        function loadNotepadTab() {
+            var divType = $('#divType').val();
+            var pageSize = changePageSize(divType);
+            var action = "notepadDispatch.do?flag=3&divtype=" + divType + "&pageNo=1&pageSize=" + pageSize;
+            ajaxJump(action);
+            showUserDiskInfo();//refresh userInfo;
+        }
+
+        function loadSortTab() {
+            $("#tree_content ul li").removeClass("treelibg");
+            $("#tree_content ul a").removeClass();
+            $("#cloudnote").parent().addClass("treelibg");
+            $("#cloudnote").addClass("cloudnotedown");
+            loadSotemenu();
+            var divType = $('#divType').val();
+            $('#disk_upload2_href').attr("title", "创建分类");
+            $('#disk_upload2_href').attr("href", "sortDispatchAction.do?flag=1");
+            $('#disk_upload2_href').bind("click", function (e) {
+                hs.htmlExpand(this, {
+                    headingText: '创建文件夹',
+                    objectType: 'ajax',
+                    width: 650,
+                    height: 450,
+                    src: document.getElementById('disk_upload2_href').href
+                });
+                return false;
+            });
+//            $('#disk_upload2_href').html('<img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreateca.png"  />');
+            var pageSize = changePageSize(divType);
+            var timstamp = (new Date()).valueOf();
+            var action = "sortDispatchAction.do?flag=3&pageNo=1&pageSize=" + pageSize + "&divtype=" + divType + "&t=" + timstamp;
+            ajaxJump(action);
+            showUserDiskInfo();//refresh userInfo;
+        }
+
+
+        function loadPublicDisk() {
+
+            $("#tree_content ul li").removeClass("treelibg");
+            $("#tree_content ul a").removeClass();
+            $("#publicdisk").parent().addClass("treelibg");
+            $("#publicdisk").removeClass().addClass("publicdiskdown");
+            //loadPublicDiskMenu();
+            $('#disk_upload2_href').attr("title", "创建目录");
+            $('#disk_upload2_href').attr("href", "folderCreateDispatch.do?parentId=986284&divType=");
+            $('#disk_upload2_href').bind("click", function (e) {
+                hs.htmlExpand(this, {
+                    headingText: '创建文件夹',
+                    objectType: 'ajax',
+                    width: 650,
+                    height: 450,
+                    src: document.getElementById('disk_upload2_href').href
+                })
+                return false;
+            });
+//            $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
+//	loadMenu();
+            changePid('986284');
+            var divType = $('#divType').val();
+            var pageSize = changePageSize(divType);
+            var action = "publicDiskFolderList.do?parentId=986284&pageNo=1&divType=" + divType + "&pageSize=" + pageSize;
+            ajaxJump(action);
+            showUserDiskInfo('temp');//refresh userInfo;
+        }
+
+
+        function loadPublicVDiskFile() {
+            var divType = $('#divType').val();
+            var pageSize = changePageSize(divType);
+            var timstamp = (new Date()).valueOf();
+            var action = "pvFileList.do?pvParentId=1&pageNo=1&pageSize=" + pageSize + "&divtype=" + divType + "&t=" + timstamp;
+            ajaxJump(action);
+            showUserDiskInfo('temp');//refresh userInfo;
+        }
+
+
+        function loadCreamVideoTab(flag) {
+            $.ajax({
+                type: "post",				//使用post方法访问后台
+                dataType: "html",			//返回html格式的数据
+                url: "getCreamVideo.do",		//要访问的后台地址
+                data: {
+                    flag: flag
+                },
+                complete: function () {
+                },
+                success: function (data) {
+                    if (data != '0') {
+                        $("#tree_content ul li").removeClass("treelibg");
+                        $("#tree_content ul a").removeClass();
+                        $("#cloudphoto").parent().addClass("treelibg");
+                        $("#cloudphoto").addClass("cloudphotodown");
+                        $('#disk_upload2_href').attr("title", "创建目录");
+                        $('#disk_upload2_href').attr("href", "folderCreateDispatch.do?parentId=986284&divType=");
+                        $('#disk_upload2_href').bind("click", function (e) {
+                            hs.htmlExpand(this, {
+                                headingText: '创建文件夹',
+                                objectType: 'ajax',
+                                width: 650,
+                                height: 450,
+                                src: document.getElementById('disk_upload2_href').href
+                            })
+                            return false;
+                        });
+//                        $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
+                        fileLinkEvent(data);
+                        var divType = $('#divType').val();
+                        var pageSize = changePageSize(divType);
+                        var action = "tabList.do?fid=" + data + "&orderBy=1" + "&time=" + Math.random() + "&share=0&pageNo=1&pageSize=" + pageSize + "&divType=" + divType;
+                        ajaxJump(action);
+                    } else {
+                        alert('error');
+                    }
+                }	//调用handleSuccess函数处理结果
+            });
+            showUserDiskInfo();//refresh userInfo;
+        }
+
+
+        function loadVideoTab(flag) {
+            $.ajax({
+                type: "post",				//使用post方法访问后台
+                dataType: "html",			//返回html格式的数据
+                url: "getCreamVideo.do",		//要访问的后台地址
+                data: {
+                    flag: flag
+                },
+                complete: function () {
+                },
+                success: function (data) {
+                    if (data != '0') {
+                        $("#tree_content ul li").removeClass("treelibg");
+                        $("#tree_content ul a").removeClass();
+                        $("#cloudvideo").parent().addClass("treelibg");
+                        $("#cloudvideo").addClass("cloudvideodown");
+                        $('#disk_upload2_href').attr("title", "创建目录");
+                        $('#disk_upload2_href').attr("href", "folderCreateDispatch.do?parentId=986284&divType=");
+                        $('#disk_upload2_href').bind("click", function (e) {
+                            hs.htmlExpand(this, {
+                                headingText: '创建文件夹',
+                                objectType: 'ajax',
+                                width: 650,
+                                height: 450,
+                                src: document.getElementById('disk_upload2_href').href
+                            })
+                            return false;
+                        });
+//                        $('#disk_upload2_href').html(' <img class="build"  src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/newcreate.png"  />');
+                        fileLinkEvent(data);
+                        var divType = $('#divType').val();
+                        var pageSize = changePageSize(divType);
+                        var action = "tabList.do?fid=" + data + "&orderBy=1" + "&time=" + Math.random() + "&share=0&pageNo=1&pageSize=" + pageSize + "&divType=" + divType;
+                        ajaxJump(action);
+                    } else {
+                        alert('error');
+                    }
+                }	//调用handleSuccess函数处理结果
+            });
+            showUserDiskInfo();//refresh userInfo;
+        }
+
+    </script>
 </head>
 <body>
-<div id="ui-layout-center" class="ui-layout-center">
-    <div class="east-main">
-        <div class="header pngfix">
-            <div class="space">
-                <p class="menubut">
-                    <a id="disk_upload1_href">上传</a>
-                    <a id="disk_upload21_href">新建空间</a>
-                    <a id="disk_upload22_href">离线下载</a>
-                </p>
+<div id="results1"></div>
+<div class="ui-layout-north">
+    <div class="content" style="margin:0 auto;padding:0;overflow: visible;">
+        <div class="head-top">
+            <a href="home.do" target="_self" title="新华云盘">
+                <p class="logo lf"></p>
+            </a>
+            <div class="userInfo rf">
+                <a class="tips">
+                    <img class="tips_icon" src="../images/u10.png">
+                    <span class="tips_num">3</span>
+                </a>
+                <img src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/headimg.png"/>
+                <span>萌鱼姊姊</span>
+                <a href="mySpace.html" title="管理中心">[管理中心]</a>
+                <a href="../../logout.do?returnurl=/" title="退出">[退出]</a>
+                <a target="_blank" href="http://vdisk.home.news.cn/vdiskhelp.html" title="帮助">[帮助]</a>
+                <a href="feedbackDispatch.do" target="_blank" title="反馈">[反馈]</a>
+                <br class="clearboth"/>
             </div>
-            <div class="rprobar">
-                <div class="textBar">
-                    <b><span id="space_name">企业容量:</span><span id="p_used_size">14GB</span>/<span id="p_unused_size">1024GB</span></b>
-                </div>
-                <div class="ProgressBar">
-                    <div class="probar">
-                        <div class="lf" id="p_percent" style="width:13%">13%</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="ui-layout-content">
-            <div id="data-div">
-                <div class="loc">
-                    <ul class="locnav">
-                        <li><b>全部(<span id="count_all">4</span>)</b> </li>
-                        <li id="location_menu"><a title="打开文件夹" class="tloc">我的云盘 </a></li>
-                        <li class="format">
-                            <span class="cros" id="cros" title="列表查看"></span>
-                            <span class="rosdown" id="ros" title="平铺查看"></span>
-                            <span class="refresh" id="refresh" title="刷新"></span>
-                        </li>
-                        <li class="search" title="输入关键词进行全局检索">
-                            <input id="searchKey" type="text" value="">
-                            <a title="输入关键词进行全局检索" class="searchbut"></a>
-                        </li>
-                    </ul>
-                    <p class="rightbg"></p>
-                    <br class="clearboth">
-                </div>
-                <form id="filmList-form" action="" method="post">
-                    <!--  平铺类型的列表-->
-                    <div id="tabList" class="fileList2">
-                        <ul class="filecont" id="ulId_1418680" rel="true" data-first="true">
-                            <li>
-                                <p class="img"> <input type="checkbox" name="checkboxe_del" value="1418680" class="checkboxBut" style="display: none;">
-                                    <a id="ta" title="打开文件夹  - 照片" href="javascript:void(0);">
-                                        <img src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/fileicon/file.png">
-                                    </a>
-                                    <span class="filePublic"></span>
-                                </p>
-                                <a title="查看详情-照片" id="disk_upload_href_1418680" class="blue" href="#">照片</a>
-                            </li>
-                        </ul>
-                        <ul class="filecont" id="ulId_986632" rel="true" data-first="true">
-                            <li>
-                                <p class="img"><input type="checkbox" name="checkboxe_del" value="986632" style="display: none;">
-                                    <a id="ta" title="打开文件夹  - 我的转存" href="javascript:void(0);">
-                                        <img src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/fileicon/file.png">
-                                    </a>
-                                    <span class="filePrivate"></span>
-                                </p>
-                                <a title="查看详情-我的转存" id="disk_upload_href_986632" class="blue" href="#">我的转存</a>
-                            </li>
-                        </ul>
-                        <ul class="filecont" id="ulId_986285" rel="true" data-first="true">
-                            <li>
-                                <p class="img"> <input type="checkbox" name="checkboxe_del" value="986285" class="checkboxBut" style="display: none;">
-                                    <a id="ta" title="打开文件夹  - 云相册" href="javascript:void(0);">
-                                        <img src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/fileicon/file.png">
-                                    </a>
-                                    <span class="filePrivate"></span>
-                                </p>
-                                <a title="查看详情-云相册" id="disk_upload_href_986285" class="blue" href="#">云相册</a>
-                            </li>
-                        </ul>
-                        <ul class="filecont" id="ulId_986286" rel="true" data-first="true">
-                            <li>
-                                <p class="img"><input type="checkbox" id="checkboxe_del" name="checkboxe_del" value="986286" style="display: none;">
-                                    <a id="ta" title="打开文件夹  - 云视频" href="javascript:void(0);">
-                                        <img src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/fileicon/file.png">
-                                    </a>
-                                    <span class="filePrivate"></span>
-                                </p>
-                                <a title="查看详情-云视频" id="disk_upload_href_986286" class="blue" href="#">云视频</a>
-                            </li>
-                        </ul>
-                        <br class="clearboth">
-                        <div class="pgs cl">
-                            <div class="pm-div">
-                                <input type="checkbox" id="checkbox_all" name="checkbox_all">
-                                <label for="checkbox_all" tabindex="0">全选</label>
-                                <a title="批量删除" id="file_del_href" href="#">删除</a>
-                                <a title="邮件通知" id="file_email_href" href="#">邮件通知</a>
-                                <a title="批量转移" id="file_remove_href" href="#">转移</a>
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!--
-            <div id="load">
-                <img src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/ajax-loader.gif" width="32" height="32">
-                <p id="waitMsg">加载中...</p>
-            </div>
-            -->
         </div>
     </div>
 </div>
-<!--#include virtual="/common/body.html"-->
+<div id="ui-layout-west" class="ui-layout-west"
+     style="visibility: visible; display: block; position: absolute; margin: 0px; z-index: 2; left: 0px; right: auto; top: 60px; bottom: 28px; height: 369px; width: 209px;">
+    <script type="text/javascript">
+        var layoutWestHeight = $(window).height() - 87;
+        $("#ui-layout-west").css("height", layoutWestHeight);
+    </script>
+    <div id="tabchange" style="display:none">
+        <h3 class="header">
+            <div>
+                <a onmousedown="return false" title="我的云盘" onclick="showTable()" class="s_yun" href="javascript:;"></a>
+                <a onmousedown="return false" onclick="loadNewTab();" title="最新上传" class="s_note" href="javascript:;"></a>
+            </div>
+        </h3>
+    </div>
+    <input type="hidden" id="parentId" name="parentId" value="986284">
+    <input type="hidden" id="rootId" name="rootId" value="986284">
+    <input type="hidden" id="divType" name="divType" value="ros">
+    <input type="hidden" id="pageSize" name="pageSize" value="25">
+
+
+    <div id="tree_con" style="display:none">
+        <img src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/ajax-loader.gif" width="32" height="32"/>
+    </div>
+    <div id="tree_content" style="display:block">
+        <ul>
+            <li onclick="loadNewTab();"><a id="latestupload">最新上传</a></li>
+            <li onclick="loadCreamVideoTab('1');"><a id="cloudphoto">云相册</a></li>
+            <li onclick="loadVideoTab('2');"><a id="cloudvideo">云视频</a></li>
+            <li onclick="showTable()"><a id="myfile">我的文件</a></li>
+            <li onclick="loadPublicDisk();"><a id="publicdisk">公共盘</a></li>
+            <li onclick="loadSortTab();"><a id="cloudnote">云记事</a></li>
+        </ul>
+    </div>
+    <!-- <div class="Recycle" onclick="loadDelTab();" title="查看我的回收站">回收站</div>  -->
+</div>
+<!-- <script type="text/javascript">loadMenu();</script> -->
+<div id="ui-layout-center" class="ui-layout-center pane pane-center open"
+     style="visibility: visible; position: absolute; margin: 0px; z-index: 2; left: 210px; right: 0px; top: 60px; bottom: 28px; height: 564px; width: 1000px;">
+    <script type="text/javascript">
+        var width = $(window).width();
+        var layoutCenterWidth = width - 260;
+        $("#ui-layout-center").css("height", layoutWestHeight - 25);
+        $("#ui-layout-center").css("width", layoutCenterWidth);
+        $("#ui-layout-south").css("width", width);
+    </script>
+    <div class="header pngfix">
+        <div class="rprobar">
+            <p class="menubut">
+                <a id="disk_upload1_href" title="上传文件" href="fileUploadDispatch.do?parentId=986284&pageNo=1&divType="
+                   onclick="return hs.htmlExpand(this,{headingText:'上传文件',objectType:'upload',width:650,height:500,src:document.getElementById('disk_upload1_href').href});">上传</a>
+                <a id="disk_upload22_href" href="folderCreateDispatch.do?parentId=986284" onclick="return hs.htmlExpand(this,{headingText:'创建文件夹',objectType:'ajax',width:650,height:450,src:$('#disk_upload22_href').attr('href')});" title="创建目录">创建目录</a>
+                <a id="disk_upload21_href" title="创建记事" href="notepadDispatch.do?flag=1&sortId="
+                   onclick="return hs.htmlExpand(this,{headingText:'新记事',objectType:'upload',width:650,height:450,src:document.getElementById('disk_upload21_href').href});">下载</a>
+            </p>
+        </div>
+
+        <div class="space">
+            <span id="space_name"><em>企业容量：</em></span>
+            <b><span id="p_used_size">22.2MB</span></b>/<b><span id="p_unused_size">20.0GB</span></b>
+            <div class="ProgressBar">
+                <div class="probar">
+                    <div class="lf" id="p_percent" style="width:13%">13%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui-layout-content">
+        <div id="data-div" style="display: block;"></div>
+        <div id="load" style="position: absolute; display: none; z-index: 999999;">
+            <img src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/images/ajax-loader.gif" width="32" height="32"/>
+
+            <p id="waitMsg">加载中...</p>
+        </div>
+        <script type="text/javascript">
+            $("#ui-layout-west").css("height", layoutWestHeight);
+            loadRootTab();
+        </script>
+    </div>
+</div>
+<div class="ui-layout-south" id="ui-layout-south"
+     style="visibility: visible; display: block; position: absolute; margin: 0px; z-index: 2; top: auto; bottom: 0px; left: 0px; right: 0px; width: 100%; height: 27px; overflow: hidden;">
+    <div class="content">
+        <p align="center">Copyright © 2000-2016 XINHUANET.com All Rights Reserved.　版权所有 新华网</p>
+    </div>
+</div>
+
+<script language="javascript" type="text/javascript">
+    function showBox(o) {
+        if (o == undefined) o = document.getElementById("rbbox");
+        o.style.height = "150px";
+        setTimeout(function () {
+            showBox(o)
+        }, 1000);
+    }
+    function closeBox() {
+        document.getElementById("rbbox").style.display = "none";
+    }
+</script>
+
+<script type="text/javascript">
+    $("#ui-layout-south").css("width", width);
+</script>
+<script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/Stip.js?v=20150202"></script>
+<script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/highslide/highslide.js?v=20150202"></script>
+<script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/highslide/highslide-with-gallery.js?v=20150202"></script>
+<script type="text/javascript">
+    var a = Stip('disk_upload1_href');
+    var str = "当前有文件正在上传...";
+
+    hs.align = 'center';
+    hs.graphicsDir = 'http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/highslide/graphics/';
+    hs.outlineType = 'rounded-white';
+    hs.wrapperClassName = 'draggable-header';
+    hs.dimmingOpacity = 0.25;
+    hs.onDimmerClick = function () {
+        return false;
+    };
+    hs.addSlideshow({
+        interval: 5000,
+        repeat: false,
+        useControls: false,
+        fixedControls: 'fit',
+        overlayOptions: {
+            opacity: 0.25,
+            position: 'bottom center',
+            hideOnMouseOut: true
+        }
+    });
+    hs.registerOverlay({
+        html: '<div class="closebutton" onclick="return hs.close(this)" title="关闭"></div>',
+        position: 'top right',
+        fade: 2 // fading the semi-transparent overlay looks bad in IE
+    });
+
+</script>
+
+<script type="text/javascript">
+    hs1.align = 'center';
+    hs1.graphicsDir = 'http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/highslide/graphics/';
+    hs1.align = 'center';
+    hs1.transitions = ['expand', 'crossfade'];
+    hs1.fadeInOut = false;
+    hs1.wrapperClassName = 'borderless floating-caption';
+    hs1.dimmingOpacity = 0.25;
+    hs1.onDimmerClick = function () {
+        return false;
+    };
+    hs1.addSlideshow({
+        interval: 5000,
+        repeat: true,
+        useControls: true,
+        overlayOptions: {
+            className: 'text-controls',
+            position: 'bottom center',
+            relativeTo: 'viewport',
+            offsetX: 50,
+            offsetY: -5
+
+        }
+    });
+    hs1.registerOverlay({
+        html: '<div class="closebutton" onclick="return hs1.close()" title="关闭"></div>',
+        position: 'top right',
+        fade: 2 // fading the semi-transparent overlay looks bad in IE
+    });
+</script>
+<script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/ligerMenu.js?v=20150202"></script>
+<script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/vx_disk_opera_ext.js?v=20150202"></script>
+<script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/layout.js?v=20150202"></script>
+<script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/jquery.layout.js?v=20150202"></script>
 </body>
 </html>

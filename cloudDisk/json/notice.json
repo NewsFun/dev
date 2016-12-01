@@ -1,0 +1,59 @@
+{
+  "code":200,
+  "data":[
+    {
+      "checked": false,
+      "content": "请尽快实名认证，未实名账户48小时之后冻结。",
+      "id": 1,
+      "needConfirm": false,
+      "params": "fu",
+      "receiver": "ck",
+      "sendDate": "1987-11-12"
+    },
+    {
+      "checked": false,
+      "content": "张某请求加入“文库项目资料”共享组",
+      "id": 1,
+      "needConfirm": false,
+      "params": "fu",
+      "receiver": "ck",
+      "sendDate": "1987-11-12"
+    },
+    {
+      "checked": false,
+      "content": "李某加入“百科项目资料”共享组",
+      "id": 1,
+      "needConfirm": false,
+      "params": "fu",
+      "receiver": "ck",
+      "sendDate": "1987-11-12"
+    },
+    {
+      "checked": false,
+      "content": "成功加入“直播项目资料”共享组",
+      "id": 1,
+      "needConfirm": false,
+      "params": "fu",
+      "receiver": "ck",
+      "sendDate": "1987-11-12"
+    },
+    {
+      "checked": false,
+      "content": "李某分享给你",
+      "id": 1,
+      "needConfirm": false,
+      "params": "fu",
+      "receiver": "文件名.doc",
+      "sendDate": "1987-11-12"
+    },
+    {
+      "checked": false,
+      "content": "张某在\"直播项目资料\"上传了",
+      "id": 1,
+      "needConfirm": false,
+      "params": "fu",
+      "receiver": "ck",
+      "sendDate": "1987-11-12"
+    }
+  ]
+}

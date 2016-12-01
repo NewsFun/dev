@@ -3,7 +3,7 @@
 <head lang="en">
     <!--#include virtual="/common/myHead.html"-->
     <title>管理中心-群组管理</title>
-    <link rel="stylesheet" type="text/css" href="../src/mySpace.css">
+    <link rel="stylesheet" type="text/css" href="../css/mySpace.css">
 </head>
 <body data-page="space">
 <div id="ui-layout-north" class="ui-layout-north">
@@ -35,44 +35,52 @@
     </div>
     <div class="mySpace">
         <ul id="js_content" class="tree_content">
-            <li><a><img class="icon" src="../images/u328.png"><span class="my-space on" data-id="1">直播项目资料</span></a></li>
-            <li><a><img class="icon" src="../images/u280.png"><span class="my-space">搜索项目资料</span></a></li>
-            <li><a><img class="icon" src="../images/u280.png"><span class="my-space">文库项目资料</span></a></li>
-            <li><a><img class="icon" src="../images/u280.png"><span class="my-space">百科项目资料</span></a></li>
+            <li><a><img class="icon" src="../images/u328.png"><span class="my-space" data-id="5" data-host="true">直播项目资料</span></a></li>
+            <li><a><img class="icon" src="../images/u280.png"><span class="my-space" data-id="2">搜索项目资料</span></a></li>
+            <li><a><img class="icon" src="../images/u280.png"><span class="my-space" data-id="3">文库项目资料</span></a></li>
+            <li><a><img class="icon" src="../images/u280.png"><span class="my-space" data-id="4">百科项目资料</span></a></li>
         </ul>
     </div>
 </div>
 <div id="ui-layout-center" class="ui-layout-center">
     <div class="east-main">
         <div class="east-head">
-            <span class="icon"></span>
+            <a class="icon" data-name="qr"></a>
             <span>全部组员</span>
-            <span>(5)</span>
-            <a class="base-bg">删除</a>
+            <span id="all_mem">(4)</span>
+            <a id="group" data-name="space_group" class="base-bg limit-btn" data-id="">删除</a>
             <div class="icon-state">
                 <img class="icon" src="../images/u328.png">
                 <span>管理员</span>
             </div>
         </div>
-        <table class="east-content" cellpadding="0" cellspacing="0">
+        <table class="east-content" cellpadding="0" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th class="tb-check">
-                    <label><input id="check-all" type="checkbox"></label>
+                <th class="tb-check" width="5%">
+                    <label><input data-name="check_all" type="checkbox"></label>
                     <span>全选</span>
                 </th>
-                <th class="tb-name">姓名</th>
-                <th class="tb-phone">手机</th>
-                <th class="tb-email">邮箱</th>
-                <th class="tb-permission">权限</th>
-                <th class="tb-search">
-                    <label><input class="search" type="text"></label>
-                    <label><input id="add_btn" class="base-bg" type="button" value="添加成员"></label>
-                    <label><input id="del_btn" class="base-bg" type="button" value="删除成员"></label>
+                <th class="tb-name" width="15%">姓名</th>
+                <th class="tb-phone" width="10%">手机</th>
+                <th class="tb-email" width="20%">邮箱</th>
+                <th class="tb-permission" width="50%">
+                    <span>权限</span>
+                    <div class="float_r">
+                        <div class="fm">
+                            <span class="search-box">
+                                <input class="search" type="text" name="searchName" value="请输入成员姓名" data-name="search">
+                                <span class="submit" data-name="submit"></span>
+                            </span>
+                        </div>
+                        <label><input data-name="add_btn" class="base-bg limit-btn" type="button" value="添加成员"></label>
+                        <label><input data-name="del_mem" class="base-bg limit-btn" type="button" value="删除成员" data-url=""></label>
+                    </div>
                 </th>
             </tr>
             </thead>
             <tbody id="data">
+            <!--
             <tr>
                 <td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>
                 <td class="tb-name"><img class="icon" src="../images/u328.png"><span>张某</span></td>
@@ -81,7 +89,7 @@
                 <td class="tb-permission JS_show">
                     <div data-name="limit" class="btn">上传
                         <input type="hidden" value="0" name="up">
-                        <div data-name="del" class="del on"></div>
+                        <div data-name="del" class="del"></div>
                     </div>
                     <div data-name="limit" class="btn">下载
                         <input type="hidden" value="1" name="down">
@@ -105,7 +113,6 @@
                     </div>
                     <div data-name="admin" class="btn color-blue">管理权限</div>
                 </td>
-                <td class="tb-search"></td>
             </tr>
             <tr>
                 <td class="tb-check"><label><input class="tb-checkbox" type="checkbox"></label></td>
@@ -138,10 +145,6 @@
                         <div data-name="del" class="del"></div>
                     </div>
                     <div data-name="admin" class="btn color-blue">管理权限</div>
-                </td>
-                <td class="tb-search">
-                    <span class="base-color">设为管理员</span>
-                    <span class="base-color"></span>
                 </td>
             </tr>
             <tr>
@@ -176,15 +179,12 @@
                     </div>
                     <div data-name="admin" class="btn color-blue">管理权限</div>
                 </td>
-                <td class="tb-search">
-                    <span class="base-color">设为管理员</span>
-                    <span class="base-color"></span>
-                </td>
             </tr>
+            -->
             </tbody>
         </table>
     </div>
 </div>
-<script src="../src/mySpace.js"></script>
+<script src="../js/mySpace.js"></script>
 </body>
 </html>

@@ -3,8 +3,8 @@
 <head lang="en">
     <!--#include virtual="/common/myHead.html"-->
     <title>管理中心-通讯录</title>
-    <link rel="stylesheet" type="text/css" href="../src/tree.css">
-    <link rel="stylesheet" type="text/css" href="../src/myList.css">
+    <link rel="stylesheet" type="text/css" href="../css/tree.css">
+    <link rel="stylesheet" type="text/css" href="../css/myList.css">
 </head>
 <body data-page="list">
 <div id="ui-layout-north" class="ui-layout-north">
@@ -22,6 +22,10 @@
                 <a class="on" href="#">通讯录</a>
             </div>
             <div class="userInfo rf">
+                <a id="notice" class="tips">
+                    <img class="tips_icon" src="../images/u10.png">
+                    <span class="tips_num">3</span>
+                </a>
                 <a target="_blank" href="home.html">返回云盘</a>
                 <span>|</span>
                 <a href="" title="退出">退出</a>
@@ -34,11 +38,11 @@
     <div class="ms-bar unfix">
         <div class="inline"><img class="icon" src="../images/u593.png"></div>
         <div class="inline"><b>通讯录</b></div>
-        <div class="inline"><a id="at" class="icon"></a></div>
+        <div class="inline"><a id="addBrc" class="icon"></a></div>
     </div>
     <div class="myList">
         <div class="tree_content">
-            <ul id="tree_content" class="tree_branch">
+            <ul id="tree_root" class="tree_branch">
                 <li>
                     <div class="tree_title"><a class="tree_icon icon_solid" data-id="1"></a><span class="tree_name">企业</span></div>
                     <ul id="1" class="tree_branch">
@@ -107,31 +111,32 @@
 <div id="ui-layout-center" class="ui-layout-center">
     <div class="east-main">
         <div class="east-head">
-            <span class="icon"></span>
-            <a id="path">
-
-            </a>
-            <!--
-            <span>新华网</span>
-            <span>产品设计</span>
-            -->
+            <a class="icon" data-name="qr_list"></a>
+            <span id="group" data-id=""></span>
         </div>
-        <table class="east-content" cellpadding="0" cellspacing="0">
+        <table class="east-content" cellpadding="0" cellspacing="0" width="100%">
             <thead>
             <tr>
-                <th class="tb-check">
-                    <label><input id="check-all" type="checkbox"></label>
+                <th class="tb-check" width="5%">
+                    <label><input data-name="check_all" type="checkbox"></label>
                     <span>全选</span>
                 </th>
-                <th class="tb-name"><span>用户名</span><span class="tb-id"> (账号) </span></th>
-                <th class="tb-post">职位</th>
-                <th class="tb-phone">手机</th>
-                <th class="tb-email">邮箱</th>
-                <th class="tb-search">
-                    <label><input class="search" type="text"></label>
-                    <label><input id="am" class="base-bg" type="button" value="添加成员" data-href="fileUploadDispatch.do?parentId=986284&pageNo=1&divType="></label>
-                    <label><input id="dm" class="base-bg" type="button" value="删除成员"></label>
-                    <input type="hidden" id="divType" name="divType" value="ros">
+                <th class="tb-name" width="30%"><span>用户名</span><span class="tb-id"> (账号) </span></th>
+                <th class="tb-post" width="10%">职位</th>
+                <th class="tb-phone" width="10%">手机</th>
+                <th class="tb-email" width="45%">
+                    <span>邮箱</span>
+                    <div class="float_r">
+                        <div class="fm">
+                            <span class="search-box">
+                                <input class="search" type="text" name="searchName" value="请输入成员姓名" data-name="search">
+                                <span class="submit" data-name="submit_list"></span>
+                            </span>
+                        </div>
+                        <label><input data-name="addMem" class="base-bg" type="button" value="添加成员"></label>
+                        <label><input data-name="del_mem" class="base-bg" type="button" value="删除成员" data-url="http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/contacts/delete_contacts_batch.do"></label>
+                        <input type="hidden" id="divType" name="divType" value="ros">
+                    </div>
                 </th>
             </tr>
             </thead>
@@ -142,7 +147,7 @@
                 <td class="tb-name"><span>张某</span><span class="tb-id"> (zhang01) </span></td>
                 <td class="tb-post"><span>UI设计师</span></td>
                 <td class="tb-phone"><span>15637891023</span></td>
-                <td class="tb-email"><span>www@mmm.com</span></td>
+                <td class="tb-email"><span>www@mmm.com</span><input class="base-bg" type="button" value="添加成员" data-name="change"></td>
                 <td class="tb-search">
                     <span class="base-color">设为管理员</span>
                     <span class="base-color"></span>
@@ -175,7 +180,7 @@
         </table>
     </div>
 </div>
-<script src="../src/tree.js"></script>
-<script src="../src/myList.js"></script>
+<script src="../js/tree.js"></script>
+<script src="../js/myList.js"></script>
 </body>
 </html>

@@ -1,14 +1,14 @@
 [
   {
-    "email": "11@qq.com",
+    "email": "7@qq.com",
     "id": 4,
     "job": "工程师",
     "level": 2,
     "mobile": 1268312639,
     "name": "张三",
-    "parentId": 12,
-    "pinyin": "zhangsan",
-    "user": false
+    "parentId": 7,
+    "account": "zhangsan",
+    "user": true
   },
   {
     "email": "222@qq.com",
@@ -17,9 +17,9 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "李四",
-    "parentId": 11,
-    "pinyin": "22",
-    "user": false
+    "parentId": 7,
+    "account": "22",
+    "user": true
   },
   {
     "email": "222@qq.com",
@@ -28,9 +28,9 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "王五",
-    "parentId": 11,
-    "pinyin": "22",
-    "user": false
+    "parentId": 7,
+    "account": "22",
+    "user": true
   },
   {
     "email": "222@qq.com",
@@ -39,9 +39,9 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "王朝",
-    "parentId": 11,
-    "pinyin": "22",
-    "user": false
+    "parentId": 7,
+    "account": "22",
+    "user": true
   },
   {
     "email": "222@qq.com",
@@ -50,9 +50,9 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "马汉",
-    "parentId": 11,
-    "pinyin": "22",
-    "user": false
+    "parentId": 7,
+    "account": "22",
+    "user": true
   },
   {
     "email": "222@qq.com",
@@ -61,8 +61,140 @@
     "level": 1,
     "mobile": 18354203765,
     "name": "张龙",
-    "parentId": 11,
-    "pinyin": "22",
-    "user": false
+    "parentId": 7,
+    "account": "22",
+    "user": true
+  },
+  {
+    "email": "7@qq.com",
+    "id": 4,
+    "job": "工程师",
+    "level": 2,
+    "mobile": 1268312639,
+    "name": "张三",
+    "parentId": 7,
+    "account": "zhangsan",
+    "user": true
+  },
+  {
+    "email": "222@qq.com",
+    "id": 15,
+    "job": "22",
+    "level": 1,
+    "mobile": 18354203765,
+    "name": "李四",
+    "parentId": 7,
+    "account": "22",
+    "user": true
+  },
+  {
+    "email": "222@qq.com",
+    "id": 15,
+    "job": "22",
+    "level": 1,
+    "mobile": 18354203765,
+    "name": "王五",
+    "parentId": 7,
+    "account": "22",
+    "user": true
+  },
+  {
+    "email": "222@qq.com",
+    "id": 15,
+    "job": "22",
+    "level": 1,
+    "mobile": 18354203765,
+    "name": "王朝",
+    "parentId": 7,
+    "account": "22",
+    "user": true
+  },
+  {
+    "email": "222@qq.com",
+    "id": 15,
+    "job": "22",
+    "level": 1,
+    "mobile": 18354203765,
+    "name": "马汉",
+    "parentId": 7,
+    "account": "22",
+    "user": true
+  },
+  {
+    "email": "222@qq.com",
+    "id": 15,
+    "job": "22",
+    "level": 1,
+    "mobile": 18354203765,
+    "name": "张龙",
+    "parentId": 7,
+    "account": "22",
+    "user": true
+  },
+  {
+    "email": "7@qq.com",
+    "id": 4,
+    "job": "工程师",
+    "level": 2,
+    "mobile": 1268312639,
+    "name": "张三",
+    "parentId": 7,
+    "account": "zhangsan",
+    "user": true
+  },
+  {
+    "email": "222@qq.com",
+    "id": 15,
+    "job": "22",
+    "level": 1,
+    "mobile": 18354203765,
+    "name": "李四",
+    "parentId": 7,
+    "account": "22",
+    "user": true
+  },
+  {
+    "email": "222@qq.com",
+    "id": 15,
+    "job": "22",
+    "level": 1,
+    "mobile": 18354203765,
+    "name": "王五",
+    "parentId": 7,
+    "account": "22",
+    "user": true
+  },
+  {
+    "email": "222@qq.com",
+    "id": 15,
+    "job": "22",
+    "level": 1,
+    "mobile": 18354203765,
+    "name": "王朝",
+    "parentId": 7,
+    "account": "22",
+    "user": true
+  },
+  {
+    "email": "222@qq.com",
+    "id": 15,
+    "job": "22",
+    "level": 1,
+    "mobile": 18354203765,
+    "name": "马汉",
+    "parentId": 7,
+    "account": "22",
+    "user": true
+  },
+  {
+    "email": "222@qq.com",
+    "id": 15,
+    "job": "22",
+    "level": 1,
+    "mobile": 18354203765,
+    "name": "张龙",
+    "parentId": 7,
+    "account": "22",
+    "user": true
   }
 ]

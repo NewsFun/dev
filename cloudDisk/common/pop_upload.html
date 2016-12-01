@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>添加人员</title>
+    <link rel="stylesheet" type="text/css" href="../css/comm/popup.css">
+    <script src="http://tmisc.home.news.cn/vdisk1/js/lib/vx_disk/js/jquery-1.7.1.js?v=20150202"></script>
+</head>
+<body>
+<div class="popup">
+    <div class="title">
+        <a class="on">添加成员</a>
+        <a>批量导入</a>
+    </div>
+    <form method="post" class="checkout" action="http://localhost.home.news.cn:8080/xhVdisk2/vdisk/control/contacts/add_contact.do">
+        <div class="pop_tab w_400">
+            <ul>
+                <li class="unfix">
+                    <div class="inline right"><span>当前分组：</span></div>
+                    <div class="inline left">
+                        <span id="path" class="pop-color">新华网-技术研发部</span>
+                        <input id="pid" type="hidden" value="" name="parentId">
+                    </div>
+                </li>
+                <li class="unfix">
+                    <div class="inline right"><span>姓名：</span></div>
+                    <div class="inline left">
+                        <input class="input" type="text" name="name" required="required">
+                        <!--<div class="checkout-result">*</div>-->
+                    </div>
+                </li>
+                <li class="unfix">
+                    <div class="inline right"><span>云盘账号：</span></div>
+                    <div class="inline left">
+                        <input class="input" type="text" name="account" required="required">
+                    </div>
+                </li>
+                <li class="unfix">
+                    <div class="inline right"><span>职位：</span></div>
+                    <div class="inline left">
+                        <input class="input" type="text" name="job" data-max="20">
+                    </div>
+                </li>
+                <li class="unfix">
+                    <div class="inline right"><span>手机号：</span></div>
+                    <div class="inline left">
+                        <input class="input" type="text" name="mobile">
+                    </div>
+                </li>
+                <li class="unfix">
+                    <div class="inline right"><span>邮箱：</span></div>
+                    <div class="inline left">
+                        <input class="input" type="email" name="email">
+                    </div>
+                </li>
+                <li>
+                    <div class="center">
+                        <input class="submit" type="submit" name="submit" value="确定">
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
+<script src="../js/pop_upload.js"></script>
+</body>
+</html>

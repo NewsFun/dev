@@ -1,0 +1,44 @@
+.mySpace li{color: #222;}
+.mySpace .on{color: #3686e8;font-weight: bold;}
+.east-head .icon{
+    margin: 6px 8px 0 0;
+    width: 19px;
+    height: 19px;
+    background: url("../images/u358.png") no-repeat center;
+    background-size: 100% 100%;
+}
+.east-head img.icon{background: none;}
+.east-head .icon-state{display: inline-block;float: right;}
+.tb-permission .btn{
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 22px;
+    float: left;
+    margin: 8px;
+    background-color: #f0f2f3;
+    text-align: center;
+    line-height: 22px;
+    cursor: pointer;
+    font-size: 12px;
+    border: 1px solid #3686e8;
+    border-radius: 4px;
+}
+.tb-permission .limit-btn{
+    float: right;
+    background-color: #3686e8;
+    color: white;
+    display: none;
+}
+.tb-permission .del{
+    position: absolute;
+    display: none;
+    top: -6px;
+    right: -6px;
+    width: 16px;
+    height: 16px;
+    background: url("../images/u259.png") no-repeat center;
+}
+.tb-permission .on{background-color: #3686e8;  color: white;}
+.tb-permission .on>.del{display: block;}
+.JS_show .off{display: none;}

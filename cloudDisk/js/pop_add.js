@@ -1,0 +1,98 @@
+/**
+ * Created by bobo on 2016/10/24.
+ */
+$(function(){
+    function AddMember(){
+        this.parent = parent.document;
+        this.tar = $(this.parent).find('.JS_target');
+        this.as = $('#title').children('a');
+        this.tab = $('.pop_tab');
+        this.init = function(){
+            var self = this;
+            if($('#qrcode').length>0) self.initGroupId();
+            if($('#treeList').length>0)
+                new Tree({
+                    openClass:'icon_hollow',
+                    closeClass:'icon_solid',
+                    domTags: self.domTags
+                }).init();
+            self.chooseMem();
+            self.deleteMem();
+        };
+    }
+    AddMember.prototype = {
+        initGroupId:function(){
+            var self = this;
+            var id = $(this.parent).find('#group').attr('data-id');
+            //console.log(id);
+            $('#id').attr('value', id);
+            self.initQrSrc();
+            self.chooseColumn(self.tar && self.tar.data('name'));
+            self.titleClick();
+        },
+        domTags:function(data, pid){
+            var html = '';
+            for(var i = 0;i<data.length;i++){
+                if(data[i].user){/*加载数据*/
+                    html += '<li class="leaf_'+i+'"><div class="tree_title">' +
+                    '<span class="tree_name" data-name="name" data-pid="'+data[i].parentId+'" data-id="'+data[i].account+'">'+data[i].name+'</span></div></li>';
+                }
+            }
+            $('#'+pid).prepend(html);
+        },
+        chooseMem:function(){
+            $('#tree_root').on('click', function(e){
+                var tar = $(e.target);
+                var name = tar.data('name');
+                if(name == 'name'){
+                    if(!tar.hasClass('on')){
+                        tar.addClass('on');
+                        var html = tar.parent().parent('li').clone();
+                        html.find('.tree_title').append('<input type="hidden" name="accounts" value="'+tar.data('id')+'">');
+                        $('#data').append(html);
+                    }
+                }
+            });
+        },
+        deleteMem:function(){
+            $('#data').on('click', function(e){
+                var tar = $(e.target);
+                var name = tar.data('name');
+                if(name == 'name'){
+                    var pid = tar.data('pid');
+                    var html = tar.parent().parent('li');
+                    var clazz = html.attr('class');
+                    html.remove();
+                    var node = $('#'+pid).find('.'+clazz);
+                    //console.log(node);
+                    node.find('.tree_name').removeClass('on');
+                }
+            });
+        },
+        chooseColumn:function(con){
+            var self = this;
+            var name = con ||'add_btn';
+            self.as.each(function(){
+                $(this).data('name')==name?$(this).addClass('on'):$(this).removeClass('on');
+            });
+            self.tab.each(function(){
+                $(this).data('name')==name?$(this).show():$(this).hide();
+            });
+        },
+        titleClick:function(){
+            var self = this;
+            self.as.on('click', function(){
+                self.chooseColumn($(this).data('name'));
+            });
+        },
+        initQrSrc:function(){
+            var qr = $('#qr'), dqr = $('#qr_download');
+            var src = qr.attr('data-url')+'?id='+$('#id').val();
+            //console.log(src);
+            qr.append('<img src="'+src+'">');
+            var downloadSrc = dqr.attr('href')+'?id='+id;
+            dqr.attr('href', downloadSrc);
+        }
+    };
+    new AddMember().init();
+});
