@@ -45,21 +45,18 @@
 		var slen = str.length;
 		var ios = 0;
 		var tag = '';
-		var cur = '';
+		var prev = 0;
 		while(ios<slen){
-			swith(str.charCodeAt(ios)){
-				case 60:
-					cur = 'tag';
-					break;
-				case 47:
-					if(cur==='tag') cur='end';
-					break;
-				case:
+			swith(prev){
+				case 0 :break;
+				case 32:
 					break;
 				default:
 					tag+=str[ios];
 					break;
 			}
+			ios+=1;
+			prev = str.charCodeAt(ios-1);
 		}
 	}
 	parse(teststr);
