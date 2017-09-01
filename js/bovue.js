@@ -5,8 +5,8 @@
 		name :'world',
 		link :'http://www.news.cn',
 		content:['1','2','3','4']
-	}
-	var teststr = '<div><a href="www.baidu.com"></a></div>'
+	};
+	var teststr = '<div><a href="www.baidu.com"></a></div>';
 	var len = 0,
 		index = 0,
 		tags = [],
@@ -47,16 +47,21 @@
 		var tag = '';
 		var prev = 0;
 		while(ios<slen){
-			swith(prev){
-				case 0 :break;
-				case 32:
-					break;
-				default:
-					tag+=str[ios];
-					break;
-			}
+			getRules(prev);
 			ios+=1;
 			prev = str.charCodeAt(ios-1);
+		}
+	}
+	function getRules(charcode) {
+		switch(charcode){
+			case 0 :
+
+				break;
+			case 32:
+				break;
+			default:
+				tag += str[ios];
+				break;
 		}
 	}
 	parse(teststr);
