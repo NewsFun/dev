@@ -2,24 +2,68 @@
 	var tstr = '<div><a href="www.baidu.com"></a></div>';
 	var keep = '';
 	var state = null;
-	function parseTag(str) {
+	var mod = {};
+	var cmap = {
+		0:false,
+		32:codeSpace,
+		47:codeSlash,
+		60:codeLess,
+		61:codeEqual,
+		62:codeGreater
+	};
+	function parse(str) {
 		var len = str.length;
 		var index = 0;
 		while(index<len){
+			parseStr(str,index);
 			index += 1;
-			var name = str.charCodeAt(index);
-			if(name===32){
-				if(state==='tag') return tag;
-			}else{
-				if(state===null) state = 'tag';
-				keep+=str.charAt(index);
-			}
 		}
+		console.log(keep);
 	}
-	function parseStr(str) {
-		var substr = str.split('<');
-		for(var i=0;i<substr.length;i++){
-			
+	function parseStr(str,index) {
+		var code = str.charCodeAt(index);
+		if(cmap[code]){
+			cmap[code]();
+		}else{
+			keep+=str.charAt(index);
 		}
+		/*switch(code){
+			case 0:break;
+			case 32:
+				if(state === 'tag') mod[keep]={};
+				keep = '';
+				break;
+			case 47:
+				if(state==='tag') state='endtag';
+				break;
+			case 60:
+				state = 'tag';
+				break;
+			case 61:
+				state = 'attr';
+				break;
+			case 62:
+				state = 'content';
+				break;
+			default:
+				keep += str.charAt(index);
+				break;
+		}*/
 	}
+	function codeSpace() {
+		keep = '';
+	}
+	function codeEqual() {
+		// body...
+	}
+	function codeSlash() {
+		// body...
+	}
+	function codeGreater() {
+		// body...
+	}
+	function codeLess() {
+		state = 'tag';
+	}
+	parse(tstr);
 })(window, jQuery);
