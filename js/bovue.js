@@ -7,7 +7,7 @@
 		link :'http://www.news.cn',
 		content:['1','2','3','4']
 	};
-	var teststr = '<div class="test" bo-if=hello><a href="www.baidu.com">百度</a></div>';
+	var teststr = '<div class="test" bo-if=hello><a>阿里</a><a href="www.baidu.com">百度</a></div>';
 	var len = 0,
 		index = 0,
 		tags = [],
@@ -32,16 +32,18 @@
 	}
 	function getChildren() {
 		var script = doc.querySelector('#bo-mod');
-		// console.log(script);
-		var child = script.children;
-		console.log(child);
-		/*for(var i in child){
-			console.log(i);
-		}*/
+		var child = script.childNodes;
+		// console.log(child);
+		ifModAttr(child);
 	}
-	function getQueryString(string, name){
+	function ifModAttr(el) {
+		for(var i = 0;i<el.length;i++){
+			if(el[i]['bo-if']);
+		}
+	}
+	function getQueryString(str, name){
 	    var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
-	    var r = string.substr(1).match(reg);
+	    var r = str.substr(1).match(reg);
 	    if(r!==null) return decodeURIComponent(r[2]);
 	    return null;
 	}

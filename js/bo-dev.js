@@ -27,28 +27,6 @@
 		}else{
 			keep+=str.charAt(index);
 		}
-		/*switch(code){
-			case 0:break;
-			case 32:
-				if(state === 'tag') mod[keep]={};
-				keep = '';
-				break;
-			case 47:
-				if(state==='tag') state='endtag';
-				break;
-			case 60:
-				state = 'tag';
-				break;
-			case 61:
-				state = 'attr';
-				break;
-			case 62:
-				state = 'content';
-				break;
-			default:
-				keep += str.charAt(index);
-				break;
-		}*/
 	}
 	function codeSpace() {
 		keep = '';
@@ -64,6 +42,13 @@
 	}
 	function codeLess() {
 		state = 'tag';
+	}
+	function parseIf(str) {
+		var iif = str.indexOf('bo-if');
+		var code = str.charCodeAt(iif);
+		while(code!==60){
+			
+		}
 	}
 	parse(tstr);
 })(window, jQuery);
