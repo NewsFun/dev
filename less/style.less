@@ -1,6 +1,6 @@
 @import url('base');
 *{margin: 0;padding: 0;}
-body{.bgc(@gray);}
+body{font-family: 'PingFang SC', 'Lantinghei SC','Helvetica Neue', 'Helvetica',  'Arial','Microsoft YaHei','微软雅黑','STHeitiSC-Light','simsun','宋体';}
 .bo{
 	&-hang{
 		.ofh();
@@ -8,3 +8,18 @@ body{.bgc(@gray);}
 		zoom:1;
 	}
 }
+.calendar{
+	.fs(0);
+	&>div{
+		.fs(12px);
+		.dib();
+		width: 9px;
+		height: 9px;
+		margin: 1px;
+		.bgc(rgba(235, 237, 240, 1));
+	}
+	.passed{
+		.bgc(rgba(198, 228, 139, 1));
+	}
+}
+
