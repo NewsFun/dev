@@ -1,10 +1,5 @@
 (function (win,$,undefined) {
-	var w = win.innerWidth;
-	var h = win.innerHeight;
-	var fs = w/10;
 	var moduleList = [];
-
-	$('html').css('font-size', fs+'px');
 
 	var testd = {
 		a:'a',
@@ -63,6 +58,6 @@
 		}
 	}
 	$(win.document).ready(function($) {
-		testFun();
+		// testFun();
 	});
 })(window, jQuery);

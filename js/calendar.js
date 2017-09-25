@@ -38,5 +38,5 @@
 	}
 	// createGrid(days);
 	// getProportion(age);
-	test();
+	// test();
 })(window,jQuery);
