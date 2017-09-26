@@ -1,6 +1,8 @@
 (function (win,$,undefined) {
 	var moduleList = [];
-
+	var xhfor = 'class';
+	var teststr = '<div class="info-unfold" id="J-info-unfold" xh-for="e"><em class="layout-icons layout-icons_down-arrow"></em></div>';
+	var endt = '</em></div>';
 	var testd = {
 		a:'a',
 		b:'b',
@@ -11,16 +13,16 @@
 			e2:'e2'
 		}]
 	};
+	var starttag = /<\s*(\w+)/i;
+	var endtag = /<\s*\//;
+	var forexp = getRegExp(xhfor);
+
 	win.staticHtml = function(el, data){
 		var mel = $(el), text = '';
 		if(mel.length<1) return false;
 		text = mel.html();
 		mel.html(dataInject(text, data));
 	};
-	function testFun() {
-		var test = $('#test');
-		moduleNode(test, testd);
-	}
 	function dataInject(text, data){
 		var reg = /\{\{((?:.|\n)+?)\}\}/g;
 		while(true){
@@ -29,34 +31,24 @@
 			text = text.replace(c[0], data[c[1]]);
 		}
 	}
-	function moduleNode(el, data) {
-		
-		var child = el.children();
- 		if(child.length<1) return;
-		child.each(function (k,v) {
-			moduleIf($(this), data);
-			moduleFor($(this),data);
-		});
-    }
-	function moduleIf(el, data) {
-		var mif = el.attr('xh-if');
-		if(!mif||data[mif]){
-			el.removeAttr('xh-if');
-			return;
-		}
-		el.remove();
+	function getForStr(str) {
+		var f = forexp.exec(str);
+		console.log(f);
 	}
-	function moduleFor(el, data) {
-		var mfor = el.attr('xh-for');
-		if(mfor){
-			var dfor = data[mfor];
-			if(dfor&&dfor.length>0){
-				moduleNode(el,dfor);
-			}
-		}else{
-			el.prop("outerHTML", dataInject(el.prop("outerHTML"), data));
-		}
+	
+	function getRegExp(attr) {
+		var main = "\\s*=\\s*('([^']*)'|\"([^\"]*)\")";
+		return new RegExp(attr+"\\s*=\\s*\"([^\"]*)\"","g");
 	}
+	function regular(str, exp) {
+		var len = str.length;
+		// var substr = str.split('<');
+		var c = starttag.exec(str);
+		// var d = endtag.test(str);
+		var f = forexp.exec(str);
+		console.log(len, f);
+	}
+	regular(teststr);
 	$(win.document).ready(function($) {
 		// testFun();
 	});
