@@ -1,7 +1,7 @@
 (function (win,$,undefined) {
-	var moduleList = [];
-	var xhfor = 'class';
-	var teststr = '<div class="info-unfold" id="J-info-unfold" xh-for="e"><em class="layout-icons layout-icons_down-arrow"></em></div>';
+	var modList = [];
+	var xhfor = 'xh-for';
+	var teststr = '<div class="info-unfold" id="J-info-unfold" xh-for="e">abcdefg<em class="layout-icons layout-icons_down-arrow"></em></div>';
 	var endt = '</em></div>';
 	var testd = {
 		a:'a',
@@ -13,9 +13,12 @@
 			e2:'e2'
 		}]
 	};
-	var starttag = /<\s*(\w+)/i;
-	var endtag = /<\s*\//;
-	var forexp = getRegExp(xhfor);
+
+	var reg = /\{\{((?:.|\n)+?)\}\}/g;
+	var tagname = /<\s*(\w+)/g;
+	var endtag = /<\s*\//g;
+	var forexp = attrRegExp(xhfor);
+	var subtag = /<[^<]*/g;
 
 	win.staticHtml = function(el, data){
 		var mel = $(el), text = '';
@@ -24,7 +27,6 @@
 		mel.html(dataInject(text, data));
 	};
 	function dataInject(text, data){
-		var reg = /\{\{((?:.|\n)+?)\}\}/g;
 		while(true){
 			var c = reg.exec(text);
 			if(c === null) return text;
@@ -32,24 +34,21 @@
 		}
 	}
 	function getForStr(str) {
-		var f = forexp.exec(str);
-		console.log(f);
+		var fe = forexp.exec(str);
+		// console.log(fe);
+		if(fe === null) return;
+		var tn = tagname.exec(str)[1];
+		modList.push();
 	}
 	
-	function getRegExp(attr) {
-		var main = "\\s*=\\s*('([^']*)'|\"([^\"]*)\")";
+	function attrRegExp(attr) {
+		// var main = "\\s*=\\s*('([^']*)'|\"([^\"]*)\")";
 		return new RegExp(attr+"\\s*=\\s*\"([^\"]*)\"","g");
 	}
-	function regular(str, exp) {
-		var len = str.length;
-		// var substr = str.split('<');
-		var c = starttag.exec(str);
-		// var d = endtag.test(str);
-		var f = forexp.exec(str);
-		console.log(len, f);
+	function parseStr(str) {
+		var substr = subtag.exec(str);
+		getForStr(substr);
 	}
-	regular(teststr);
-	$(win.document).ready(function($) {
-		// testFun();
-	});
+	parseStr(teststr);
+
 })(window, jQuery);
