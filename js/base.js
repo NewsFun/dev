@@ -1,13 +1,13 @@
 (function (win,$,undefined) {
 	var modList = {};
-	var current = {};
+	// var current = {};
 	var index = 0;
 	var xhfor = 'xh-for';
-	var teststr = '<div class="info-unfold" id="J-info-unfold" xh-for="e"><em class="layout-icons_down-arrow"></em><em class="icons_down-arrow"></em><em class="layout-icons"></em></div>';
+	var teststr = '<div class="info-unfold" id="J-info-unfold" xh-for="e"><em class="layout-icons_down-arrow"><em class="layout-icons_down-arrow"></em></em><em class="icons_down-arrow"></em><em class="layout-icons"></em></div>';
 	var endt = '</em></div>';
 	var testd = {a:'a',b:'b',c:'c',d:'d',e:[{e1:'e1',e2:'e2'}]};
 
-	var reg = /\{\{((?:.|\n)+?)\}\}/;
+	var reg = /\{\{((?:.|\n)+?)\}\}/g;
 	var tagname = /<\s*(\w+)/;
 	var endtag = /<\s*\/\s*(\w+)/;
 	var forexp = getAttr(xhfor);
@@ -27,12 +27,11 @@
 		}
 	}
 	function getForStr(str, obj) {
-		// console.log(obj);
-		current = obj;
+		// current = obj;
 		var tn = tagname.exec(str)[1];/*get tag name*/
-		console.log(index);
+		// console.log(index);
 		obj[index] = {
-			// _par:obj,
+			_par:obj,
 			_tag:tn,
 			_str:str
 		};
@@ -65,7 +64,7 @@
 			parseStr(str, subobj);
 		}else{
 			// index+=1;
-			parseStr(str, current);
+			parseStr(str, obj._par);
 		}
 	}
 	parseStr(teststr, modList);
