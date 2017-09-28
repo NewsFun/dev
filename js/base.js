@@ -10,7 +10,7 @@
 	var reg = /\{\{((?:.|\n)+?)\}\}/;
 	var tagname = /<\s*(\w+)/;
 	var endtag = /<\s*\/\s*(\w+)/;
-	var forexp = attrRegExp(xhfor);
+	var forexp = getAttr(xhfor);
 	var subtag = /<[^<]*/g;
 
 	win.staticHtml = function(el, data){
@@ -46,7 +46,7 @@
 		console.log(tr);
 		// return obj._par;
 	}
-	function attrRegExp(attr) {
+	function getAttr(attr) {
 		// var main = "\\s*=\\s*('([^']*)'|\"([^\"]*)\")";
 		return new RegExp(attr+"\\s*=\\s*\"([^\"]*)\"","i");
 	}
@@ -64,7 +64,7 @@
 			index += 1;
 			parseStr(str, subobj);
 		}else{
-			index+=1;
+			// index+=1;
 			parseStr(str, current);
 		}
 	}
