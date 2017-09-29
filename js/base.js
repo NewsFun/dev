@@ -1,6 +1,6 @@
 (function (win,$,undefined) {
 	
-	var teststr = '<div class="info-unfold" id="J-info-unfold" xh-for="e"><em class="layout-icons_down-arrow"><em class="layout-icons_down-arrow"></em></em><em class="icons_down-arrow"></em><em class="layout-icons"></em></div>';
+	var teststr = '<div class="info-unfold" id="J-info-unfold" xh-for="e"><em class="layout1"><em class="layout11"></em></em><em class="icons"></em><em class="icons1"></em></div>';
 	var endt = '</em></div>';
 	var testd = {a:'a',b:'b',c:'c',d:'d',e:[{e1:'e1',e2:'e2'}]};
 
@@ -14,7 +14,7 @@
 	var tagnamexp = /<\s*(\w+)/;
 	var endtagexp = /<\s*\/\s*(\w+)/;
 	var forexp = getAttr(xhfor);
-	var isArray = _is('array');
+	var isArray = _is('Array');
 
 	win.staticHtml = function(el, data){
 		var mel = $(el), text = '';
@@ -70,21 +70,33 @@
 	}
 	function mod2Dom(mod, data) {
 		if(!data) return;
+		var html = '';
+		if(isArray(data)){
+			for (var i = 0;i<data.length;i++) {
+				html+=submod2Dom(mod, data[i]);
+			}
+		}else{
+			html+=submod2Dom(mod, data);
+		}
+		return html;
+	}
+	function submod2Dom(mod, data) {
 		var keys = Object.keys(mod);
-		// console.log(keys);
 		var value = null;
 		var endtag = '';
 		var html = '';
-		for (var i = 0; i < keys.length; i++) {
+		for (var i = 0; i<keys.length; i++) {
 			if(keys[i].indexOf('_')>-1) continue;
+			// console.log(keys[i]);
 			value = mod[keys[i]];
-			html += value._str;
+			html += dataInject(value._str, data);
 			if(singletag.indexOf(value._tag)<0) endtag='</'+value._tag+'>';
 			if(value._for){
-				html += mod2Dom(value, data[value._for])+endtag;
+				html += mod2Dom(value, data[value._for]);
 			}else{
-				html += dataInject(value._str, data)+endtag;
+				html += mod2Dom(value, data);
 			}
+			html += endtag;
 		}
 		return html;
 	}
