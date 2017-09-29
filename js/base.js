@@ -1,8 +1,35 @@
 (function (win,$,undefined) {
 	
-	var teststr = '<div class="info-unfold" id="J-info-unfold" xh-for="e"><em class="layout1"><em class="layout11"></em></em><em class="icons"></em><em class="icons1"></em></div>';
+	var teststr = '<div class="{{a}}" id="{{b}}" xh-for="e"><em class="{{e2}}" xh-for="e1"><em class="{{e10}}"></em></em><em class="icons"></em><em class="icons1"></em></div>';
 	var endt = '</em></div>';
-	var testd = {a:'a',b:'b',c:'c',d:'d',e:[{e1:'e1',e2:'e2'}]};
+	var testd = {
+		a:'a',
+		b:'b',
+		c:'c',
+		d:'d',
+		e:[{
+			e1:[{
+				'e10':'e11'
+			},{
+				'e10':'e12'
+			}],
+			e2:'e2'
+		},{
+			e1:[{
+				'e10':'e11'
+			},{
+				'e10':'e13'
+			}],
+			e2:'e2'
+		},{
+			e1:[{
+				'e10':'e11'
+			},{
+				'e10':'e14'
+			}],
+			e2:'e21'
+		}]
+	};
 
 	var index = 0;
 	var modList = {};
@@ -23,10 +50,11 @@
 		mel.html(dataInject(text, data));
 	};
 	function dataInject(text, data){
-		var c = regexp.exec(text);
-		if(c === null) return text;
-		text = text.replace(c[0], data[c[1]]);
-		dataInject(text, data);
+		while(true){
+			var c = regexp.exec(text);
+			if(c === null) return text;
+			if(data[c[1]]) text = text.replace(c[0], data[c[1]]);
+		}
 	}
 	function getForStr(str, obj) {
 		var tn = tagnamexp.exec(str)[1];/*get tag name*/
@@ -84,12 +112,14 @@
 		var keys = Object.keys(mod);
 		var value = null;
 		var endtag = '';
+		var tag = 'tag';
 		var html = '';
 		for (var i = 0; i<keys.length; i++) {
 			if(keys[i].indexOf('_')>-1) continue;
 			// console.log(keys[i]);
 			value = mod[keys[i]];
-			html += dataInject(value._str, data);
+			tag = dataInject(value._str, data);
+			html += tag;
 			if(singletag.indexOf(value._tag)<0) endtag='</'+value._tag+'>';
 			if(value._for){
 				html += mod2Dom(value, data[value._for]);
