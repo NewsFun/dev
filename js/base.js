@@ -9,21 +9,21 @@
 		d:'d',
 		e:[{
 			e1:[{
-				'e10':'e11'
+				'e10':'e101'
 			},{
 				'e10':'e12'
 			}],
 			e2:'e2'
 		},{
 			e1:[{
-				'e10':'e11'
+				'e10':'e102'
 			},{
 				'e10':'e13'
 			}],
 			e2:'e2'
 		},{
 			e1:[{
-				'e10':'e11'
+				'e10':'e103'
 			},{
 				'e10':'e14'
 			}],
@@ -34,21 +34,15 @@
 	var index = 0;
 	var modList = {};
 	var xhfor = 'xh-for';
-	var singletag = 'input,img,link,meta';
+	var singletag = 'input,img,link,meta,';
 
 	var regexp = /\{\{((?:.|\n)+?)\}\}/g;
 	var subtagexp = /<[^<]*/g;
 	var tagnamexp = /<\s*(\w+)/;
 	var endtagexp = /<\s*\/\s*(\w+)/;
-	var forexp = getAttr(xhfor);
+	var forexp = getAttrExp(xhfor);
 	var isArray = _is('Array');
 
-	win.staticHtml = function(el, data){
-		var mel = $(el), text = '';
-		if(mel.length<1) return false;
-		text = mel.html();
-		mel.html(dataInject(text, data));
-	};
 	function dataInject(text, data){
 		while(true){
 			var c = regexp.exec(text);
@@ -69,12 +63,7 @@
 		obj[index]._for = fe[1];
 		return obj[index];
 	}
-	function getEndMod(str, obj) {
-		var tr = tagnamexp.exec(str);
-		console.log(tr);
-		// return obj._par;
-	}
-	function getAttr(attr) {
+	function getAttrExp(attr) {
 		// var main = "\\s*=\\s*('([^']*)'|\"([^\"]*)\")";
 		return new RegExp(attr+"\\s*=\\s*\"([^\"]*)\"","i");
 	}
@@ -101,10 +90,10 @@
 		var html = '';
 		if(isArray(data)){
 			for (var i = 0;i<data.length;i++) {
-				html+=submod2Dom(mod, data[i]);
+				html += submod2Dom(mod, data[i]);
 			}
 		}else{
-			html+=submod2Dom(mod, data);
+			html += submod2Dom(mod, data);
 		}
 		return html;
 	}
@@ -112,21 +101,14 @@
 		var keys = Object.keys(mod);
 		var value = null;
 		var endtag = '';
-		var tag = 'tag';
 		var html = '';
-		for (var i = 0; i<keys.length; i++) {
-			if(keys[i].indexOf('_')>-1) continue;
-			// console.log(keys[i]);
+		for (var i = 0;i<keys.length;i++) {
+			if(keys[i].indexOf('_')>-1) continue;/*if this attr is undom continue*/
 			value = mod[keys[i]];
-			tag = dataInject(value._str, data);
-			html += tag;
-			if(singletag.indexOf(value._tag)<0) endtag='</'+value._tag+'>';
-			if(value._for){
-				html += mod2Dom(value, data[value._for]);
-			}else{
-				html += mod2Dom(value, data);
-			}
-			html += endtag;
+			html += dataInject(value._str, data);/*data inject into start tag*/
+			if(singletag.indexOf(value._tag+',')<0) endtag = '</'+value._tag+'>';/*if this tag is not single tag*/
+			if(value._for) data = data[value._for];/*if tag has 'for' attr*/
+			html += mod2Dom(value, data)+endtag;/*get subtag and endtag*/
 		}
 		return html;
 	}
