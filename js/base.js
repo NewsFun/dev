@@ -38,7 +38,7 @@
 
 	var regexp = /\{\{((?:.|\n)+?)\}\}/g;
 	var subtagexp = /<[^<]*/g;
-	var tagnamexp = /<\s*(\w+)/;
+	var tagnamexp = /<\s*([a-zA-Z]+)/;
 	var endtagexp = /<\s*\/\s*(\w+)/;
 	var forexp = getAttrExp(xhfor);
 	var isArray = _is('Array');
@@ -69,20 +69,15 @@
 	}
 	function parseStr(str, obj) {
 		var sub = subtagexp.exec(str);
-		if(sub === null){
-			console.log(modList);
-			return obj;
-		}
+		if(sub === null) return obj;
 		var substr = sub[0];
+		var subobj = obj._par;
 		var et = endtagexp.exec(substr);
-		// console.log(et);
 		if(et === null){
-			var subobj = getForStr(substr, obj);
+			subobj = getForStr(substr, obj);
 			index += 1;
-			parseStr(str, subobj);
-		}else{
-			parseStr(str, obj._par);
 		}
+		parseStr(str, subobj);
 		return obj;
 	}
 	function mod2Dom(mod, data) {
@@ -117,7 +112,8 @@
 			return Object.prototype.toString.call(obj) === '[object '+str+']';
 		};
 	}
-	modList = parseStr(teststr, modList);
+	modList = parseStr(teststr, {});
+	console.log(modList);
 	var result = mod2Dom(modList, testd);
 	console.log(result);
 	
