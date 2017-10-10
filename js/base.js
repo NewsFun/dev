@@ -1,6 +1,6 @@
 (function (win,$,undefined) {
-	
-	var teststr = '<div class="{{a}}" id="{{b}}" xh-for="e"><em class="{{e2}}" xh-for="e1"><em class="{{e10}}"></em></em><em class="icons"></em><em class="icons1"></em></div>';
+	'use strict';
+	var teststr = $x('#test').innerHTML;
 	var endt = '</em></div>';
 	var testd = {
 		a:'a',
@@ -9,23 +9,23 @@
 		d:'d',
 		e:[{
 			e1:[{
-				'e10':'e101'
+				'e10':1
 			},{
-				'e10':'e12'
+				'e10':2
 			}],
 			e2:'e2'
 		},{
 			e1:[{
-				'e10':'e102'
+				'e10':3
 			},{
-				'e10':'e13'
+				'e10':4
 			}],
 			e2:'e2'
 		},{
 			e1:[{
-				'e10':'e103'
+				'e10':5
 			},{
-				'e10':'e14'
+				'e10':6
 			}],
 			e2:'e21'
 		}]
@@ -59,13 +59,14 @@
 	}
 	function getForStr(str, obj) {
 		var tn = tagnamexp.exec(str)[1];/*get tag name*/
+		var fe = forexp.exec(str);/*for*/
+		if(fe) str = str.replace(fe[0],'');
+		var ie = ifexp.exec(str);
 		obj[index] = {
 			_par:obj,
 			_tag:tn,
 			_str:str
 		};
-		var fe = forexp.exec(str);/*for*/
-		var ie = ifexp.exec(str);
 		if(fe !== null) obj[index]._for = fe[1];
 		if(ie !== null) obj[index]._if = ie[1];
 		return obj[index];
@@ -74,18 +75,18 @@
 		// var main = "\\s*=\\s*('([^']*)'|\"([^\"]*)\")";
 		return new RegExp(attr+"\\s*=\\s*\"([^\"]*)\"","i");
 	}
-	function $(el) {
+	function $x(el) {
 		var mel = document.querySelectorAll(el);
 		if(mel.length<2) return mel[0];
 		return mel;
 	}
 	function Bo(el, data) {
 		if(!modList[el]){
-			var inhtml = $(el).innerHTML;
+			var inhtml = $x(el).innerHTML;
 			index = 0;
 			modList[el] = parseStr(inhtml, {});
 		}
-		$(el).innerHTML = mod2Dom(modList[el], data);
+		$x(el).innerHTML = mod2Dom(modList[el], data);
 		return bo;
 	}
 	function parseStr(str, obj) {
@@ -137,9 +138,5 @@
 			return Object.prototype.toString.call(obj) === '[object '+str+']';
 		};
 	}
-	modList = parseStr(teststr, {});
-	console.log(modList);
-	var result = mod2Dom(modList, testd);
-	console.log(result);
-	
+	Bo('#test', testd);
 })(window, jQuery);
