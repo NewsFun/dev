@@ -106,29 +106,27 @@
 	function mod2Dom(mod, data) {
 		if(!data) return;
 		var html = '';
-		if(isArray(data)){
-			for (var i = 0;i<data.length;i++) {
-				html += submod2Dom(mod, data[i]);
-			}
-		}else{
-			html += submod2Dom(mod, data);
+		if(mod._if){
+			if(!data[mod._if]) return html;
+		}
+		var keys = Object.keys(mod);
+		var value = null;
+		var endtag = '';
+		if(singletag.indexOf(value._tag+',')<0) endtag = '</'+value._tag+'>';/*if this tag is not single tag*/
+		if(mod._for) data = data[mod._for];
+		html += dataInject(mod._str, data);
+		for (var i = 0;i<keys.length;i++) {
+			if(keys[i].indexOf('_')>-1) continue;/*if this attr is undom continue*/
+			value = mod[keys[i]];
+			html += mod2Dom(value, data)+endtag;/*get subtag and endtag*/
 		}
 		return html;
 	}
 	function submod2Dom(mod, data) {
-		var keys = Object.keys(mod);
-		var value = null;
-		var endtag = '';
-		var html = '';
+		
 		for (var i = 0;i<keys.length;i++) {
 			if(keys[i].indexOf('_')>-1) continue;/*if this attr is undom continue*/
 			value = mod[keys[i]];
-			if(value._if){
-				if(!data[value._if]) continue;
-			}
-			html += dataInject(value._str, data);/*data inject into start tag*/
-			if(singletag.indexOf(value._tag+',')<0) endtag = '</'+value._tag+'>';/*if this tag is not single tag*/
-			if(value._for) data = data[value._for];/*if tag has 'for' attr*/
 			html += mod2Dom(value, data)+endtag;/*get subtag and endtag*/
 		}
 		return html;
