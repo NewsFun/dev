@@ -5,9 +5,9 @@ block main
 	//- canvas
 	//- #calendar.calendar
 	#test
-		div(class='{{a}}',id='{{b}}',xh-for='e')
-			em(class='{{e2}}',xh-for='e1')
-				em {{e10}}
+		div(class='{{a}}',id='{{b}}')
+			em(class='{{e2}}',xh-for='e')
+				em(xh-for='e1') {{e10}}
 block foot
 	//- script(src="js/calendar.js")
 	script(src="js/base.js")

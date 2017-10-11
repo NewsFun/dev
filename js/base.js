@@ -51,6 +51,7 @@
 		"dataInject":dataInject
 	};
 	function dataInject(text, data){
+		if(!text) return '';
 		while(true){
 			var c = regexp.exec(text);
 			if(c === null) return text;
@@ -106,29 +107,30 @@
 	function mod2Dom(mod, data) {
 		if(!data) return;
 		var html = '';
-		if(mod._if){
-			if(!data[mod._if]) return html;
-		}
-		var keys = Object.keys(mod);
-		var value = null;
-		var endtag = '';
-		if(singletag.indexOf(value._tag+',')<0) endtag = '</'+value._tag+'>';/*if this tag is not single tag*/
-		if(mod._for) data = data[mod._for];
-		html += dataInject(mod._str, data);
-		for (var i = 0;i<keys.length;i++) {
-			if(keys[i].indexOf('_')>-1) continue;/*if this attr is undom continue*/
-			value = mod[keys[i]];
-			html += mod2Dom(value, data)+endtag;/*get subtag and endtag*/
+		if(mod._for){
+			data = data[mod._for];
+			if(isArray(data)){
+				for (var i = 0;i<data.length;i++) {
+					html += submod2Dom(mod, data[i]);
+				}
+			}
+		}else{
+			html += submod2Dom(mod, data);
 		}
 		return html;
 	}
 	function submod2Dom(mod, data) {
-		
+		var keys = Object.keys(mod);
+		var value = null;
+		var endtag = '';
+		var html = dataInject(mod._str, data);
 		for (var i = 0;i<keys.length;i++) {
-			if(keys[i].indexOf('_')>-1) continue;/*if this attr is undom continue*/
+			if(keys[i].indexOf('_')>-1) continue;
 			value = mod[keys[i]];
-			html += mod2Dom(value, data)+endtag;/*get subtag and endtag*/
+			html += mod2Dom(value, data);
 		}
+		if(singletag.indexOf(mod._tag+',')<0) endtag = '</'+mod._tag+'>';
+		html += endtag;
 		return html;
 	}
 	function _is(str) {
