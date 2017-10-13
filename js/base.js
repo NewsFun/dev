@@ -37,7 +37,7 @@
 	var xhif = 'xh-if';
 	var singletag = 'input,img,link,meta,';
 
-	var regexp = /\{\{((?:.|\n)+?)\}\}/m;
+	var regexp = /\{\{((?:.|\n)+?)\}\}/i;
 	var subtagexp = /<[^<]*/g;
 	var tagnamexp = /<\s*([a-zA-Z]+)/;
 	var endtagexp = /<\s*\/\s*(\w+)/;
@@ -45,7 +45,7 @@
 	var ifexp = getAttrExp(xhif);
 	var isArray = _is('Array');
 	win.bo = {
-		"Bo":Bo,
+		"News":News,
 		"mod2Dom":mod2Dom,
 		"parseStr":parseStr,
 		"dataInject":dataInject
@@ -81,7 +81,7 @@
 		if(mel.length<2) return mel[0];
 		return mel;
 	}
-	function Bo(el, data) {
+	function News(el, data) {
 		if(!modList[el]){
 			var inhtml = $x(el).innerHTML;
 			index = 0;
@@ -138,5 +138,10 @@
 			return Object.prototype.toString.call(obj) === '[object '+str+']';
 		};
 	}
-	Bo('#test', testd);
+	News('#test', testd);
+	function testFunc() {
+		var str = dataInject(teststr, testd);
+		console.log(str);
+	}
+	// testFunc();
 })(window, jQuery);
