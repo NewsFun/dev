@@ -113,10 +113,10 @@
 				for (var i = 0;i<data.length;i++) {
 					html += submod2Dom(mod, data[i]);
 				}
+				return html;
 			}
-		}else{
-			html += submod2Dom(mod, data);
 		}
+		html += submod2Dom(mod, data);
 		return html;
 	}
 	function submod2Dom(mod, data) {
