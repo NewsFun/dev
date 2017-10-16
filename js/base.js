@@ -33,18 +33,18 @@
 
 	var index = 0;
 	var modList = {};
-	var xhfor = 'xh-for';
 	var xhif = 'xh-if';
+	var xhfor = 'xh-for';
 	var singletag = 'input,img,link,meta,';
 
-	var regexp = /\{\{((?:.|\n)+?)\}\}/i;
-	var subtagexp = /<[^<]*/g;
+	var regexp = /\{\{((?:.|\n)+?)\}\}/m;
 	var tagnamexp = /<\s*([a-zA-Z]+)/;
 	var endtagexp = /<\s*\/\s*(\w+)/;
+	var subtagexp = /<[^<]*/g;
 	var forexp = getAttrExp(xhfor);
 	var ifexp = getAttrExp(xhif);
 	var isArray = _is('Array');
-	win.bo = {
+	win.news = {
 		"News":News,
 		"mod2Dom":mod2Dom,
 		"parseStr":parseStr,
@@ -55,7 +55,7 @@
 		while(true){
 			var c = regexp.exec(text);
 			if(c === null) return text;
-			if(data[c[1]]) text = text.replace(c[0], data[c[1]]);
+			/*if(data[c[1]]) */text = text.replace(c[0], data[c[1]]||'');
 		}
 	}
 	function getForStr(str, obj) {
@@ -76,19 +76,21 @@
 		// var main = "\\s*=\\s*('([^']*)'|\"([^\"]*)\")";
 		return new RegExp(attr+"\\s*=\\s*\"([^\"]*)\"","i");
 	}
-	function $x(el) {
+	function $(el) {
 		var mel = document.querySelectorAll(el);
 		if(mel.length<2) return mel[0];
 		return mel;
 	}
-	function News(el, data) {
+	function News(param) {
+		var el = param.el;
+		var data = param.data;
+		var inhtml = param.template||$(el).innerHTML;
 		if(!modList[el]){
-			var inhtml = $x(el).innerHTML;
 			index = 0;
 			modList[el] = parseStr(inhtml, {});
 		}
-		$x(el).innerHTML = mod2Dom(modList[el], data);
-		return bo;
+		$(el).innerHTML = mod2Dom(modList[el], data);
+		return news;
 	}
 	function parseStr(str, obj) {
 		var sub = subtagexp.exec(str);
@@ -120,14 +122,19 @@
 		return html;
 	}
 	function submod2Dom(mod, data) {
-		var keys = Object.keys(mod);
-		var value = null;
+		var html = mod._str;
 		var endtag = '';
-		var html = dataInject(mod._str, data);
-		for (var i = 0;i<keys.length;i++) {
-			if(keys[i].indexOf('_')>-1) continue;
-			value = mod[keys[i]];
-			html += mod2Dom(value, data);
+		if(data){
+			var keys = Object.keys(mod);
+			var value = null;
+			html = dataInject(html, data);
+			for (var i = 0;i<keys.length;i++) {
+				if(keys[i].indexOf('_')>-1) continue;
+				value = mod[keys[i]];
+				html += mod2Dom(value, data);
+			}
+		}else{
+			console.log('no data for '+html+' subtag.');
 		}
 		if(singletag.indexOf(mod._tag+',')<0) endtag = '</'+mod._tag+'>';
 		html += endtag;
