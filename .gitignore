@@ -18,6 +18,7 @@ psd
 PSD
 local
 .DS_Store
+css
 *.css
 *.map
 maps
