@@ -76,7 +76,7 @@
 		// var main = "\\s*=\\s*('([^']*)'|\"([^\"]*)\")";
 		return new RegExp(attr+"\\s*=\\s*\"([^\"]*)\"","i");
 	}
-	function $(el) {
+	function $x(el) {
 		var mel = document.querySelectorAll(el);
 		if(mel.length<2) return mel[0];
 		return mel;
@@ -84,12 +84,12 @@
 	function News(param) {
 		var el = param.el;
 		var data = param.data;
-		var inhtml = param.template||$(el).innerHTML;
+		var inhtml = param.template||$x(el).innerHTML;
 		if(!modList[el]){
 			index = 0;
 			modList[el] = parseStr(inhtml, {});
 		}
-		$(el).innerHTML = mod2Dom(modList[el], data);
+		$x(el).innerHTML = mod2Dom(modList[el], data);
 		return news;
 	}
 	function parseStr(str, obj) {
@@ -145,10 +145,28 @@
 			return Object.prototype.toString.call(obj) === '[object '+str+']';
 		};
 	}
-	News('#test', testd);
+	// News('#test', testd);
 	function testFunc() {
-		var str = dataInject(teststr, testd);
-		console.log(str);
+		// var str = dataInject(teststr, testd);
+		var userInfo = ['hello','world'];
+		Object.defineProperty(userInfo, "nickName", {
+		    get: function(){
+		        return $x('#nickName').innerHTML;
+		    },
+		    set: function(nick){
+		        $x('#nickName').innerHTML = nick;
+		    }
+		});
+		Object.defineProperty(userInfo, "introduce", {
+		    get: function(){
+		        return $x('#introduce').innerHTML;
+		    },
+		    set: function(introduce){
+		        $x('#introduce').innerHTML = introduce;
+		    }
+		});
+		return userInfo;
 	}
-	// testFunc();
+	var ui = testFunc();
+
 })(window, jQuery);
