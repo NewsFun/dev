@@ -51,13 +51,13 @@
 	};
 	function VMod(str) {
 		this._son = [];
-		this._tag = 'div';
+		this._tag = '';
 		this._attr = {};
 		this._str = '';
 		this._par = {};
 	}
 	VMod.prototype.constructor = VMod;
-
+	
 	function dataInject(text, data){
 		if(!text) return '';
 		if(c !== null){
@@ -83,7 +83,6 @@
 		var sub = subtagexp.exec(str);
 		if(sub!==null){
 			var substr = sub[0];
-			console.log(substr);
 			var subobj = obj._par;
 			var et = endtagexp.exec(substr);
 			if(et===null){
