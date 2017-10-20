@@ -38,11 +38,12 @@
 	var singletag = 'input,img,link,meta,';
 
 	var regexp = /\{\{((?:.|\n)+?)\}\}/m;
+	var attrexp = /\s+(\w+)\s*=\s*\"([^\"]*)\"/ig;
 	var tagnamexp = /<\s*([a-zA-Z]+)/;
 	var endtagexp = /<\s*\/\s*(\w+)/;
 	var subtagexp = /<[^<]*/g;
-	var forexp = getAttrExp(xhfor);
-	var ifexp = getAttrExp(xhif);
+	// var forexp = getAttrExp(xhfor);
+	// var ifexp = getAttrExp(xhif);
 	var isArray = _is('Array');
 	win.news = {
 		"News":News,
@@ -50,32 +51,60 @@
 		"parseStr":parseStr,
 		"dataInject":dataInject
 	};
+	function VMod(str) {
+		this._son = [];
+		this._tag = 'div';
+		this._attr = {};
+		this._str = '';
+		this._par = {};
+	}
+	VMod.prototype.constructor = VMod;
+
 	function dataInject(text, data){
 		if(!text) return '';
-		while(true){
+		if(c !== null){
 			var c = regexp.exec(text);
-			if(c === null) return text;
-			/*if(data[c[1]]) */text = text.replace(c[0], data[c[1]]||'');
+			text = text.replace(c[0], data[c[1]]||'');
+			dataInject(text, data);
 		}
+		return text;
 	}
-	function getForStr(str, obj) {
-		var tn = tagnamexp.exec(str)[1];/*get tag name*/
-		var fe = forexp.exec(str);/*for*/
-		if(fe) str = str.replace(fe[0],'');
-		var ie = ifexp.exec(str);
-		obj[index] = {
-			_par:obj,
-			_tag:tn,
-			_str:str
-		};
-		if(fe !== null) obj[index]._for = fe[1];
-		if(ie !== null) obj[index]._if = ie[1];
-		return obj[index];
+	function getAttrExp(str, obj) {
+		if(str){
+			if(!obj) obj = {};
+			var ae = attrexp.exec(str);
+			if(ae !== null){
+				obj[ae[1]] = ae[2];
+				getAttrExp(obj);
+			}
+		}
+		return obj;
 	}
-	function getAttrExp(attr) {
-		// var main = "\\s*=\\s*('([^']*)'|\"([^\"]*)\")";
-		return new RegExp(attr+"\\s*=\\s*\"([^\"]*)\"","i");
+	function str2Mod(str, obj) {
+		if(!obj) obj = new VMod();
+		var sub = subtagexp.exec(str);
+		// console.log(sub);
+		if(sub!==null){
+			var substr = sub[0];
+			var subobj = obj._par;
+			var et = endtagexp.exec(substr);
+			if(et===null){
+				subobj = subStr2Mod(substr, obj);
+			}
+			str2Mod(str, subobj);
+		}
+		
+		return obj;
 	}
+	function subStr2Mod(str, obj) {
+		if(obj.constructor!==VMod) obj = new VMod();
+		var tn = tagnamexp.exec(str)[1];
+			obj._tag = tn;
+			obj._attr = getAttrExp(str);
+		if(isSingleTag(tn)) return obj;
+		return obj._son;
+	}
+	
 	function $x(el) {
 		var mel = document.querySelectorAll(el);
 		if(mel.length<2) return mel[0];
@@ -106,8 +135,9 @@
 		parseStr(str, subobj);
 		return obj;
 	}
+
 	function mod2Dom(mod, data) {
-		if(!data) return;
+		if(!mod||!data) return;
 		var html = '';
 		if(mod._for){
 			data = data[mod._for];
@@ -140,33 +170,18 @@
 		html += endtag;
 		return html;
 	}
+	function isSingleTag(tagname) {
+		return singletag.indexOf(','+tagname+',')>-1;
+	}
 	function _is(str) {
 		return function (obj) {
 			return Object.prototype.toString.call(obj) === '[object '+str+']';
 		};
 	}
 	function testFunc() {
-		// var str = dataInject(teststr, testd);
-		var userInfo = ['hello','world'];
-		Object.defineProperty(userInfo, "nickName", {
-		    get: function(){
-		        return $x('#nickName').innerHTML;
-		    },
-		    set: function(nick){
-		        $x('#nickName').innerHTML = nick;
-		    }
-		});
-		Object.defineProperty(userInfo, "introduce", {
-		    get: function(){
-		        return $x('#introduce').innerHTML;
-		    },
-		    set: function(introduce){
-		        $x('#introduce').innerHTML = introduce;
-		    }
-		});
-		return userInfo;
+		var obj = str2Mod(teststr);
+		console.log(obj);
 	}
-	// var ui = testFunc();
-	News({el:'#test', data:testd});
+	testFunc();
 
 })(window, jQuery);
