@@ -145,7 +145,6 @@
 			return Object.prototype.toString.call(obj) === '[object '+str+']';
 		};
 	}
-	// News('#test', testd);
 	function testFunc() {
 		// var str = dataInject(teststr, testd);
 		var userInfo = ['hello','world'];
@@ -167,6 +166,7 @@
 		});
 		return userInfo;
 	}
-	var ui = testFunc();
+	// var ui = testFunc();
+	News({el:'#test', data:testd});
 
 })(window, jQuery);
