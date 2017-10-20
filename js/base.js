@@ -38,12 +38,10 @@
 	var singletag = 'input,img,link,meta,';
 
 	var regexp = /\{\{((?:.|\n)+?)\}\}/m;
-	var attrexp = /\s+(\w+)\s*=\s*\"([^\"]*)\"/ig;
+	var attrexp = /\s+(\w+)\s*=\s*\"([^\"]*)\"/g;
 	var tagnamexp = /<\s*([a-zA-Z]+)/;
 	var endtagexp = /<\s*\/\s*(\w+)/;
 	var subtagexp = /<[^<]*/g;
-	// var forexp = getAttrExp(xhfor);
-	// var ifexp = getAttrExp(xhif);
 	var isArray = _is('Array');
 	win.news = {
 		"News":News,
@@ -83,9 +81,9 @@
 	function str2Mod(str, obj) {
 		if(!obj) obj = new VMod();
 		var sub = subtagexp.exec(str);
-		// console.log(sub);
 		if(sub!==null){
 			var substr = sub[0];
+			console.log(substr);
 			var subobj = obj._par;
 			var et = endtagexp.exec(substr);
 			if(et===null){
@@ -98,11 +96,15 @@
 	}
 	function subStr2Mod(str, obj) {
 		if(obj.constructor!==VMod) obj = new VMod();
+		var sub = new VMod();
 		var tn = tagnamexp.exec(str)[1];
-			obj._tag = tn;
-			obj._attr = getAttrExp(str);
+		sub._str = str;
+		sub._tag = tn;
+		sub._attr = getAttrExp(str);
+		sub._par = obj;
+		obj._son.push(sub);
 		if(isSingleTag(tn)) return obj;
-		return obj._son;
+		return sub;
 	}
 	
 	function $x(el) {
