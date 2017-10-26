@@ -3,10 +3,10 @@
 	var teststr = $x('#test').innerHTML;
 	var endt = '<div id="xxx" class="xxx" xh-for="xxx">';
 	var testd = {
-		a:'a',
-		b:'b',
-		c:'c',
-		d:'d',
+		a:'as',
+		b:'bs',
+		c:'cs',
+		d:'ds',
 		e:[{
 			e1:[{
 				'e10':1
@@ -72,6 +72,7 @@
 		this.son = [];
 		this.tag = 'template';
 		this.str = '';
+		this.txt = '';
 		this.attr = {};
 	}
 	VMod.prototype.constructor = VMod;
@@ -85,7 +86,7 @@
 	}
 	function getAttrExp(str, obj) {
 		if(str){
-			if(!obj) obj = {};
+			obj = obj||{};
 			var ae = attrexp.exec(str);
 			if(ae !== null){
 				obj[ae[1]] = ae[2];
@@ -95,7 +96,7 @@
 		return obj;
 	}
 	function parseStr(str, obj) {
-		if(!obj) obj = new VMod();
+		obj = obj||new VMod();
 		var sub = subtagexp.exec(str);
 		if(sub!==null){
 			var substr = sub[0];
@@ -111,7 +112,9 @@
 		if(obj.constructor!==VMod) obj = new VMod();
 		var sub = new VMod();
 		var tn = tagnamexp.exec(str)[1];
+		var txt = str.split('>')[1];
 		sub.tag = tn;
+		sub.txt = txt;
 		sub.par = obj;
 		sub.str = str;
 		sub.attr = getAttrExp(str);
@@ -126,8 +129,8 @@
 		var dom = [];
 		if(afor){
 			data = data[afor];
-			delete mod.attr[xhfor];
 			if(isArray(data)){
+				console.log(data);
 				for (var i = 0;i<data.length;i++) {
 					dom.push(submod2Dom(mod, data[i]));
 				}
@@ -139,7 +142,8 @@
 	}
 	function submod2Dom(mod, data) {
 		var dom = document.createElement(mod.tag);
-		dom = setAttrs(dom, mod.attr, data);
+		setAttrs(dom, mod.attr, data);
+		setTxtNode(dom, mod.txt, data);
 		for (var i = 0;i<mod.son.length;i++) {
 			appendNode(dom, mod2Dom(mod.son[i], data));
 		}
@@ -153,10 +157,19 @@
 			return Object.prototype.toString.call(obj) === '[object '+str+']';
 		};
 	}
+	function setTxtNode(dom, txt, data){
+		if(txt){
+			txt = dataInject(txt, data);
+			var txtnode = document.createTextNode(txt);
+			dom.appendChild(txtnode);
+		}
+		return dom;
+	}
 	function setAttrs(dom, attrs, data) {
 		if(!attrs) return dom;
 		var keys = Object.keys(attrs);
 		for(var i = 0;i<keys.length;i++){
+			if(keys[i]===xhfor) continue;
 			dom.setAttribute(keys[i], dataInject(attrs[keys[i]], data));
 		}
 		return dom;
@@ -171,7 +184,7 @@
 		var obj = parseStr(teststr);
 		var dom = mod2Dom(obj, testd);
 		var template = dom[0].childNodes;
-		
+		console.log(obj);
 		var tar = $x('#test');
 		tar.innerHTML = '';
 		appendNode(tar, template);
