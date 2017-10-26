@@ -1,4 +1,4 @@
-(function (win,$,undefined) {
+(function (window,undefined) {
 	'use strict';
 	var teststr = $x('#test').innerHTML;
 	var endt = '<div id="xxx" class="xxx" xh-for="xxx">';
@@ -44,7 +44,7 @@
 	var subtagexp = /<[^<]*/g;
 	var isArray = _is('Array');
 
-	win.news = {
+	window.news = {
 		"News":News,
 		"mod2Dom":mod2Dom,
 		"parseStr":parseStr,
@@ -178,4 +178,4 @@
 	}
 	testFunc();
 
-})(window, jQuery);
+})(window);
