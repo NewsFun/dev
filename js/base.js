@@ -30,27 +30,27 @@
 			e2:'e21'
 		}]
 	};
-
+	
 	var index = 0;
 	var modList = {};
 	var xhif = 'xh-if';
 	var xhfor = 'xh-for';
-	var singletag = 'input,img,link,meta,';
-
+	var singletag = ',input,img,link,meta,';
+	
 	var attrexp = /\s+([A-Za-z0-9_\-\:]+)\s*=\s*\"([^\"]*)\"/g;
 	var regexp = /\{\{((?:.|\n)+?)\}\}/m;
 	var tagnamexp = /<\s*([a-zA-Z]+)/;
 	var endtagexp = /<\s*\/\s*(\w+)/;
 	var subtagexp = /<[^<]*/g;
 	var isArray = _is('Array');
-
+	
 	win.news = {
 		"News":News,
 		"mod2Dom":mod2Dom,
 		"parseStr":parseStr,
 		"dataInject":dataInject
 	};
-
+	
 	function $x(el) {
 		var mel = document.querySelectorAll(el);
 		if(mel.length<2) return mel[0];
@@ -67,13 +67,12 @@
 		$x(el).innerHTML = mod2Dom(modList[el], data);
 		return news;
 	}
-
+	
 	function VMod(str) {
-		this._son = [];
-		this._tag = '';
-		this._str = '';
-		this._par = null;
-		this._attr = {};
+		this.son = [];
+		this.tag = 'template';
+		this.str = '';
+		this.attr = {};
 	}
 	VMod.prototype.constructor = VMod;
 	
@@ -82,7 +81,7 @@
 		var c = regexp.exec(text);
 		if(c === null) return text;
 		text = text.replace(c[0], data[c[1]]||'');
-		return	dataInject(text, data);
+		return dataInject(text, data);
 	}
 	function getAttrExp(str, obj) {
 		if(str){
@@ -100,7 +99,7 @@
 		var sub = subtagexp.exec(str);
 		if(sub!==null){
 			var substr = sub[0];
-			var subobj = obj._par;
+			var subobj = obj.par;
 			var et = endtagexp.exec(substr);
 			if(et===null) subobj = subStr2Mod(substr, obj);
 			parseStr(str, subobj);
@@ -110,38 +109,44 @@
 	}
 	function subStr2Mod(str, obj) {
 		if(obj.constructor!==VMod) obj = new VMod();
-		// var sub = new VMod();
+		var sub = new VMod();
 		var tn = tagnamexp.exec(str)[1];
-		obj._str = str;
-		obj._tag = tn;
-		obj._attr = getAttrExp(str);
-		if(!obj._par) obj._par = new VMod();
-		obj._par._son.push(obj);
-		if(isSingleTag(tn)) return obj._par;
-		return obj;
+		sub.tag = tn;
+		sub.par = obj;
+		sub.str = str;
+		sub.attr = getAttrExp(str);
+		obj.son.push(sub);
+		if(isSingleTag(tn)) return obj;
+		return sub;
 	}
 	
 	function mod2Dom(mod, data) {
-		if(!mod||!data||!mod._tag) return;
-		var afor = mod._attr[xhfor];
+		if(!mod||!data) return;
+		var afor = mod.attr[xhfor];
 		var dom = [];
 		if(afor){
 			data = data[afor];
-			delete mod._attr[xhfor];
+			delete mod.attr[xhfor];
 			if(isArray(data)){
+				// console.log(data);
 				for (var i = 0;i<data.length;i++) {
-					submod2Dom(mod, data[i]);
+					dom.push(submod2Dom(mod, data[i]));
 				}
-				return dom;
 			}
+		}else{
+			dom.push(submod2Dom(mod, data));
 		}
-		return submod2Dom(mod, data);
+		// console.log(dom);
+		return dom;
 	}
 	function submod2Dom(mod, data) {
-		var dom = document.createElement(mod._tag);
-		dom = setAttrs(dom, mod._attr, data);
-		for (var i = 0;i<mod._son.length;i++) {
-			dom.appendChild(mod2Dom(mod._son[i], data));
+		var dom = document.createElement(mod.tag);
+		dom = setAttrs(dom, mod.attr, data);
+		for (var i = 0;i<mod.son.length;i++) {
+			var subdom = mod2Dom(mod.son[i], data);
+			for (var j = 0;j<subdom.length;j++) {
+				dom.appendChild(subdom[j]);
+			}
 		}
 		return dom;
 	}
@@ -154,6 +159,7 @@
 		};
 	}
 	function setAttrs(dom, attrs, data) {
+		if(!attrs) return dom;
 		var keys = Object.keys(attrs);
 		for(var i = 0;i<keys.length;i++){
 			dom.setAttribute(keys[i], dataInject(attrs[keys[i]], data));
@@ -162,9 +168,12 @@
 	}
 	function testFunc() {
 		var obj = parseStr(teststr);
-		// var dom = submod2Dom(obj._son[0], testd);
-		console.log(obj);
-		
+		var dom = mod2Dom(obj, testd);
+		var template = dom[0].childNodes;
+		$x('#test').innerHTML = '';
+		for(var i = 0;i<template.length;i++){
+			$x('#test').appendChild(template[i]);
+		}
 	}
 	testFunc();
 
