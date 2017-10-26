@@ -130,7 +130,6 @@
 		if(afor){
 			data = data[afor];
 			if(isArray(data)){
-				console.log(data);
 				for (var i = 0;i<data.length;i++) {
 					dom.push(submod2Dom(mod, data[i]));
 				}
@@ -184,7 +183,7 @@
 		var obj = parseStr(teststr);
 		var dom = mod2Dom(obj, testd);
 		var template = dom[0].childNodes;
-		console.log(obj);
+		// console.log(obj);
 		var tar = $x('#test');
 		tar.innerHTML = '';
 		appendNode(tar, template);
