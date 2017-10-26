@@ -30,27 +30,27 @@
 			e2:'e21'
 		}]
 	};
-	
+
 	var index = 0;
 	var modList = {};
 	var xhif = 'xh-if';
 	var xhfor = 'xh-for';
 	var singletag = ',input,img,link,meta,';
-	
+
 	var attrexp = /\s+([A-Za-z0-9_\-\:]+)\s*=\s*\"([^\"]*)\"/g;
 	var regexp = /\{\{((?:.|\n)+?)\}\}/m;
 	var tagnamexp = /<\s*([a-zA-Z]+)/;
 	var endtagexp = /<\s*\/\s*(\w+)/;
 	var subtagexp = /<[^<]*/g;
 	var isArray = _is('Array');
-	
+
 	win.news = {
 		"News":News,
 		"mod2Dom":mod2Dom,
 		"parseStr":parseStr,
 		"dataInject":dataInject
 	};
-	
+
 	function $x(el) {
 		var mel = document.querySelectorAll(el);
 		if(mel.length<2) return mel[0];
@@ -67,7 +67,7 @@
 		$x(el).innerHTML = mod2Dom(modList[el], data);
 		return news;
 	}
-	
+
 	function VMod(str) {
 		this.son = [];
 		this.tag = 'template';
@@ -119,7 +119,7 @@
 		if(isSingleTag(tn)) return obj;
 		return sub;
 	}
-	
+
 	function mod2Dom(mod, data) {
 		if(!mod||!data) return;
 		var afor = mod.attr[xhfor];
@@ -128,7 +128,6 @@
 			data = data[afor];
 			delete mod.attr[xhfor];
 			if(isArray(data)){
-				// console.log(data);
 				for (var i = 0;i<data.length;i++) {
 					dom.push(submod2Dom(mod, data[i]));
 				}
@@ -136,17 +135,13 @@
 		}else{
 			dom.push(submod2Dom(mod, data));
 		}
-		// console.log(dom);
 		return dom;
 	}
 	function submod2Dom(mod, data) {
 		var dom = document.createElement(mod.tag);
 		dom = setAttrs(dom, mod.attr, data);
 		for (var i = 0;i<mod.son.length;i++) {
-			var subdom = mod2Dom(mod.son[i], data);
-			for (var j = 0;j<subdom.length;j++) {
-				dom.appendChild(subdom[j]);
-			}
+			appendNode(dom, mod2Dom(mod.son[i], data));
 		}
 		return dom;
 	}
@@ -166,14 +161,20 @@
 		}
 		return dom;
 	}
+	function appendNode(node, nodelist) {
+		for(var i = 0;i<nodelist.length;i++){
+			node.appendChild(nodelist[i]);
+		}
+		return node;
+	}
 	function testFunc() {
 		var obj = parseStr(teststr);
 		var dom = mod2Dom(obj, testd);
 		var template = dom[0].childNodes;
-		$x('#test').innerHTML = '';
-		for(var i = 0;i<template.length;i++){
-			$x('#test').appendChild(template[i]);
-		}
+		
+		var tar = $x('#test');
+		tar.innerHTML = '';
+		appendNode(tar, template);
 	}
 	testFunc();
 
