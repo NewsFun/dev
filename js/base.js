@@ -5,7 +5,6 @@
 	var testd = {
 		a:'as',
 		b:'bs',
-		c:'cs',
 		d:'ds',
 		e:[{
 			e1:[{
@@ -124,10 +123,11 @@
 	
 	function mod2Dom(mod, data) {
 		if(!mod||!data) return;
-		var aif = mod.attr[xhif];
-		if(aif&&!data[aif]) return;
-		var afor = mod.attr[xhfor];
 		var dom = [];
+		var aif = mod.attr[xhif];
+		if(aif&&!data[aif]) return dom;
+		var afor = mod.attr[xhfor];
+		// console.log(afor);
 		if(afor){
 			data = data[afor];
 			if(isArray(data)){
