@@ -43,11 +43,7 @@
 	var endtagexp = /<\s*\/\s*(\w+)/;
 	var subtagexp = /<[^<]*/g;
 	var isArray = _is('Array');
-	var definedAttr = {
-		'xh-for':nothing,
-		"xh-if":nothing,
-		"xh-on":addEvent
-	};
+
 	var events = {
 		testevent: testevent
 	}
@@ -77,7 +73,6 @@
 	}
 	VMod.prototype.constructor = VMod;
 	
-	function nothing(){}
 	function addEvent(node, event, callback){
 		node.addEventListener(event, events[callback]);
 	}
@@ -129,6 +124,8 @@
 	
 	function mod2Dom(mod, data) {
 		if(!mod||!data) return;
+		var aif = mod.attr[xhif];
+		if(aif&&!data[aif]) return;
 		var afor = mod.attr[xhfor];
 		var dom = [];
 		if(afor){
@@ -143,6 +140,7 @@
 		}
 		return dom;
 	}
+
 	function submod2Dom(mod, data) {
 		var dom = document.createElement(mod.tag);
 		setAttrs(dom, mod.attr, data);
@@ -172,14 +170,21 @@
 		if(!attrs) return dom;
 		var keys = Object.keys(attrs);
 		for(var i = 0;i<keys.length;i++){
-			var aname = keys[i];
-			if(definedAttr[aname]){
-				definedAttr[aname](dom, 'click', attrs[aname]);
-			}else{
-				dom.setAttribute(aname, dataInject(attrs[aname], data));
-			}
+			configOfAttrs(dom, keys[i], attrs, data);
 		}
 		return dom;
+	}
+	function configOfAttrs(dom, aname, attrs, data){
+		switch(aname){
+			case 'xh-for':break;
+			case 'xh-if' :break;
+			case 'xh-on':
+				addEvent(dom, 'click', attrs[aname]);
+				break;
+			default:
+				dom.setAttribute(aname, dataInject(attrs[aname], data));
+				break;
+		}
 	}
 	function appendNode(node, nodelist) {
 		for(var i = 0;i<nodelist.length;i++){
@@ -190,8 +195,8 @@
 	function testFunc() {
 		var obj = parseStr(teststr);
 		var dom = mod2Dom(obj, testd);
+		// console.log(dom);
 		var template = dom[0].childNodes;
-		// console.log(obj);
 		var tar = $x('#test');
 		tar.innerHTML = '';
 		appendNode(tar, template);
