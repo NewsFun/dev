@@ -10,10 +10,8 @@ block main
 	#introduce
 	#test
 		div(class='{{a}}',id='{{b}}')
-			div(class="hello")
-			div(class="world")
-			em(class='{{e2}}',xh-for='e')
-				em(xh-for='e1') {{e10}}
+			ul(class='{{e2}}',xh-for='e')
+				li(xh-for='e1', xh-on='testevent') {{e10}}
 block foot
 	//- script(src="js/calendar.js")
 	script(src="js/base.js")

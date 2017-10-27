@@ -43,14 +43,14 @@
 	var endtagexp = /<\s*\/\s*(\w+)/;
 	var subtagexp = /<[^<]*/g;
 	var isArray = _is('Array');
-
-	window.news = {
-		"News":News,
-		"mod2Dom":mod2Dom,
-		"parseStr":parseStr,
-		"dataInject":dataInject
+	var definedAttr = {
+		'xh-for':nothing,
+		"xh-if":nothing,
+		"xh-on":addEvent
 	};
-
+	var events = {
+		testevent: testevent
+	}
 	function $x(el) {
 		var mel = document.querySelectorAll(el);
 		if(mel.length<2) return mel[0];
@@ -77,6 +77,10 @@
 	}
 	VMod.prototype.constructor = VMod;
 	
+	function nothing(){}
+	function addEvent(node, event, callback){
+		node.addEventListener(event, events[callback]);
+	}
 	function dataInject(text, data){
 		if(!text) return '';
 		var c = regexp.exec(text);
@@ -122,7 +126,7 @@
 		if(isSingleTag(tn)) return obj;
 		return sub;
 	}
-
+	
 	function mod2Dom(mod, data) {
 		if(!mod||!data) return;
 		var afor = mod.attr[xhfor];
@@ -168,8 +172,12 @@
 		if(!attrs) return dom;
 		var keys = Object.keys(attrs);
 		for(var i = 0;i<keys.length;i++){
-			if(keys[i]===xhfor) continue;
-			dom.setAttribute(keys[i], dataInject(attrs[keys[i]], data));
+			var aname = keys[i];
+			if(definedAttr[aname]){
+				definedAttr[aname](dom, 'click', attrs[aname]);
+			}else{
+				dom.setAttribute(aname, dataInject(attrs[aname], data));
+			}
 		}
 		return dom;
 	}
@@ -188,6 +196,15 @@
 		tar.innerHTML = '';
 		appendNode(tar, template);
 	}
+	function testevent(event){
+		this.style = 'background-color:#00ffff;';
+	}
 	testFunc();
 
+	window.news = {
+		"News":News,
+		"mod2Dom":mod2Dom,
+		"parseStr":parseStr,
+		"dataInject":dataInject
+	};
 })(window);
