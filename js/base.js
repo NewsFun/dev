@@ -45,22 +45,14 @@
 
 	var events = {
 		testevent: testevent
-	}
+	};
 	function $x(el) {
 		var mel = document.querySelectorAll(el);
 		if(mel.length<2) return mel[0];
 		return mel;
 	}
 	function News(param) {
-		var el = param.el;
-		var data = param.data;
-		var inhtml = param.template||$x(el).innerHTML;
-		if(!modList[el]){
-			index = 0;
-			modList[el] = parseStr(inhtml, {});
-		}
-		$x(el).innerHTML = mod2Dom(modList[el], data);
-		return news;
+		this.$dom = null;
 	}
 
 	function VMod(str) {
