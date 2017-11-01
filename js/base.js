@@ -42,6 +42,7 @@
 	var endtagexp = /<\s*\/\s*(\w+)/;
 	var subtagexp = /<[^<]*/g;
 	var isArray = _is('Array');
+	var isObject = _is('Object');
 
 	var events = {
 		testevent: testevent
@@ -53,8 +54,14 @@
 	}
 	function News(param) {
 		this.$dom = null;
+		this.$data = null;
 	}
+	extend(News.prototype, {
+		constructor : News,
+		angency:function(data){
 
+		}
+	});
 	function VMod(str) {
 		this.son = [];
 		this.tag = 'template';
@@ -184,24 +191,40 @@
 		}
 		return node;
 	}
-	function testFunc() {
-		var obj = parseStr(teststr);
-		var dom = mod2Dom(obj, testd);
-		// console.log(dom);
-		var template = dom[0].childNodes;
-		var tar = $x('#test');
-		tar.innerHTML = '';
-		appendNode(tar, template);
+	function extend(tarobj, dadobj){
+		var keys = Object.keys(dadobj);
+		for(var i = 0;i<keys.length;i++){
+			var k = keys[i];
+			if(isObject(dadobj[k])){
+				tarobj[k] = extend({},dadobj[k]);
+			}else if(isArray(dadobj[k])){
+				tarobj[k] = extend([],dadobj[k]);
+			}else{
+				tarobj[k] = dadobj[k];
+			}
+		}
+		return tarobj;
 	}
-	function testevent(event){
-		this.style = 'background-color:#00ffff;';
-	}
-	testFunc();
-
 	window.news = {
 		"News":News,
 		"mod2Dom":mod2Dom,
 		"parseStr":parseStr,
 		"dataInject":dataInject
 	};
+	
+	function testFunc() {
+		// var obj = parseStr(teststr);
+		// var dom = mod2Dom(obj, testd);
+		// var template = dom[0].childNodes;
+		// var tar = $x('#test');
+		// tar.innerHTML = '';
+		// appendNode(tar, template);
+		
+	}
+	function testevent(event){
+		this.style = 'background-color:#00ffff;';
+	}
+	testFunc();
+
+	
 })(window);
