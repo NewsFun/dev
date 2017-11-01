@@ -56,11 +56,8 @@
 		this.$dom = null;
 		this.$data = null;
 	}
-	extend(News.prototype, {
-		constructor : News,
-		angency:function(data){
-
-		}
+	extend(News.prototype,{
+		constructor:News
 	});
 	function VMod(str) {
 		this.son = [];
@@ -196,14 +193,39 @@
 		for(var i = 0;i<keys.length;i++){
 			var k = keys[i];
 			if(isObject(dadobj[k])){
-				tarobj[k] = extend({},dadobj[k]);
+				tarobj[k] = extend({}, dadobj[k]);
 			}else if(isArray(dadobj[k])){
-				tarobj[k] = extend([],dadobj[k]);
+				tarobj[k] = extend([], dadobj[k]);
 			}else{
 				tarobj[k] = dadobj[k];
 			}
 		}
 		return tarobj;
+	}
+	function proxy(data, tarobj){
+		tarobj = tarobj||{};
+		var keys = Object.keys(data);
+		for(var i = 0;i<keys.length;i++){
+			var k = keys[i];
+			if(isObject(data[k])){
+				// _angency(tarobj,k,proxy(data[k], {}));
+			}else if(isArray(data[k])){
+				// _angency(tarobj,k,proxy(data[k], []));
+			}else{
+				_angency(tarobj,k,data[k]);
+			}
+		}
+		return tarobj;
+	}
+	function _angency(obj, attr, value){
+		Object.defineProperty(obj, attr, {
+			get:function(){
+
+			},
+			set:function(){
+				// console.log(this.bind(obj[attr]));
+			}
+		});
 	}
 	window.news = {
 		"News":News,
@@ -219,7 +241,10 @@
 		// var tar = $x('#test');
 		// tar.innerHTML = '';
 		// appendNode(tar, template);
-		
+		var test = {a:'h',b:'e',c:'l',d:'l',e:'o'};
+		var td = proxy(test);
+		td.a = 1;
+		console.log(td);
 	}
 	function testevent(event){
 		this.style = 'background-color:#00ffff;';
