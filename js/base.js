@@ -55,10 +55,11 @@
 	function News(param) {
 		this.$dom = null;
 		this.$data = null;
+		extend(News.prototype,{
+			constructor:News
+		});
 	}
-	extend(News.prototype,{
-		constructor:News
-	});
+	
 	function VMod(str) {
 		this.son = [];
 		this.tag = 'template';
@@ -208,22 +209,37 @@
 		for(var i = 0;i<keys.length;i++){
 			var k = keys[i];
 			if(isObject(data[k])){
-				// _angency(tarobj,k,proxy(data[k], {}));
+				_angency(tarobj,k,proxy(data[k], {}));
 			}else if(isArray(data[k])){
-				// _angency(tarobj,k,proxy(data[k], []));
+				_angency(tarobj,k,proxy(data[k], []));
 			}else{
 				_angency(tarobj,k,data[k]);
 			}
 		}
 		return tarobj;
 	}
-	function _angency(obj, attr, value){
+	
+	function _angency(obj, attr, val){
+		var ppt = Object.getOwnPropertyDescriptor(obj, attr);
+		if(ppt&&ppt.configurable===false) return;
+		var getter = ppt&&ppt.get;
+		var setter = ppt&&ppt.set;
 		Object.defineProperty(obj, attr, {
+			enumerable:true,
+			configurable:true,
 			get:function(){
-
+				var value = getter?getter.call(obj):val;
+				return value;
 			},
-			set:function(){
-				// console.log(this.bind(obj[attr]));
+			set:function(newval){
+				var value = getter?getter.call(obj):val;
+				if(value===newval) return;
+				if(setter){
+					setter.call(obj, newval);
+				}else{
+					val = newval;
+				}
+				console.log(newval);
 			}
 		});
 	}
@@ -244,7 +260,7 @@
 		var test = {a:'h',b:'e',c:'l',d:'l',e:'o'};
 		var td = proxy(test);
 		td.a = 1;
-		console.log(td);
+		console.log(td.a);
 	}
 	function testevent(event){
 		this.style = 'background-color:#00ffff;';
