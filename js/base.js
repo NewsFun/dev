@@ -55,11 +55,11 @@
 	function News(param) {
 		this.$dom = null;
 		this.$data = null;
-		extend(News.prototype,{
-			constructor:News
-		});
+		
 	}
-	
+	extend(News.prototype,{
+		constructor:News
+	});
 	function VMod(str) {
 		this.son = [];
 		this.tag = 'template';
