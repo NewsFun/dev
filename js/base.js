@@ -29,6 +29,7 @@
 			e2:'e21'
 		}]
 	};
+	var testd2 = {};
 
 	var index = 0;
 	var modList = {};
@@ -55,7 +56,6 @@
 	function News(param) {
 		this.$dom = null;
 		this.$data = null;
-		
 	}
 	extend(News.prototype,{
 		constructor:News
@@ -63,12 +63,36 @@
 	function VMod(str) {
 		this.son = [];
 		this.tag = 'template';
-		this.str = '';
-		this.txt = '';
+		this.str = null;
+		this.txt = null;
 		this.attr = {};
 	}
-	VMod.prototype.constructor = VMod;
-	
+	extend(VMod.prototype,{
+		constructor:VMod,
+		getModAttr:function(){
+			var self = this;
+			if(self.str){
+				var ae = attrexp.exec(self.str);
+				if(ae !== null){
+					self.attr[ae[1]] = ae[2];
+					self.getModAttr();
+				}
+			}
+			return self;
+		},
+		getTxtNode:function(){
+			var txt = trim(this.str.split('>')[1]);
+			if(txt) this.txt = txt;
+			return this;
+		},
+		getTagName:function(){
+			this.tag = tagnamexp.exec(this.str)[1];
+			return this;
+		}
+	});
+	function DMap(){
+		this.map = [];
+	}
 	function addEvent(node, event, callback){
 		node.addEventListener(event, events[callback]);
 	}
@@ -104,15 +128,15 @@
 		return obj;
 	}
 	function subStr2Mod(str, obj) {
-		if(obj.constructor!==VMod) obj = new VMod();
+		// if(obj.constructor!==VMod) obj = new VMod();
 		var sub = new VMod();
-		var tn = tagnamexp.exec(str)[1];
-		var txt = str.split('>')[1];
-		sub.tag = tn;
-		sub.txt = txt;
+		// var tn = tagnamexp.exec(str)[1];
+		// var txt = trim(str.split('>')[1]);
+		// sub.tag = tn;
 		sub.par = obj;
 		sub.str = str;
-		sub.attr = getAttrExp(str);
+		// sub.attr = getAttrExp(str);
+		// if(txt) sub.txt = txt;
 		obj.son.push(sub);
 		if(isSingleTag(tn)) return obj;
 		return sub;
@@ -121,20 +145,22 @@
 	function mod2Dom(mod, data) {
 		if(!mod||!data) return;
 		var dom = [];
-		var aif = mod.attr[xhif];
-		if(aif&&!data[aif]) return dom;
-		var afor = mod.attr[xhfor];
-		// console.log(afor);
-		if(afor){
-			data = data[afor];
-			if(isArray(data)){
-				for (var i = 0;i<data.length;i++) {
-					dom.push(submod2Dom(mod, data[i]));
+		if(mod.constructor===VMod){
+			var aif = mod.attr[xhif];
+			if(aif&&!data[aif]) return dom;
+			var afor = mod.attr[xhfor];
+			// console.log(afor);
+			if(afor){
+				data = data[afor];
+				if(isArray(data)){
+					for (var i = 0;i<data.length;i++) {
+						dom.push(submod2Dom(mod, data[i]));
+					}
+					return dom;
 				}
 			}
-		}else{
-			dom.push(submod2Dom(mod, data));
 		}
+		dom.push(submod2Dom(mod, data));
 		return dom;
 	}
 
@@ -193,10 +219,18 @@
 		var keys = Object.keys(dadobj);
 		for(var i = 0;i<keys.length;i++){
 			var k = keys[i];
+			tarobj[k] = dadobj[k];
+		}
+		return tarobj;
+	}
+	function clone(tarobj, dadobj){
+		var keys = Object.keys(dadobj);
+		for(var i = 0;i<keys.length;i++){
+			var k = keys[i];
 			if(isObject(dadobj[k])){
-				tarobj[k] = extend({}, dadobj[k]);
+				tarobj[k] = clone({}, dadobj[k]);
 			}else if(isArray(dadobj[k])){
-				tarobj[k] = extend([], dadobj[k]);
+				tarobj[k] = clone([], dadobj[k]);
 			}else{
 				tarobj[k] = dadobj[k];
 			}
@@ -218,7 +252,9 @@
 		}
 		return tarobj;
 	}
-	
+	function trim(x) {
+		return x.replace(/^\s+|\s+$/gm,'');
+	}
 	function _angency(obj, attr, val){
 		var ppt = Object.getOwnPropertyDescriptor(obj, attr);
 		if(ppt&&ppt.configurable===false) return;
@@ -251,16 +287,14 @@
 	};
 	
 	function testFunc() {
-		// var obj = parseStr(teststr);
+		var obj = parseStr(teststr);
 		// var dom = mod2Dom(obj, testd);
 		// var template = dom[0].childNodes;
 		// var tar = $x('#test');
 		// tar.innerHTML = '';
 		// appendNode(tar, template);
-		var test = {a:'h',b:'e',c:'l',d:'l',e:'o'};
-		var td = proxy(test);
-		td.a = 1;
-		console.log(td.a);
+		var son = obj.son[0];
+		console.log(son.getModAttr());
 	}
 	function testevent(event){
 		this.style = 'background-color:#00ffff;';
