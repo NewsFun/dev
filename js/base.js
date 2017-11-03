@@ -138,6 +138,7 @@
 		// sub.attr = getAttrExp(str);
 		// if(txt) sub.txt = txt;
 		obj.son.push(sub);
+		var tn = sub.getTagName().tag;
 		if(isSingleTag(tn)) return obj;
 		return sub;
 	}
