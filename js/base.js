@@ -29,7 +29,7 @@
 			e2:'e21'
 		}]
 	};
-	var testd2 = {};
+	var dep = [];
 
 	var index = 0;
 	var modList = {};
@@ -63,7 +63,7 @@
 	function VMod(str) {
 		this.son = [];
 		this.tag = 'template';
-		this.str = null;
+		this.str = str;
 		this.txt = null;
 		this.attr = {};
 	}
@@ -78,16 +78,16 @@
 					self.getModAttr();
 				}
 			}
-			return self;
+			return self.attr;
 		},
 		getTxtNode:function(){
 			var txt = trim(this.str.split('>')[1]);
 			if(txt) this.txt = txt;
-			return this;
+			return this.txt;
 		},
 		getTagName:function(){
 			this.tag = tagnamexp.exec(this.str)[1];
-			return this;
+			return this.tag;
 		}
 	});
 	function DMap(){
@@ -103,17 +103,6 @@
 		text = text.replace(c[0], data[c[1]]||'');
 		return dataInject(text, data);
 	}
-	function getAttrExp(str, obj) {
-		if(str){
-			obj = obj||{};
-			var ae = attrexp.exec(str);
-			if(ae !== null){
-				obj[ae[1]] = ae[2];
-				getAttrExp(str, obj);
-			}
-		}
-		return obj;
-	}
 	function parseStr(str, obj) {
 		obj = obj||new VMod();
 		var sub = subtagexp.exec(str);
@@ -128,17 +117,11 @@
 		return obj;
 	}
 	function subStr2Mod(str, obj) {
-		// if(obj.constructor!==VMod) obj = new VMod();
-		var sub = new VMod();
-		// var tn = tagnamexp.exec(str)[1];
-		// var txt = trim(str.split('>')[1]);
-		// sub.tag = tn;
+		if(!str) return;
+		var sub = new VMod(str);
 		sub.par = obj;
-		sub.str = str;
-		// sub.attr = getAttrExp(str);
-		// if(txt) sub.txt = txt;
 		obj.son.push(sub);
-		var tn = sub.getTagName().tag;
+		var tn = sub.getTagName();
 		if(isSingleTag(tn)) return obj;
 		return sub;
 	}
@@ -238,24 +221,44 @@
 		}
 		return tarobj;
 	}
-	function proxy(data, tarobj){
-		tarobj = tarobj||{};
-		var keys = Object.keys(data);
-		for(var i = 0;i<keys.length;i++){
-			var k = keys[i];
-			if(isObject(data[k])){
-				_angency(tarobj,k,proxy(data[k], {}));
-			}else if(isArray(data[k])){
-				_angency(tarobj,k,proxy(data[k], []));
-			}else{
-				_angency(tarobj,k,data[k]);
-			}
-		}
-		return tarobj;
-	}
 	function trim(x) {
 		return x.replace(/^\s+|\s+$/gm,'');
 	}
+	function Observer(val){
+		this.val = val;
+		this.walk(val);
+	}
+	extend(Observer.prototype,{
+		walk:function(val){
+			var keys = Object.keys(val);
+			for(var i = 0;i<keys.length;i++){
+				var k = keys[i];
+				this.convert(k,val[k]);
+			}
+		},
+		convert:function(key,val){
+			defineReactive(this.val, key, val);
+		}
+	});
+	function defineReactive (obj, key, val) {
+		var childOb = observe(val);
+		Object.defineProperty(obj, key, {
+			enumerable: true,
+			configurable: true,
+			get: function(){
+				return val;
+			},
+			set:function(newval) {
+				console.log(newval);
+				childOb = observe(newval);
+			}
+		});
+	}
+	function observe (value, vm) {
+		if (!value || typeof value !== 'object') return;
+		return new Observer(value);
+	}
+
 	function _angency(obj, attr, val){
 		var ppt = Object.getOwnPropertyDescriptor(obj, attr);
 		if(ppt&&ppt.configurable===false) return;
@@ -292,10 +295,12 @@
 		// var dom = mod2Dom(obj, testd);
 		// var template = dom[0].childNodes;
 		// var tar = $x('#test');
-		// tar.innerHTML = '';
 		// appendNode(tar, template);
-		var son = obj.son[0];
-		console.log(son.getModAttr());
+		// var son = obj.son[0];
+		var ob = observe(testd).val;
+		ob.e.push({a:1});
+		console.log(ob.e);
+		
 	}
 	function testevent(event){
 		this.style = 'background-color:#00ffff;';
