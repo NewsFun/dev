@@ -125,29 +125,24 @@
 		if(isSingleTag(tn)) return obj;
 		return sub;
 	}
-	
 	function mod2Dom(mod, data) {
 		if(!mod||!data) return;
 		var dom = [];
-		if(mod.constructor===VMod){
-			var aif = mod.attr[xhif];
-			if(aif&&!data[aif]) return dom;
-			var afor = mod.attr[xhfor];
-			// console.log(afor);
-			if(afor){
-				data = data[afor];
-				if(isArray(data)){
-					for (var i = 0;i<data.length;i++) {
-						dom.push(submod2Dom(mod, data[i]));
-					}
-					return dom;
+		var aif = mod.attr[xhif];
+		if(aif&&!data[aif]) return dom;
+		var afor = mod.attr[xhfor];
+		if(afor){
+			data = data[afor];
+			if(isArray(data)){
+				for (var i = 0;i<data.length;i++) {
+					dom.push(submod2Dom(mod, data[i]));
 				}
+				return dom;
 			}
 		}
 		dom.push(submod2Dom(mod, data));
 		return dom;
 	}
-
 	function submod2Dom(mod, data) {
 		var dom = document.createElement(mod.tag);
 		setAttrs(dom, mod.attr, data);
@@ -164,22 +159,6 @@
 		return function (obj) {
 			return Object.prototype.toString.call(obj) === '[object '+str+']';
 		};
-	}
-	function setTxtNode(dom, txt, data){
-		if(txt){
-			txt = dataInject(txt, data);
-			var txtnode = document.createTextNode(txt);
-			dom.appendChild(txtnode);
-		}
-		return dom;
-	}
-	function setAttrs(dom, attrs, data) {
-		if(!attrs) return dom;
-		var keys = Object.keys(attrs);
-		for(var i = 0;i<keys.length;i++){
-			configOfAttrs(dom, keys[i], attrs, data);
-		}
-		return dom;
 	}
 	function configOfAttrs(dom, aname, attrs, data){
 		switch(aname){
@@ -236,7 +215,7 @@
 				this.convert(k,val[k]);
 			}
 		},
-		convert:function(key,val){
+		convert:function(key, val){
 			defineReactive(this.val, key, val);
 		}
 	});
@@ -258,31 +237,6 @@
 		if (!value || typeof value !== 'object') return;
 		return new Observer(value);
 	}
-
-	function _angency(obj, attr, val){
-		var ppt = Object.getOwnPropertyDescriptor(obj, attr);
-		if(ppt&&ppt.configurable===false) return;
-		var getter = ppt&&ppt.get;
-		var setter = ppt&&ppt.set;
-		Object.defineProperty(obj, attr, {
-			enumerable:true,
-			configurable:true,
-			get:function(){
-				var value = getter?getter.call(obj):val;
-				return value;
-			},
-			set:function(newval){
-				var value = getter?getter.call(obj):val;
-				if(value===newval) return;
-				if(setter){
-					setter.call(obj, newval);
-				}else{
-					val = newval;
-				}
-				console.log(newval);
-			}
-		});
-	}
 	window.news = {
 		"News":News,
 		"mod2Dom":mod2Dom,
@@ -297,15 +251,14 @@
 		// var tar = $x('#test');
 		// appendNode(tar, template);
 		// var son = obj.son[0];
-		var ob = observe(testd).val;
-		ob.e.push({a:1});
-		console.log(ob.e);
-		
+		var t1 = {a:[1,2,3]};
+		var ob = observe(t1).val;
+		var a = ob.a[0];
+		console.log(a);
 	}
 	function testevent(event){
 		this.style = 'background-color:#00ffff;';
 	}
 	testFunc();
 
-	
 })(window);
