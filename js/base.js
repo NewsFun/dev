@@ -29,7 +29,7 @@
 			e2:'e21'
 		}]
 	};
-	var dep = [];
+	var tarDom = null;
 
 	var index = 0;
 	var modList = {};
@@ -65,10 +65,17 @@
 		this.tag = 'template';
 		this.str = str;
 		this.txt = null;
+		this.par = null;
 		this.attr = {};
+		this.init();
 	}
 	extend(VMod.prototype,{
 		constructor:VMod,
+		init:function(){
+			this.getModAttr();
+			this.getTxtCont();
+			this.getTagName();
+		},
 		getModAttr:function(){
 			var self = this;
 			if(self.str){
@@ -80,7 +87,7 @@
 			}
 			return self.attr;
 		},
-		getTxtNode:function(){
+		getTxtCont:function(){
 			var txt = trim(this.str.split('>')[1]);
 			if(txt) this.txt = txt;
 			return this.txt;
@@ -90,11 +97,49 @@
 			return this.tag;
 		}
 	});
+	function XDom(vmod, data){
+		this.mod = vmod;
+		this.dom = null;
+		this.data = data;
+	}
+	extend(XDom.prototype,{
+		constructor:XDom,
+		getDom:function(){
+			var mod = this.mod;
+			this.dom = document.createElement(mod.tag);
+			this.getTxtNode();
+			return this.dom;
+		},
+		getDataAttr:function(){
+			var attr = this.mod.attr;
+			return traversal(attr, function(k, v, sub){
+				var dattr = regexp.exec(v);
+				if(dattr!==null) sub[k] = dattr[1];
+			});
+		},
+		addEvent:function(event, callback){
+			this.dom.addEventListener(event, events[callback]);
+			return this;
+		},
+		getTxtNode:function(){
+			var tdom = null;
+			var mtxt = this.mod.txt;
+			if(mtxt) tdom = document.createTextNode(mtxt);
+			this.dom.appendChild(tdom);
+			return tdom;
+		}
+	});
 	function DMap(){
 		this.map = [];
 	}
-	function addEvent(node, event, callback){
-		node.addEventListener(event, events[callback]);
+	function traversal(obj, cb){
+		var keys = Object.keys(obj);
+		var sub = {};
+		for(var i = 0;i<keys.length;i++){
+			var k = keys[i];
+			if(cb) cb(k, obj[k], sub);
+		}
+		return sub;
 	}
 	function dataInject(text, data){
 		if(!text) return '';
@@ -144,7 +189,7 @@
 		return dom;
 	}
 	function submod2Dom(mod, data) {
-		var dom = document.createElement(mod.tag);
+		var dom = new XDom(mod);
 		setAttrs(dom, mod.attr, data);
 		setTxtNode(dom, mod.txt, data);
 		for (var i = 0;i<mod.son.length;i++) {
@@ -245,16 +290,12 @@
 	};
 	
 	function testFunc() {
-		var obj = parseStr(teststr);
+		// var obj = parseStr(teststr);
 		// var dom = mod2Dom(obj, testd);
 		// var template = dom[0].childNodes;
-		// var tar = $x('#test');
+		var tar = $x('#test');
 		// appendNode(tar, template);
 		// var son = obj.son[0];
-		var t1 = {a:[1,2,3]};
-		var ob = observe(t1).val;
-		var a = ob.a[0];
-		console.log(a);
 	}
 	function testevent(event){
 		this.style = 'background-color:#00ffff;';
