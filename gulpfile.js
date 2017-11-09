@@ -65,7 +65,7 @@ gulp.task('browsersync', function() {
             baseDir: "./"
         },
         notify:false,
-        port:3100
+        port:3000
     });
 });
 gulp.task('browsersync_build', function() {

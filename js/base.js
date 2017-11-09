@@ -29,10 +29,8 @@
 			e2:'e21'
 		}]
 	};
-	var tarDom = null;
+	var targetdom = null;
 
-	var index = 0;
-	var modList = {};
 	var xhif = 'xh-if';
 	var xhfor = 'xh-for';
 	var singletag = ',input,img,link,meta,';
@@ -41,6 +39,7 @@
 	var regexp = /\{\{((?:.|\n)+?)\}\}/m;
 	var tagnamexp = /<\s*([a-zA-Z]+)/;
 	var endtagexp = /<\s*\/\s*(\w+)/;
+	var trimexp = /^\s+|\s+$/gm;
 	var subtagexp = /<[^<]*/g;
 	var isArray = _is('Array');
 	var isObject = _is('Object');
@@ -48,11 +47,9 @@
 	var events = {
 		testevent: testevent
 	};
-	function $x(el) {
-		var mel = document.querySelectorAll(el);
-		if(mel.length<2) return mel[0];
-		return mel;
-	}
+	
+	/* class function */
+
 	function News(param) {
 		this.$dom = null;
 		this.$data = null;
@@ -67,7 +64,7 @@
 		this.txt = null;
 		this.par = null;
 		this.attr = {};
-		this.init();
+		if(str) this.init();
 	}
 	extend(VMod.prototype,{
 		constructor:VMod,
@@ -101,14 +98,19 @@
 		this.mod = vmod;
 		this.dom = null;
 		this.data = data;
+		this.getDom();
 	}
 	extend(XDom.prototype,{
 		constructor:XDom,
 		getDom:function(){
+			targetdom = this;
+			this.createDom().setAttrs();
+		},
+		createDom:function(){
 			var mod = this.mod;
 			this.dom = document.createElement(mod.tag);
 			this.getTxtNode();
-			return this.dom;
+			return this;
 		},
 		getDataAttr:function(){
 			var attr = this.mod.attr;
@@ -122,15 +124,60 @@
 			return this;
 		},
 		getTxtNode:function(){
-			var tdom = null;
 			var mtxt = this.mod.txt;
-			if(mtxt) tdom = document.createTextNode(mtxt);
-			this.dom.appendChild(tdom);
-			return tdom;
+			if(mtxt){
+				mtxt = dataInject(mtxt, this.data);
+				this.dom.textContent = mtxt;
+			}
+			return mtxt;
+		},
+		setDomAttr:function(key, val){
+			this.dom.setAttribute(key, val);
+		},
+		setAttrs:function(){
+			var self = this;
+			var attrs = self.mod.attr;
+			traversal(attrs, function(k, v, sub){
+				self.configOfAttrs(k, v, self.data);
+			});
+			return self;
+		},
+		configOfAttrs:function(k, v, data){
+			var self = this;
+			switch(k){
+				case 'xh-for':break;
+				case 'xh-if' :break;
+				case 'xh-on':
+					self.addEvent('click', v);
+					break;
+				default:
+					self.setDomAttr(k, dataInject(v, data));
+					break;
+			}
+		}
+	});
+	function Observer(val){
+		this.val = val;
+		this.walk(val);
+	}
+	extend(Observer.prototype,{
+		walk:function(val){
+			traversal(val, this.convert.bind(this));
+		},
+		convert:function(key, val){
+			defineReactive(this.val, key, val);
 		}
 	});
 	function DMap(){
 		this.map = [];
+	}
+
+	/* assistant function */
+
+	function $x(el) {
+		var mel = document.querySelectorAll(el);
+		if(mel.length<2) return mel[0];
+		return mel;
 	}
 	function traversal(obj, cb){
 		var keys = Object.keys(obj);
@@ -148,6 +195,48 @@
 		text = text.replace(c[0], data[c[1]]||'');
 		return dataInject(text, data);
 	}
+	function isSingleTag(tagname) {
+		return singletag.indexOf(','+tagname+',')>-1;
+	}
+	function _is(str) {
+		return function (obj) {
+			return Object.prototype.toString.call(obj) === '[object '+str+']';
+		};
+	}
+	function appendNode(node, nodelist) {
+		for(var i = 0;i<nodelist.length;i++){
+			node.appendChild(nodelist[i]);
+		}
+		return node;
+	}
+	function extend(tarobj, dadobj){
+		var keys = Object.keys(dadobj);
+		for(var i = 0;i<keys.length;i++){
+			var k = keys[i];
+			tarobj[k] = dadobj[k];
+		}
+		return tarobj;
+	}
+	function clone(tarobj, dadobj){
+		var keys = Object.keys(dadobj);
+		for(var i = 0;i<keys.length;i++){
+			var k = keys[i];
+			if(isObject(dadobj[k])){
+				tarobj[k] = clone({}, dadobj[k]);
+			}else if(isArray(dadobj[k])){
+				tarobj[k] = clone([], dadobj[k]);
+			}else{
+				tarobj[k] = dadobj[k];
+			}
+		}
+		return tarobj;
+	}
+	function trim(x) {
+		return x.replace(trimexp,'');
+	}
+
+	/* entrance function */
+
 	function parseStr(str, obj) {
 		obj = obj||new VMod();
 		var sub = subtagexp.exec(str);
@@ -189,81 +278,12 @@
 		return dom;
 	}
 	function submod2Dom(mod, data) {
-		var dom = new XDom(mod);
-		setAttrs(dom, mod.attr, data);
-		setTxtNode(dom, mod.txt, data);
+		var dom = new XDom(mod, data).dom;
 		for (var i = 0;i<mod.son.length;i++) {
 			appendNode(dom, mod2Dom(mod.son[i], data));
 		}
 		return dom;
 	}
-	function isSingleTag(tagname) {
-		return singletag.indexOf(','+tagname+',')>-1;
-	}
-	function _is(str) {
-		return function (obj) {
-			return Object.prototype.toString.call(obj) === '[object '+str+']';
-		};
-	}
-	function configOfAttrs(dom, aname, attrs, data){
-		switch(aname){
-			case 'xh-for':break;
-			case 'xh-if' :break;
-			case 'xh-on':
-				addEvent(dom, 'click', attrs[aname]);
-				break;
-			default:
-				dom.setAttribute(aname, dataInject(attrs[aname], data));
-				break;
-		}
-	}
-	function appendNode(node, nodelist) {
-		for(var i = 0;i<nodelist.length;i++){
-			node.appendChild(nodelist[i]);
-		}
-		return node;
-	}
-	function extend(tarobj, dadobj){
-		var keys = Object.keys(dadobj);
-		for(var i = 0;i<keys.length;i++){
-			var k = keys[i];
-			tarobj[k] = dadobj[k];
-		}
-		return tarobj;
-	}
-	function clone(tarobj, dadobj){
-		var keys = Object.keys(dadobj);
-		for(var i = 0;i<keys.length;i++){
-			var k = keys[i];
-			if(isObject(dadobj[k])){
-				tarobj[k] = clone({}, dadobj[k]);
-			}else if(isArray(dadobj[k])){
-				tarobj[k] = clone([], dadobj[k]);
-			}else{
-				tarobj[k] = dadobj[k];
-			}
-		}
-		return tarobj;
-	}
-	function trim(x) {
-		return x.replace(/^\s+|\s+$/gm,'');
-	}
-	function Observer(val){
-		this.val = val;
-		this.walk(val);
-	}
-	extend(Observer.prototype,{
-		walk:function(val){
-			var keys = Object.keys(val);
-			for(var i = 0;i<keys.length;i++){
-				var k = keys[i];
-				this.convert(k,val[k]);
-			}
-		},
-		convert:function(key, val){
-			defineReactive(this.val, key, val);
-		}
-	});
 	function defineReactive (obj, key, val) {
 		var childOb = observe(val);
 		Object.defineProperty(obj, key, {
@@ -288,15 +308,20 @@
 		"parseStr":parseStr,
 		"dataInject":dataInject
 	};
-	
-	function testFunc() {
-		// var obj = parseStr(teststr);
-		// var dom = mod2Dom(obj, testd);
-		// var template = dom[0].childNodes;
+
+	function vdomfun(data){
+		var obj = parseStr(teststr);
+		var dom = mod2Dom(obj, data);
+		var template = dom[0].childNodes;
 		var tar = $x('#test');
-		// appendNode(tar, template);
-		// var son = obj.son[0];
+		tar.innerHTML = '';
+		appendNode(tar, template);
 	}
+	function testFunc() {
+		var ob = observe(testd);
+		console.log(ob);
+	}
+	
 	function testevent(event){
 		this.style = 'background-color:#00ffff;';
 	}
