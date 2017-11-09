@@ -30,6 +30,7 @@
 		}]
 	};
 	var targetdom = null;
+	var updatedat = {};
 
 	var xhif = 'xh-if';
 	var xhfor = 'xh-for';
@@ -102,6 +103,10 @@
 	}
 	extend(XDom.prototype,{
 		constructor:XDom,
+		render:function(key, val){
+			console.log('1');
+			this.setDomAttr(key, val);
+		},
 		getDom:function(){
 			targetdom = this;
 			this.createDom().setAttrs();
@@ -171,7 +176,15 @@
 	function DMap(){
 		this.map = [];
 	}
-
+	extend(DMap.prototype,{
+		constructor:DMap,
+		notify:function(){
+			traversal(this.map, function(v, k){
+				if(k) k.render();
+			});
+			updatedat = {};
+		}
+	});
 	/* assistant function */
 
 	function $x(el) {
@@ -286,15 +299,19 @@
 	}
 	function defineReactive (obj, key, val) {
 		var childOb = observe(val);
+		var dmp = new DMap();
 		Object.defineProperty(obj, key, {
 			enumerable: true,
 			configurable: true,
 			get: function(){
+				dmp.map.push(targetdom);
 				return val;
 			},
 			set:function(newval) {
 				console.log(newval);
 				childOb = observe(newval);
+				updatedat[key] = newval;
+				dmp.notify();
 			}
 		});
 	}
@@ -318,8 +335,10 @@
 		appendNode(tar, template);
 	}
 	function testFunc() {
-		var ob = observe(testd);
-		console.log(ob);
+		var ob = observe(testd).val;
+		vdomfun(ob);
+		ob.a = '789';
+		// console.log(ob);
 	}
 	
 	function testevent(event){
