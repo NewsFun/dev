@@ -30,7 +30,7 @@
 		}]
 	};
 	var targetdom = null;
-	var updatedat = {};
+	var updatedat = null;
 
 	var xhif = 'xh-if';
 	var xhfor = 'xh-for';
@@ -99,21 +99,22 @@
 		this.mod = vmod;
 		this.dom = null;
 		this.data = data;
-		this.getDom();
+		this.getDom(true);
 	}
 	extend(XDom.prototype,{
 		constructor:XDom,
-		render:function(key, val){
-			console.log('1');
-			this.setDomAttr(key, val);
+		render:function(){
+			this.setDomAttr(updatedat[0], updatedat[1]);
 		},
-		getDom:function(){
-			targetdom = this;
+		getDom:function(iftar){
+			if(iftar) targetdom = this;
 			this.createDom().setAttrs();
 		},
 		createDom:function(){
-			var mod = this.mod;
-			this.dom = document.createElement(mod.tag);
+			if(!this.dom){
+				var tag = this.mod.tag;
+				this.dom = document.createElement(tag);
+			}
 			this.getTxtNode();
 			return this;
 		},
@@ -128,7 +129,7 @@
 			this.dom.addEventListener(event, events[callback]);
 			return this;
 		},
-		getTxtNode:function(){
+		getTxtNode:function(txt){
 			var mtxt = this.mod.txt;
 			if(mtxt){
 				mtxt = dataInject(mtxt, this.data);
@@ -175,16 +176,14 @@
 	});
 	function DMap(){
 		this.map = [];
-	}
-	extend(DMap.prototype,{
-		constructor:DMap,
-		notify:function(){
+		this.notify = function(){
 			traversal(this.map, function(v, k){
 				if(k) k.render();
 			});
-			updatedat = {};
-		}
-	});
+			// updatedat = {};
+		};
+	}
+
 	/* assistant function */
 
 	function $x(el) {
@@ -230,6 +229,7 @@
 		}
 		return tarobj;
 	}
+	/* 
 	function clone(tarobj, dadobj){
 		var keys = Object.keys(dadobj);
 		for(var i = 0;i<keys.length;i++){
@@ -243,7 +243,8 @@
 			}
 		}
 		return tarobj;
-	}
+	} 
+	*/
 	function trim(x) {
 		return x.replace(trimexp,'');
 	}
@@ -310,7 +311,7 @@
 			set:function(newval) {
 				console.log(newval);
 				childOb = observe(newval);
-				updatedat[key] = newval;
+				updatedat = [key, newval];
 				dmp.notify();
 			}
 		});
@@ -319,12 +320,6 @@
 		if (!value || typeof value !== 'object') return;
 		return new Observer(value);
 	}
-	window.news = {
-		"News":News,
-		"mod2Dom":mod2Dom,
-		"parseStr":parseStr,
-		"dataInject":dataInject
-	};
 
 	function vdomfun(data){
 		var obj = parseStr(teststr);
@@ -337,13 +332,12 @@
 	function testFunc() {
 		var ob = observe(testd).val;
 		vdomfun(ob);
-		ob.a = '789';
 		// console.log(ob);
+		// var div = document.createElement('div');
 	}
 	
 	function testevent(event){
 		this.style = 'background-color:#00ffff;';
 	}
 	testFunc();
-
 })(window);
