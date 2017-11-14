@@ -180,7 +180,6 @@
 			traversal(this.map, function(v, k){
 				if(k) k.render();
 			});
-			// updatedat = {};
 		};
 	}
 
@@ -229,22 +228,6 @@
 		}
 		return tarobj;
 	}
-	/* 
-	function clone(tarobj, dadobj){
-		var keys = Object.keys(dadobj);
-		for(var i = 0;i<keys.length;i++){
-			var k = keys[i];
-			if(isObject(dadobj[k])){
-				tarobj[k] = clone({}, dadobj[k]);
-			}else if(isArray(dadobj[k])){
-				tarobj[k] = clone([], dadobj[k]);
-			}else{
-				tarobj[k] = dadobj[k];
-			}
-		}
-		return tarobj;
-	} 
-	*/
 	function trim(x) {
 		return x.replace(trimexp,'');
 	}
