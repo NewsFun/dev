@@ -1,10 +1,9 @@
 /**
  * Created by bobo on 2016/12/15.
  */
-//constructor
-var Promise = function() {
+function Promise() {
     this.callbacks = [];
-};
+}
 
 Promise.prototype = {
     construct: Promise,

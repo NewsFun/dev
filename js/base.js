@@ -315,8 +315,6 @@
 	function testFunc() {
 		var ob = observe(testd).val;
 		vdomfun(ob);
-		// console.log(ob);
-		// var div = document.createElement('div');
 	}
 	
 	function testevent(event){
