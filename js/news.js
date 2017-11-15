@@ -99,7 +99,6 @@
 	}
 	
 	function getAttrExp(attr) {
-		// var main = "\\s*=\\s*('([^']*)'|\"([^\"]*)\")";
 		return new RegExp(attr+"\\s*=\\s*\"([^\"]*)\"","i");
 	}
 	function $x(el) {
