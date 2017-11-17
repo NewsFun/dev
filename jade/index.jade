@@ -2,11 +2,6 @@ extends layout
 block meta
 	title 测试页面
 block main
-	//- canvas
-	//- #calendar.calendar
-	//- div
-	//- 	p 你好，
-	//- 		span#nickName helloworld
 	#introduce
 	#test
 		div(class='{{a}}',id='{{b}}')
@@ -14,5 +9,4 @@ block main
 			ul(class='{{e2}}',xh-for='e')
 				li(xh-for='e1', xh-on='testevent') {{e10}}
 block foot
-	//- script(src="js/calendar.js")
-	script(src="js/base.js")
+	script(src="js/news.js")

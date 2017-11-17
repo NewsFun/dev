@@ -1,8 +1,7 @@
 (function (win,undefined) {
-	/**
-	 * 测试文件，请无视
-	 */
 	'use strict';
+	var teststr = $x('#test').innerHTML;
+
 	var modList = {};
 	var singletag = ',input,img,link,meta,';
 	
@@ -11,13 +10,13 @@
 	var endtagexp = /<\s*\/\s*(\w+)/;
 	var subtagexp = /<[^<]*/g;
 	var isArray = _is('Array');
-	/* win.news = {
+	win.news = {
 		"News":News,
 		"mod2Dom":mod2Dom,
 		"isArray":isArray,
-		"parseTemp":parseTemp,
+		"parseStr":parseStr,
 		"dataInject":dataInject
-	}; */
+	};
 	
 	function dataInject(text, data){
 		if(!text) return '';
@@ -25,9 +24,6 @@
 		if(c === null) return text;
 		text = text.replace(c[0], data[c[1]]||'');
 		return dataInject(text, data);
-	}
-	function parseTemp(str) {
-		return parseStr(str);
 	}
 	function VMod(str){
 		this.str = str;
@@ -43,17 +39,8 @@
 			this.getTagName();
 		},
 		getTagName:function(){
-			var end = this.ifEndTag();
-			if(!this.ifEndTag()) this.tag = tagnamexp.exec(this.str)[1];
+			this.tag = tagnamexp.exec(this.str)[1];
 			return this.tag;
-		},
-		ifEndTag:function(){
-			var et = endtagexp.exec(substr);
-			if(et!==null){
-				this.end = true;
-				this.tag = et[1];
-			}
-			return this.end;
 		}
 	});
 	function parseStr(str, obj) {
@@ -62,9 +49,9 @@
 		obj = obj||new VMod();
 		if(sub!==null){
 			var substr = sub[0];
-			obj.init(substr);
 			var subobj = obj.par;
-			if(obj.end) subobj = subStr2Mod(substr, obj);
+			var et = endtagexp.exec(substr);
+			if(et===null) subobj = subStr2Mod(substr, obj);
 			parseStr(str, subobj);
 		}
 		
@@ -79,7 +66,7 @@
 		return sub;
 	}
 	
-	function mod2Dom(mod, data, index) {
+	function mod2Dom(mod, data) {
 		// console.log(mod);
 		if(!mod||!data) return;
 		var html = '';
@@ -88,15 +75,15 @@
 			data = data[mod.for];
 			if(isArray(data)){
 				for (var i = 0;i<data.length;i++) {
-					html += submod2Dom(mod, data[i], i);
+					html += submod2Dom(mod, data[i]);
 				}
 				return html;
 			}
 		}
-		html += submod2Dom(mod, data, index);
+		html += submod2Dom(mod, data);
 		return html;
 	}
-	function submod2Dom(mod, data, index) {
+	function submod2Dom(mod, data) {
 		var html = mod.str;
 		var endtag = '';
 		if(data){
@@ -106,7 +93,7 @@
 			for (var i = 0;i<keys.length;i++) {
 				if(keys[i].indexOf('_')>-1) continue;
 				value = mod[keys[i]];
-				html += mod2Dom(value, data, index);
+				html += mod2Dom(value, data);
 			}
 		}else{
 			console.log('no data for '+html+' subtag.');
@@ -159,8 +146,8 @@
 		return tarobj;
 	}
 	function testfunction() {
-
-		console.log(subind);
+		var ts = parseStr(teststr);
+		console.log(ts);
 	}
 	testfunction();
 })(window);
