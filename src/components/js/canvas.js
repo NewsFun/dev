@@ -6,11 +6,12 @@
 	canvas.width = W;
 	canvas.height = H;
 	const ctx = canvas.getContext('2d');
+	
 	function showNumber(num) {
 		ctx.save();
 		ctx.font = '2rem Arial';
         ctx.fillStyle = '#000';
-        ctx.fillText(num,w/2,h/2);
+        ctx.fillText(num,W/2,H/2);
 		ctx.restore();
 	}
 	function animate(){
@@ -19,9 +20,9 @@
         requestAnimationFrame(animate);
     }
     win.onmousewheel = function (event) {
-    	var e = event||win.event;
-    	var detail = e.wheelDelta;
-    	var step = detail/abs(detail);
+    	let e = event||win.event;
+    	let detail = e.wheelDelta;
+    	let step = detail/Abs(detail);
     	number += step;
     };
     animate();
