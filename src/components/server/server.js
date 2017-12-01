@@ -3,23 +3,29 @@ const fs = require('fs');
 const port = '2850';
 
 const documentRoot = './';
-const server = http.createServer(function(req, res){
-    let url = req.url;
-    let file = documentRoot + url;
+
+function startServer(){
+    http.createServer(function(req, res){
+        let url = req.url;
+        let file = documentRoot + url;
+        readFiles(file);    
+    }).listen(port);
+    console.log('服务器启动成功，端口：'+port);
+}
+function readFiles(path){
     fs.readFile(file, function(err, data){
         if(err){
-            res.writeHeader(404,{
-                'content-type' : 'text/html;charset="utf-8"'
-            });
-            res.write('<h1>404错误</h1><p>你要找的页面不存在</p>');
-            res.end();
+            serverRes(res, 404, '<h1>404错误</h1><p>你要找的页面不存在</p>');
         }else{
-            res.writeHeader(200,{
-                'content-type' : 'text/html;charset="utf-8"'
-            });
-            res.write(data);//将index.html显示在客户端
-            res.end();
+            serverRes(res, 200, data);
         }
     });
-}).listen(port);
-console.log('服务器启动成功，端口：'+port);
+}
+function serverRes(res, code, data){
+    res.writeHeader(code,{
+        'content-type' : 'text/html;charset="utf-8"'
+    });
+    res.write(data);
+    res.end();
+}
+startServer();
