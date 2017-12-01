@@ -1,10 +1,11 @@
-var http = require('http');
-var fs = require('fs');
+const http = require('http');
+const fs = require('fs');
+const port = '2850';
 
-var documentRoot = './';
-var server = http.createServer(function(req, res){
-    var url = req.url;
-    var file = documentRoot + url;
+const documentRoot = './';
+const server = http.createServer(function(req, res){
+    let url = req.url;
+    let file = documentRoot + url;
     fs.readFile(file, function(err, data){
         if(err){
             res.writeHeader(404,{
@@ -20,4 +21,5 @@ var server = http.createServer(function(req, res){
             res.end();
         }
     });
-}).listen(8888);
+}).listen(port);
+console.log('服务器启动成功，端口：'+port);
