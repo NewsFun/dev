@@ -1,14 +1,14 @@
 const http = require('http');
-const p = require('path');
 const fs = require('fs');
 
 const port = '2850';
 const documentRoot = './';
 const res404 = '<h1>404错误</h1><p>你要找的内容不存在</p>';
+var url = '';
 
 function startServer(){
     http.createServer(function(req, res){
-        let url = req.url;
+        url = req.url;
         let path = documentRoot + url;
         readPath(path, res);
     }).listen(port);
@@ -34,7 +34,8 @@ function readFileList(path, res){
     let filelist = fs.readdirSync(path);
     let list = '';
     filelist.forEach(function(item, index){
-        list += '<div><a href="./'+item+'">'+item+'</a></div>';
+        let furl = url==='/'?url+item:url+'/'+item;
+        list += `<div><a href="${furl}">${item}</a></div>`;
     });
     serverRes(res, 200, list);
 }
