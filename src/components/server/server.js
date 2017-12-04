@@ -1,26 +1,34 @@
 const http = require('http');
+const p = require('path');
 const fs = require('fs');
-const cp = require('child_process');
 
 const port = '2850';
 const documentRoot = './';
 const res404 = '<h1>404错误</h1><p>你要找的内容不存在</p>';
 
+function startServer(){
+    http.createServer(function(req, res){
+        let url = req.url;
+        let path = documentRoot + url;
+        readPath(path, res);
+    }).listen(port);
+    console.log('服务器启动成功，端口：'+port);
+}
 function readPath(path, res){
-    fs.stat(path, (err, stat)=>{
-        let isdir = isFolder(stat);
-        if(isdir){
-            readFileList(path, res);
+    if(isFolder(path)){
+        readFileList(path, res);
+    }else{
+        readAFile(path, res);
+    }
+}
+function readAFile(path, res){
+    fs.readFile(path, 'UTF-8', function(err, data){
+        if(err){
+            console.log(err);
         }else{
-            readAFile(path, res);
+            serverRes(res, 200, data);
         }
     });
-}
-function isFolder(stat){
-    return stat.isDirectory();
-}
-function fileError(){
-    console.log('文件不存在，请确认路径正确！');
 }
 function readFileList(path, res){
     let filelist = fs.readdirSync(path);
@@ -30,28 +38,17 @@ function readFileList(path, res){
     });
     serverRes(res, 200, list);
 }
-function startServer(){
-    http.createServer(function(req, res){
-        let url = req.url;
-        let path = documentRoot + url;
-        readPath(path, res);
-    }).listen(port);
-    console.log('服务器启动成功，端口：'+port);
-}
-function readAFile(path, res){
-    fs.readFile(path, 'UTF-8', function(err, data){
-        if(err){
-            console.log('读取文件错误，请确认地址有效');
-        }else{
-            serverRes(res, 200, data);
-        }
-    });
-}
 function serverRes(res, code = 404, data = res404){
     res.writeHeader(code,{
         'content-type' : 'text/html;charset="utf-8"'
     });
     res.write(data);
     res.end();
+}
+function isFolder(path){
+    return exists(path) && fs.statSync(path).isDirectory();
+}
+function exists(path){  
+    return fs.existsSync(path);  
 }
 startServer();
