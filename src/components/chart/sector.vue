@@ -88,9 +88,9 @@ export default {
       default() {
         return {
           // 分子
-          value: 0,
+          value: 2,
           // 分母
-          total: 0
+          total: 10
         };
       }
     },

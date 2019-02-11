@@ -52,13 +52,13 @@ $h_item: 120px;
   &-title {
     width: 100%;
     text-align: center;
-    color: $c_black6;
+    color: $c_6;
   }
 }
 
 .sector {
   &-legend {
-    color: $c_red;
+    color: $c_on;
     font-size: 24px;
 
     &-wrap {
@@ -70,7 +70,7 @@ $h_item: 120px;
       border-radius: $h_item/2;
       left: 50%;
       top: 50%;
-      background-color: $c_white;
+      background-color: $c_f;
       transform: translate(-50%, -50%);
       text-align: center;
     }
@@ -81,7 +81,7 @@ $h_item: 120px;
     }
 
     &-sub {
-      color: $c_black9;
+      color: $c_9;
       font-size: 12px;
     }
   }
