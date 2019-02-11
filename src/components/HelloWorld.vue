@@ -1,11 +1,9 @@
 <template>
-  <div>
-    <sector></sector>
-  </div>
+  <sector :show="true"></sector>
 </template>
 
 <script>
-import sector from '@/components/totUp/totList.vue';
+import sector from '@/components/popup/popup.vue';
 
 export default {
   name: 'HelloWorld',

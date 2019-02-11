@@ -1,5 +1,22 @@
 @import "common";
 
+html,
+body {
+  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#app {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
 a {
   text-decoration: none;
   cursor: pointer;
@@ -406,5 +423,16 @@ a {
     width: 1180px;
     margin-left: auto;
     margin-right: auto;
+  }
+
+  &-cover {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $c_0;
+    opacity: 0.5;
+    z-index: 90;
   }
 }
