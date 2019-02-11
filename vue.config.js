@@ -18,7 +18,7 @@ module.exports = {
     loaderOptions: {}, // Enable CSS modules for all css / pre-processor files. // This option does not affect *.vue files.
     modules: false
   },
-  baseUrl: process.env.NODE_ENV === 'production' ? '/' : '/',
+  publicPath: process.env.NODE_ENV === 'production' ? '/' : '/',
   outputDir: 'dist',
   assetsDir: 'static',
   filenameHashing: true,
