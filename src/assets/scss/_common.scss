@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+$c_0: #000000;
+$c_3: #333333;
+$c_6: #666666;
+$c_9: #999999;
+$c_f: #ffffff;
+$c_dark: #2f3164;
+$c_error: #FF7575;
+$c_gray: #c0c0d4;
+$c_on: #6097FF;
+$c_success: #5BD2AF;
+$c_border: #DBDBD9;
+$c_blue: #5172FF;
+
+$h_btn: 36px;
+
+@mixin icon-result($content) {
+  display: block;
+  width: 12px;
+  height: 12px;
+  text-align: center;
+  line-height: 12px;
+  font-size: 12px;
+  content: $content;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
