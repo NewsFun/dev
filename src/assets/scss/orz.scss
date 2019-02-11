@@ -3,7 +3,7 @@
 a {
   text-decoration: none;
   cursor: pointer;
-  color: $c_black3;
+  color: $c_3;
 }
 
 .ovf {
@@ -23,7 +23,7 @@ a {
     color: $c_on;
 
     &-tab {
-      color: $c_blue_tab;
+      color: $c_blue;
     }
   }
 
@@ -40,7 +40,7 @@ a {
   }
 
   &-black6 {
-    color: $c_black6;
+    color: $c_6;
   }
 }
 
@@ -109,7 +109,7 @@ a {
     box-sizing: border-box;
     background-color: $c_red;
     line-height: 40px;
-    color: $c_white;
+    color: $c_f;
     font-weight: 600;
     font-size: 16px;
     padding: 0 10px;
@@ -125,7 +125,7 @@ a {
     box-sizing: border-box;
     background-color: $c_orange;
     line-height: 34px;
-    color: $c_white;
+    color: $c_f;
     font-weight: 600;
     font-size: 16px;
     text-align: center;
@@ -204,7 +204,7 @@ a {
 
     &:hover,
     &.on {
-      color: $c_white;
+      color: $c_f;
       background-color: $c_on;
     }
 
@@ -241,7 +241,7 @@ a {
 
         &:hover {
           background-color: $c_dark;
-          color: $c_white;
+          color: $c_f;
         }
       }
 
@@ -252,7 +252,7 @@ a {
 
         &:hover {
           background-color: $c_gray;
-          color: $c_white;
+          color: $c_f;
         }
       }
 
@@ -263,7 +263,7 @@ a {
 
         &:hover {
           background-color: $c_success;
-          color: $c_white;
+          color: $c_f;
         }
       }
 
@@ -274,14 +274,14 @@ a {
 
         &:hover {
           background-color: $c_error;
-          color: $c_white;
+          color: $c_f;
         }
       }
     }
 
     &-result {
       @extend .orz-btn-pagn;
-      color: $c_black6;
+      color: $c_6;
       border-color: $c_gray;
 
       &:hover {
@@ -314,13 +314,13 @@ a {
         &:hover {
           border-color: $c_success;
           background-color: $c_success;
-          color: $c_white;
+          color: $c_f;
         }
 
         &.active {
           border-color: $c_success;
           background-color: $c_success;
-          color: $c_white;
+          color: $c_f;
         }
       }
 
@@ -336,13 +336,13 @@ a {
         &:hover {
           border-color: $c_success;
           background-color: $c_success;
-          color: $c_white;
+          color: $c_f;
         }
 
         &.active {
           border-color: $c_success;
           background-color: $c_success;
-          color: $c_white;
+          color: $c_f;
         }
       }
 
@@ -351,7 +351,7 @@ a {
 
         &.active {
           background: $c_error;
-          color: $c_white;
+          color: $c_f;
         }
 
         &::after {
@@ -363,7 +363,7 @@ a {
 
   &-card {
     padding: 30px;
-    background-color: $c_white;
+    background-color: $c_f;
     box-shadow: 0px 0px 6px 0px rgba(206, 206, 206, 0.3);
 
     &+& {
