@@ -1,0 +1,58 @@
+@import "../../assets/scss/common";
+
+.tot {
+  &-list {
+    display: inline-block;
+
+    &.border {
+      .tot-item {
+        padding-right: 40px;
+
+        +.tot-item {
+          border-left: 2px solid $c_border;
+        }
+      }
+    }
+
+    &.big {
+      .tot-item {
+        &-key {
+          font-size: 36px;
+        }
+      }
+    }
+  }
+
+  &-item {
+    display: inline-block;
+
+    &+& {
+      padding-left: 40px;
+    }
+
+    &-title {
+      text-align: center;
+      font-size: 14px;
+      color: #999999;
+    }
+
+    &-vals {
+      font-size: 0;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    &-val {
+      display: inline-block;
+    }
+
+    &-key {
+      font-size: 22px;
+      font-weight: 600;
+    }
+
+    &-unit {
+      font-size: 14px;
+    }
+  }
+}

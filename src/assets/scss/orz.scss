@@ -1,0 +1,410 @@
+@import "common";
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+  color: $c_black3;
+}
+
+.ovf {
+  &-hidden {
+    overflow: hidden;
+  }
+
+  &-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+.color {
+  &-on {
+    color: $c_on;
+
+    &-tab {
+      color: $c_blue_tab;
+    }
+  }
+
+  &-success {
+    color: $c_success;
+  }
+
+  &-error {
+    color: $c_error;
+  }
+
+  &-disable {
+    color: $c_gray;
+  }
+
+  &-black6 {
+    color: $c_black6;
+  }
+}
+
+.mg {
+  &-10 {
+    margin-top: 10px;
+  }
+
+  &-20 {
+    margin-top: 20px;
+  }
+
+  &-40 {
+    margin-top: 40px;
+  }
+
+  &-50 {
+    margin-top: 50px;
+  }
+
+  &-60 {
+    margin-top: 60px;
+  }
+
+  &-80 {
+    margin-top: 80px;
+  }
+
+  &-l {
+    &-10 {
+      margin-left: 10px;
+    }
+
+    &-20 {
+      margin-left: 20px;
+    }
+
+    &-40 {
+      margin-left: 40px;
+    }
+  }
+}
+
+.hover {
+  &-underline {
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.font {
+  &-20 {
+    font-size: 20px;
+  }
+}
+
+.title {
+  &-2 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  &-bg {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: $c_red;
+    line-height: 40px;
+    color: $c_white;
+    font-weight: 600;
+    font-size: 16px;
+    padding: 0 10px;
+  }
+
+  &-color {
+    @extend .title-2;
+    color: $c_red;
+  }
+
+  &-score {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: $c_orange;
+    line-height: 34px;
+    color: $c_white;
+    font-weight: 600;
+    font-size: 16px;
+    text-align: center;
+  }
+}
+
+.text {
+  &-center {
+    text-align: center;
+  }
+
+  &-left {
+    text-align: left;
+  }
+
+  &-right {
+    text-align: right;
+  }
+}
+
+.flex {
+  display: flex;
+
+  &-between {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &-1 {
+    flex: 1;
+  }
+
+  &-2 {
+    flex: 2;
+  }
+
+  &-3 {
+    flex: 3;
+  }
+
+  &.item-center {
+    height: 100%;
+    align-items: center;
+  }
+}
+
+.pad {
+  &-b {
+    &-20 {
+      padding-bottom: 20px;
+    }
+  }
+
+  &-t {
+    &-20 {
+      padding-top: 20px;
+    }
+  }
+}
+
+.orz {
+  &-btn {
+    display: inline-block;
+    box-sizing: border-box;
+    color: $c_on;
+    padding: 0 15px;
+    cursor: pointer;
+    border-radius: 4px;
+    font-size: 14px;
+    line-height: 30px;
+    border: 1px solid $c_on;
+
+    &+& {
+      margin-left: 20px;
+    }
+
+    &:hover,
+    &.on {
+      color: $c_white;
+      background-color: $c_on;
+    }
+
+    &.big {
+      padding: 0 50px;
+    }
+
+    &-pagn {
+      cursor: pointer;
+      position: relative;
+      display: inline-block;
+      box-sizing: border-box;
+      width: $h_btn;
+      height: $h_btn;
+      font-size: 16px;
+
+      border: {
+        width: 2px;
+        style: solid;
+        radius: 4px;
+      }
+
+      text-align: center;
+      line-height: $h_btn - 4;
+
+      &[disabled] {
+        cursor: not-allowed;
+      }
+
+      &-dark {
+        @extend .orz-btn-pagn;
+        color: $c_dark;
+        border-color: $c_dark;
+
+        &:hover {
+          background-color: $c_dark;
+          color: $c_white;
+        }
+      }
+
+      &-light {
+        @extend .orz-btn-pagn;
+        color: $c_gray;
+        border-color: $c_gray;
+
+        &:hover {
+          background-color: $c_gray;
+          color: $c_white;
+        }
+      }
+
+      &-success {
+        @extend .orz-btn-pagn;
+        color: $c_success;
+        border-color: $c_success;
+
+        &:hover {
+          background-color: $c_success;
+          color: $c_white;
+        }
+      }
+
+      &-error {
+        @extend .orz-btn-pagn;
+        color: $c_error;
+        border-color: $c_error;
+
+        &:hover {
+          background-color: $c_error;
+          color: $c_white;
+        }
+      }
+    }
+
+    &-result {
+      @extend .orz-btn-pagn;
+      color: $c_black6;
+      border-color: $c_gray;
+
+      &:hover {
+        background-color: $c_gray;
+      }
+
+      &.active {
+        background-color: $c_gray;
+      }
+
+      &-default {
+        border: 2px solid #5973F7;
+        color: #5973F7;
+
+        &:hover {
+          background-color: white;
+        }
+
+        &.active {
+          background-color: #5973F7;
+          color: white;
+        }
+      }
+
+      &-write {
+        @extend .orz-btn-pagn;
+        color: $c_success;
+        border-color: $c_success;
+
+        &:hover {
+          border-color: $c_success;
+          background-color: $c_success;
+          color: $c_white;
+        }
+
+        &.active {
+          border-color: $c_success;
+          background-color: $c_success;
+          color: $c_white;
+        }
+      }
+
+      &-right {
+        @extend .orz-btn-pagn;
+        color: $c_success;
+        border-color: $c_success;
+
+        &::after {
+          @include icon-result("✓");
+        }
+
+        &:hover {
+          border-color: $c_success;
+          background-color: $c_success;
+          color: $c_white;
+        }
+
+        &.active {
+          border-color: $c_success;
+          background-color: $c_success;
+          color: $c_white;
+        }
+      }
+
+      &-wrong {
+        @extend .orz-btn-pagn-error;
+
+        &.active {
+          background: $c_error;
+          color: $c_white;
+        }
+
+        &::after {
+          @include icon-result("×");
+        }
+      }
+    }
+  }
+
+  &-card {
+    padding: 30px;
+    background-color: $c_white;
+    box-shadow: 0px 0px 6px 0px rgba(206, 206, 206, 0.3);
+
+    &+& {
+      margin-top: 20px;
+    }
+  }
+
+  &-icon {
+    display: block;
+
+    &-prev {
+      @extend .orz-icon;
+
+      &::before {
+        content: "⬅";
+      }
+    }
+
+    &-next {
+      @extend .orz-icon;
+
+      &::before {
+        content: "➡";
+      }
+    }
+  }
+
+  &-link {
+    &-on {
+      color: $c_on;
+    }
+
+    &:hover {
+      color: $c_on;
+      text-decoration: underline;
+    }
+  }
+
+  &-pc {
+    width: 1180px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

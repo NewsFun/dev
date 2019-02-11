@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import sector from '@/components/chart/sector.vue';
+import sector from '@/components/totUp/totList.vue';
 
 export default {
   name: 'HelloWorld',
@@ -19,4 +19,3 @@ export default {
   }
 }
 </script>
-

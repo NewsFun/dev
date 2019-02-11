@@ -1,0 +1,123 @@
+@import "../../assets/scss/common";
+
+$h_bar: 20px;
+$h_bar_big: 30px;
+$h_icon: 6px;
+
+.koo {
+  &-bar {
+    display: flex;
+    height: $h_bar;
+    line-height: $h_bar;
+
+    &-box {
+      flex-grow: 1;
+    }
+
+    &-label {
+      box-sizing: border-box;
+      padding-right: 10px;
+
+      &.right {
+        text-align: right;
+      }
+    }
+
+    &-line {
+      position: absolute;
+      right: 0;
+      width: 0;
+      height: 100%;
+      padding: 4px 0;
+      margin-top: -4px;
+      border-left: 1px solid $c_0;
+    }
+
+    &-max {
+      box-sizing: border-box;
+      padding-left: 10px;
+    }
+
+    &-cursor {
+      &-title {
+        width: 100px;
+        margin-left: -50px;
+        margin-top: -96px;
+        font-weight: 600;
+        text-align: center;
+        line-height: 16px;
+      }
+    }
+
+    &-chart {
+      position: relative;
+      height: 100%;
+    }
+
+    &-tips {
+      position: absolute;
+      right: 0;
+      top: 0;
+      line-height: $h_bar;
+
+      &.top {
+        transform: translate(50%, -28px);
+        background-color: $c_orange;
+        border-radius: 4px;
+        padding: 0 10px;
+        font-size: 14px;
+        color: $c_f;
+
+        &::after {
+          position: absolute;
+          display: block;
+          width: $h_icon;
+          height: $h_icon;
+          content: "";
+          left: 50%;
+          bottom: 0;
+          background-color: $c_orange;
+          margin-left: -$h_icon/2;
+          margin-bottom: -$h_icon/2;
+          transform: rotate(45deg);
+        }
+      }
+
+      &.right {
+        right: -4px;
+        transform: translateX(100%);
+      }
+    }
+
+    &+& {
+      margin-top: 34px;
+    }
+
+    &.big {
+      height: $h_bar_big;
+      line-height: $h_bar_big;
+
+      .koo-bar-tips {
+        line-height: $h_bar_big;
+
+        &.top {
+          font-size: 24px;
+          padding: 8px 16px;
+          transform: translate(50%, -56px);
+        }
+      }
+    }
+  }
+}
+
+.animate {
+  &-width {
+    animation: widthChange 1s;
+  }
+}
+
+@keyframes widthChange {
+  0% {
+    width: 0;
+  }
+}
