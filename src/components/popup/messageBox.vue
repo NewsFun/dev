@@ -1,22 +1,23 @@
 <template>
-  <div class="popup-container" v-if="popShow">
-    <div class="popup-cover"></div>
-    <div class="popup-wrap">
-      <div class="popup-close">
-        <a class="icon-close">×</a>
-      </div>
-      <div class="popup-head popup-box" v-if="showTitle">
+  <div class="msgbox-container" v-if="popShow">
+    <div class="msgbox-cover"></div>
+    <div class="msgbox-wrap">
+      <div class="msgbox-head msgbox-box" v-if="showTitle">
         <span class="title">{{title}}</span>
       </div>
-      <div class="popup-body popup-box">
+      <div class="msgbox-body msgbox-box">
         <slot name="content"></slot>
+      </div>
+      <div class="msgbox-footer">
+        <span class="msgbox-btn cancel" v-if="showCancelBtn" @click="onCancel">{{cancelText}}</span>
+        <span class="msgbox-btn" v-if="showConfirmBtn" @click="handleConfirm">{{confirmText}}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import "./popup.scss";
+import "./msg-box-wap.scss";
 
 export default {
   name: "popup",
@@ -97,4 +98,3 @@ export default {
   }
 };
 </script>
-

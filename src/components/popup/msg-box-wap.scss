@@ -1,24 +1,8 @@
 @import "../../assets/scss/common";
 
-.popup {
+.msgbox {
   &-box {
     padding: 8px 10px;
-  }
-
-  &-close {
-    position: relative;
-
-    .icon-close {
-      position: absolute;
-      right: 0;
-      top: 0;
-      display: block;
-      width: 30px;
-      height: 30px;
-      font-size: 28px;
-      line-height: 30px;
-      text-align: center;
-    }
   }
 
   &-container {
@@ -37,19 +21,21 @@
 
   &-wrap {
     position: absolute;
-    bottom: 0;
-    left: 0;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     background: $c_f;
-    width: 100%;
-    border-radius: 10px 10px 0 0;
+    width: 90%;
+    border-radius: 10px;
     overflow: hidden;
   }
 
   &-head {
-    text-align: center;
     border-bottom: 1px solid #e5e5e5;
   
     .title {
+      text-align: left;
+      line-height: 34px;
       word-break: break-all;
       font-size: 14px;
     }
@@ -63,6 +49,28 @@
     .paragraph {
       line-height: 1.2;
       margin: 6px 0;
+    }
+  }
+
+  &-footer {
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+  }
+
+  &-btn {
+    flex: 1;
+    display: inline-block;
+    line-height: 45px;
+    // background: #337ab7;
+    background: linear-gradient(135deg, #09D198, #1ACDD5);
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    color: $c_f;
+
+    &.cancel {
+      background: $c_f;
+      color: inherit;
     }
   }
 }

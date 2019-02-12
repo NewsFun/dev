@@ -1,5 +1,5 @@
 <template>
-  <sector :show="true" :show-title="false"></sector>
+  <sector :show="true"></sector>
 </template>
 
 <script>
