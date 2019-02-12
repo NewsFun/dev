@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import "./popup-pc.scss";
+import "./popup.scss";
 
 export default {
   name: "popup",
