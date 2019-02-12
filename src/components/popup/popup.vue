@@ -2,22 +2,22 @@
   <div class="popup-container" v-if="popShow">
     <div class="popup-cover"></div>
     <div class="popup-wrap">
-      <div class="popup-head popup-box">
+      <div class="popup-head popup-box" v-if="showTitle">
         <span class="title">{{title}}</span>
       </div>
-      <div class="popup-body">
+      <div class="popup-body popup-box">
         <slot name="content"></slot>
       </div>
       <div class="popup-footer">
-        <span class="btn cancel" v-if="showCancelBtn" @click="onCancel">{{cancelText}}</span>
-        <span class="btn" v-if="showConfirmBtn" @click="handleConfirm">{{confirmText}}</span>
+        <span class="popup-btn cancel" v-if="showCancelBtn" @click="onCancel">{{cancelText}}</span>
+        <span class="popup-btn" v-if="showConfirmBtn" @click="handleConfirm">{{confirmText}}</span>
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import "./popup.scss";
+import "./popup-wap.scss";
 
 export default {
   name: "popup",
@@ -34,6 +34,10 @@ export default {
     title: {
       type: String,
       default: "提示"
+    },
+    showTitle: {
+      type: Boolean,
+      default: true
     },
     popupInfo: {
       type: Object,
