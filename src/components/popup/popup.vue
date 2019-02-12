@@ -2,8 +2,8 @@
   <div class="popup-container" v-if="popShow">
     <div class="popup-cover"></div>
     <div class="popup-wrap">
-      <div class="popup-head">
-        <h1 class="title">{{title}}</h1>
+      <div class="popup-head popup-box">
+        <span class="title">{{title}}</span>
       </div>
       <div class="popup-body">
         <slot name="content"></slot>
@@ -33,7 +33,7 @@ export default {
     },
     title: {
       type: String,
-      default: ""
+      default: "提示"
     },
     popupInfo: {
       type: Object,
