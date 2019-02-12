@@ -1,17 +1,19 @@
 <template>
   <div class="popup-container" v-if="popShow">
     <div class="popup-cover"></div>
-    <div class="popup-wrap">
-      <div class="popup-close">
-        <a class="icon-close">×</a>
+    <transition name="popup" @after-leave="afterLeave">
+      <div class="popup-wrap" v-if="contentShow">
+        <div class="popup-close">
+          <a class="icon-close" @click="close">×</a>
+        </div>
+        <div class="popup-head popup-box">
+          <span class="title">{{title}}</span>
+        </div>
+        <div class="popup-body popup-box">
+          <slot name="content"></slot>
+        </div>
       </div>
-      <div class="popup-head popup-box" v-if="showTitle">
-        <span class="title">{{title}}</span>
-      </div>
-      <div class="popup-body popup-box">
-        <slot name="content"></slot>
-      </div>
-    </div>
+    </transition>
   </div>
 </template>
 
@@ -22,7 +24,8 @@ export default {
   name: "popup",
   data() {
     return {
-      popShow: false
+      popShow: false,
+      contentShow: true
     };
   },
   props: {
@@ -38,61 +41,28 @@ export default {
       type: Boolean,
       default: true
     },
-    popupInfo: {
-      type: Object,
-      default() {
-        return {
-          content: [],
-          cancelText: "Cancel",
-          confirmText: "Continue",
-          showCancelBtn: true,
-          showConfirmBtn: true
-        };
-      }
-    },
-    handleCancel: {
+    handleClose: {
       type: Function,
       default() {
         return () => {};
       }
-    },
-    handleConfirm: {
-      type: Function,
-      default() {
-        return () => {};
-      }
-    }
-  },
-  computed: {
-    content() {
-      return this.popupInfo.content;
-    },
-    cancelText() {
-      return this.popupInfo.cancelText || "Cancel";
-    },
-    confirmText() {
-      return this.popupInfo.confirmText || "Continue";
-    },
-    showCancelBtn() {
-      return this.popupInfo.showCancelBtn;
-    },
-    showConfirmBtn() {
-      return this.popupInfo.showConfirmBtn;
     }
   },
   watch: {
-    popupInfo(val) {}
+    show(val) {
+      this.popShow = val;
+    }
   },
   mounted() {
     this.popShow = this.show;
   },
   methods: {
     close() {
-      this.popShow = false;
+      this.contentShow = false;
     },
-    onCancel() {
+    afterLeave(e) {
       this.popShow = false;
-      this.handleCancel && this.handleCancel();
+      this.handleClose && this.handleClose();
     }
   }
 };

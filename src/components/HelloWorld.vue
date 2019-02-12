@@ -1,19 +1,36 @@
 <template>
-  <sector :show="true"></sector>
+  <div>
+    <button @click="popupShow">show</button>
+    <sector :show="popShow" :handle-close="popupClose">
+      <ul slot="content">
+        <li v-for="item in 5" :key="item">{{item}}</li>
+      </ul>
+    </sector>
+  </div>
 </template>
 
 <script>
-import sector from '@/components/popup/popup.vue';
+import sector from "@/components/popup/popup.vue";
 
 export default {
-  name: 'HelloWorld',
+  name: "HelloWorld",
   components: {
     sector
   },
-  data () {
+  data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      popShow: false,
+      msg: "Welcome to Your Vue.js App"
+    };
+  },
+  methods: {
+    popupShow() {
+      console.log("pop show");
+      this.popShow = true;
+    },
+    popupClose() {
+      this.popShow = false;
     }
   }
-}
+};
 </script>
