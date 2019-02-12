@@ -1,5 +1,6 @@
 <template>
   <div class="popup-container" v-if="popShow">
+    <div class="popup-cover"></div>
     <div class="popup-wrap">
       <div class="popup-head">
         <h1 class="title">{{title}}</h1>
