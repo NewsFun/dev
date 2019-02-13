@@ -1,8 +1,8 @@
 <template>
-  <div class="popup-container" v-if="popShow">
+  <div class="popup-container" v-show="popShow">
     <div class="popup-cover"></div>
     <transition name="popup" @after-leave="afterLeave">
-      <div class="popup-wrap" v-if="contentShow">
+      <div class="popup-wrap" v-show="contentShow">
         <div class="popup-close">
           <a class="icon-close" @click="close">×</a>
         </div>
@@ -19,6 +19,7 @@
 
 <script>
 import "./popup.scss";
+import { setTimeout } from "timers";
 
 export default {
   name: "popup",
@@ -51,10 +52,12 @@ export default {
   watch: {
     show(val) {
       this.popShow = val;
+      this.contentShow = val;
     }
   },
   mounted() {
     this.popShow = this.show;
+    // this.contentShow = this.show;
   },
   methods: {
     close() {
