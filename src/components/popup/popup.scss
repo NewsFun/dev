@@ -1,0 +1,104 @@
+@import "../../assets/scss/common";
+
+.popup {
+  &-box {
+    padding: 8px 10px;
+  }
+
+  &-close {
+    position: relative;
+
+    .icon-close {
+      position: absolute;
+      right: 0;
+      top: 0;
+      display: block;
+      width: 30px;
+      height: 30px;
+      font-size: 28px;
+      line-height: 30px;
+      text-align: center;
+    }
+  }
+
+  &-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 90;
+  }
+
+  &-cover {
+    width: 100%;
+    height: 100%;
+    background-color: $c_0;
+    opacity: 0.5;
+  }
+
+  &-wrap {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background: $c_f;
+    width: 100%;
+    border-radius: 10px 10px 0 0;
+    overflow: hidden;
+  }
+
+  &-head {
+    text-align: center;
+    border-bottom: 1px solid #e5e5e5;
+  
+    .title {
+      word-break: break-all;
+      font-size: 14px;
+    }
+  }
+
+  &-body {
+    width: 100%;
+    box-sizing: border-box;
+    overflow: scroll;
+  
+    .paragraph {
+      line-height: 1.2;
+      margin: 6px 0;
+    }
+  }
+
+  &-enter {
+    &-active {
+      // transition: all .5s ease;
+      animation: slideInUp 0.5s;
+    }
+  }
+  
+  &-leave {
+    &-active {
+      animation: slideInDown 0.5s;
+    }
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    transform: translate3d(0, 100%, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+}
+@keyframes slideInDown {
+  from {
+    transform: translate3d(0, 0, 0);
+    visibility: visible;
+  }
+
+  to {
+    transform: translate3d(0, 100%, 0);
+  }
+}

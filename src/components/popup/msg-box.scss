@@ -1,0 +1,91 @@
+@import "../../assets/scss/common";
+
+.msgbox {
+  &-box {
+    padding: 8px 10px;
+  }
+
+  &-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 90;
+  }
+
+  &-cover {
+    width: 100%;
+    height: 100%;
+    background-color: $c_0;
+    opacity: 0.5;
+  }
+
+  &-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: $c_f;
+    width: 600px;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  &-head {
+    box-sizing: border-box;
+    height: 50px;
+    border-bottom: 1px solid #e5e5e5;
+  
+    .title {
+      text-align: left;
+      line-height: 34px;
+      word-break: break-all;
+      font-weight: 500;
+      font-size: 16px;
+      color: #31708f;
+    }
+  }
+
+  &-body {
+    width: 100%;
+    height: 300px;
+    box-sizing: border-box;
+    overflow: scroll;
+  
+    .paragraph {
+      line-height: 1.2;
+      margin: 6px 0;
+    }
+  }
+
+  &-footer {
+    padding: 8px;
+    border-top: 1px solid #e5e5e5;
+    text-align: right;
+  }
+
+  &-btn {
+    display: inline-block;
+    margin-left: 20px;
+    padding: 6px 10px;
+    border: 1px solid #2e6da4;
+    background: #337ab7;
+    border-radius: 4px;
+    color: $c_f;
+    font-size: 14px;
+    cursor: pointer;
+
+    &.cancel {
+      background: $c_f;
+      color: #2e6da4;
+
+      &:hover {
+        color: $c_f;
+      }
+    }
+
+    &:hover {
+      background: #286090;
+      border-color: #204d74;
+    }
+  }
+}

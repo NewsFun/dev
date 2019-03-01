@@ -1,0 +1,88 @@
+@import "../../assets/scss/common";
+
+$rad: 70px;
+$ch_bg: #E5C8D6;
+$n_deg: -90deg;
+$h_item: 120px;
+
+@mixin sector-deg($deg, $c) {
+  position: absolute;
+  display: block;
+  content: "";
+  width: 100%;
+  height: 100%;
+  clip: rect(0px, $rad, 2*$rad, 0px);
+  border-radius: $rad;
+  transform: rotate($deg);
+  background-color: $c;
+}
+
+@mixin sector-ele($c) {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  clip: rect(0px, $rad, 2*$rad, 0px);
+  border-radius: $rad;
+  background-color: $c;
+  transform: rotate(180deg);
+}
+
+.chart {
+  &-sector {
+    position: relative;
+    width: 2*$rad;
+    height: 2*$rad;
+    border-radius: $rad;
+    margin: 20px auto 0 auto;
+
+    .chart-deg {
+      @include sector-ele(inherit);
+    }
+  }
+
+  &-circle {
+    position: relative;
+    width: 2*$rad;
+    height: 2*$rad;
+    border-radius: $rad;
+    background-color: $ch_bg;
+    margin: 20px auto 0 auto;
+  }
+
+  &-title {
+    width: 100%;
+    text-align: center;
+    color: $c_6;
+  }
+}
+
+.sector {
+  &-legend {
+    color: $c_on;
+    font-size: 24px;
+
+    &-wrap {
+      display: flex;
+      align-items: center;
+      position: absolute;
+      width: $h_item;
+      height: $h_item;
+      border-radius: $h_item/2;
+      left: 50%;
+      top: 50%;
+      background-color: $c_f;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    &-list {
+      width: 100%;
+      text-align: center;
+    }
+
+    &-sub {
+      color: $c_9;
+      font-size: 12px;
+    }
+  }
+}

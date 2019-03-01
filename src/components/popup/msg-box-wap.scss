@@ -1,0 +1,76 @@
+@import "../../assets/scss/common";
+
+.msgbox {
+  &-box {
+    padding: 8px 10px;
+  }
+
+  &-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 90;
+  }
+
+  &-cover {
+    width: 100%;
+    height: 100%;
+    background-color: $c_0;
+    opacity: 0.5;
+  }
+
+  &-wrap {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: $c_f;
+    width: 90%;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+
+  &-head {
+    border-bottom: 1px solid #e5e5e5;
+  
+    .title {
+      text-align: left;
+      line-height: 34px;
+      word-break: break-all;
+      font-size: 14px;
+    }
+  }
+
+  &-body {
+    width: 100%;
+    box-sizing: border-box;
+    overflow: scroll;
+  
+    .paragraph {
+      line-height: 1.2;
+      margin: 6px 0;
+    }
+  }
+
+  &-footer {
+    border-top: 1px solid #e5e5e5;
+    display: flex;
+  }
+
+  &-btn {
+    flex: 1;
+    display: inline-block;
+    line-height: 45px;
+    // background: #337ab7;
+    background: linear-gradient(135deg, #09D198, #1ACDD5);
+    text-align: center;
+    font-size: 14px;
+    cursor: pointer;
+    color: $c_f;
+
+    &.cancel {
+      background: $c_f;
+      color: inherit;
+    }
+  }
+}

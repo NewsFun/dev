@@ -1,0 +1,55 @@
+@import "../../assets/scss/common";
+
+@mixin koo-tag {
+  display: inline-block;
+  font-size: 14px;
+  box-sizing: border-box;
+  padding: 0 10px;
+  line-height: 26px;
+  border-radius: 13px;
+}
+
+.koo {
+  &-tag {
+    @include koo-tag;
+
+    &+& {
+      margin-left: 20px;
+    }
+
+    &:hover {
+      color: $c_on;
+    }
+
+    &.on {
+      color: $c_f;
+      background-color: $c_on;
+    }
+
+    &-labels,
+    &-box {
+      display: table-cell;
+    }
+
+    &-label {
+      font-size: 14px;
+    }
+
+    &-on {
+      @extend .koo-tag;
+      color: $c_f;
+      background-color: $c_on;
+    }
+
+    &-border {
+      @extend .koo-tag;
+      color: $c_on;
+      border: 1px solid $c_on;
+    }
+
+    &-separator {
+      font-size: 14px;
+      padding: 0 20px;
+    }
+  }
+}
