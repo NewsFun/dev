@@ -1,16 +1,12 @@
 <template>
   <div>
-    <button @click="popupShow">show</button>
-    <sector :show="popShow" :handle-close="popupClose">
-      <ul slot="content">
-        <li v-for="item in 5" :key="item">{{item}}</li>
-      </ul>
-    </sector>
+    <!-- <button @click="popupShow">show</button> -->
+    <sector></sector>
   </div>
 </template>
 
 <script>
-import sector from "@/components/popup/popup.vue";
+import sector from "@/components/calendar/calendar.vue";
 
 export default {
   name: "HelloWorld",
