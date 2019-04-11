@@ -1,4 +1,4 @@
-@import "../../assets/scss/common";
+@import "~@/assets/scss/common";
 
 .msgbox {
   &-box {
@@ -25,24 +25,29 @@
     left: 50%;
     transform: translate(-50%, -50%);
     background: $c_f;
-    width: 90%;
-    border-radius: 10px;
+    width: 600px;
+    border-radius: 6px;
     overflow: hidden;
   }
 
   &-head {
+    box-sizing: border-box;
+    height: 50px;
     border-bottom: 1px solid #e5e5e5;
   
     .title {
       text-align: left;
       line-height: 34px;
       word-break: break-all;
-      font-size: 14px;
+      font-weight: 500;
+      font-size: 16px;
+      color: #31708f;
     }
   }
 
   &-body {
     width: 100%;
+    height: 300px;
     box-sizing: border-box;
     overflow: scroll;
   
@@ -53,24 +58,34 @@
   }
 
   &-footer {
+    padding: 8px;
     border-top: 1px solid #e5e5e5;
-    display: flex;
+    text-align: right;
   }
 
   &-btn {
-    flex: 1;
     display: inline-block;
-    line-height: 45px;
-    // background: #337ab7;
-    background: linear-gradient(135deg, #09D198, #1ACDD5);
-    text-align: center;
+    margin-left: 20px;
+    padding: 6px 10px;
+    border: 1px solid #2e6da4;
+    background: #337ab7;
+    border-radius: 4px;
+    color: $c_f;
     font-size: 14px;
     cursor: pointer;
-    color: $c_f;
 
     &.cancel {
       background: $c_f;
-      color: inherit;
+      color: #2e6da4;
+
+      &:hover {
+        color: $c_f;
+      }
+    }
+
+    &:hover {
+      background: #286090;
+      border-color: #204d74;
     }
   }
 }

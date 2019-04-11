@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import "./popup.scss";
+import "./css/popup.scss";
 import { setTimeout } from "timers";
 
 export default {
@@ -70,4 +70,3 @@ export default {
   }
 };
 </script>
-

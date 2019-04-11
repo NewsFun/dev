@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import "./msg-box-wap.scss";
+import "./css/msg-box-wap.scss";
 
 export default {
   name: "popup",
