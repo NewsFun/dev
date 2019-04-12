@@ -1,27 +1,22 @@
 <template>
-  <div class="calendar-wrap bgwhite radius2px shadow">
+  <div class="calendar-wrap">
     <div class="calendar">
       <div class="calendar-title">
-        <div
-          class="prevMouth"
-          @click="prevMonth"
-          :style="isPrev ? prevMonthIconActive :prevMonthIcon"
-        ></div>
+        <div class="prevMouth" :class="isNextClass" @click="prevMonth"></div>
         <span class="currentDate">
-          <i>{{ monthSign[currentMonth-1] }}</i>
+          <span>{{ monthSign }}</span>
           {{ currentYear }}
         </span>
-        <div
-          class="nextMouth"
-          @click="nextMonth"
-          :style="isNext ? nextMonthIconActive :nextMonthIcon"
-        ></div>
+        <div class="nextMouth" :class="isPrevClass" @click="nextMonth"></div>
       </div>
       <div class="calendar-body">
         <ul class="week">
           <li v-for="(item,index) in weekSign" :key="index">{{item}}</li>
         </ul>
         <ul class="day" v-html="currentDay"></ul>
+        <!-- <ul class="day">
+          <li v-for="(item, i) in monthDays" :key="i">{{item}}</li>
+        </ul> -->
       </div>
     </div>
   </div>
@@ -30,74 +25,65 @@
 <script>
 import "./css/calendar.scss";
 
+const MONTH_SIGN = [
+  "Jan.",
+  "Feb.",
+  "Mar.",
+  "Apr.",
+  "May.",
+  "Jun.",
+  "Jul.",
+  "Aug.",
+  "Sep.",
+  "Oct.",
+  "Nov.",
+  "Dec."
+];
+const DATE = new Date();
+const YEAR = DATE.getFullYear();
+const MONTH = DATE.getMonth();
+const DAY = DATE.getDate();
+
 export default {
   data() {
     return {
-      currentYear: new Date().getFullYear(),
-      currentMonth: new Date().getMonth() + 1,
+      currentYear: YEAR,
+      currentMonth: MONTH,
       highlightArr: [],
-      TueDayCount: 0,
-      month_days: [
-        31,
-        28 + this.TueDayCount,
-        31,
-        30,
-        31,
-        30,
-        31,
-        31,
-        30,
-        31,
-        30,
-        31
-      ],
       weekSign: ["S", "M", "T", "W", "T", "F", "S"],
-      monthSign: [
-        "Jan.",
-        "Feb.",
-        "Mar.",
-        "Apr.",
-        "May.",
-        "Jun.",
-        "Jul.",
-        "Aug.",
-        "Sep.",
-        "Oct.",
-        "Nov.",
-        "Dec."
-      ],
-      firstDay: 0, //0-6 0周日
       isNext: false,
       isPrev: true,
       currentDay: "",
-      nextMonthIcon:
-        "background:url(" +
-        require("./img/right_arrow.png") +
-        ") no-repeat 0px 7px",
-      nextMonthIconActive:
-        "background:url(" +
-        require("./img/right_arrow_active.png") +
-        ") no-repeat 0px 7px",
-      prevMonthIcon:
-        "background:url(" +
-        require("./img/left_arrow.png") +
-        ") no-repeat 14px 7px",
-      prevMonthIconActive:
-        "background:url(" +
-        require("./img/left_arrow_active.png") +
-        ") no-repeat 14px 7px",
       totalSignDay: 0,
       continueSignDay: 0,
       isSign: false,
       isTodaySign: {
-        year: new Date().getFullYear(),
-        month: new Date().getMonth() + 1,
-        day: new Date().getDate()
+        year: YEAR,
+        month: MONTH,
+        day: DAY
       }
     };
   },
+  computed: {
+    isNextClass() {
+      if (this.isNext) return "";
+      return "off";
+    },
+    isPrevClass() {
+      if (this.isPrev) return "";
+      return "off";
+    },
+    monthSign() {
+      return MONTH_SIGN[this.currentMonth];
+    },
+    monthDays() {
+      return new Date(this.currentYear, this.currentMonth, 0).getDate();
+    },
+    firstDay() {
+      return new Date(this.currentYear, this.currentMonth, 1).getDay();
+    }
+  },
   created() {
-    this.TueDayCount = this.is_leap();
     this.firstDay = this.getFirstDay();
     this.dateFill();
   },
@@ -106,16 +92,16 @@ export default {
       //填充day
       var str = "";
       var tempArr = this.highlightArr;
-      for (var i = 0; i < this.month_days[this.currentMonth - 1]; i++) {
+      for (var i = 0; i < this.monthDays; i++) {
         if (this.highlightArr[0] === i + 1) {
           if (i + 1 <= 9) {
-            str += '<li class="center"><i>' + (i + 1) + "</i></li>";
+            str += '<li class="center"><span>' + (i + 1) + "</span></li>";
           } else {
-            str += '<li class="right"><i>' + (i + 1) + "</i></li>";
+            str += '<li class="right"><span>' + (i + 1) + "</span></li>";
           }
           tempArr.shift();
         } else {
-          str += "<li><i>" + (i + 1) + "</i></li>";
+          str += "<li><span>" + (i + 1) + "</span></li>";
         }
       }
       //补充前边位置
@@ -129,10 +115,10 @@ export default {
       //补充后边位置
       var endStr = "";
       if (
-        !((this.month_days[this.currentMonth - 1] + this.firstDay) % 7 === 0)
+        !((this.monthDays + this.firstDay) % 7 === 0)
       ) {
-        var mod = (this.month_days[this.currentMonth - 1] + this.firstDay) % 7;
-        var int = (this.month_days[this.currentMonth - 1] + this.firstDay) / 7;
+        var mod = (this.monthDays + this.firstDay) % 7;
+        var int = (this.monthDays + this.firstDay) / 7;
         mod = 7 - mod;
         for (var i = 0; i < mod; i++) {
           endStr += "<li></li>";
@@ -141,48 +127,24 @@ export default {
       str = str + endStr;
       this.currentDay = str;
     },
-    is_leap() {
-      return this.currentYear % 100 === 0
-        ? this.currentYear % 400 === 0
-          ? 1
-          : 0
-        : this.currentYear % 4 === 0
-        ? 1
-        : 0;
-    },
     getFirstDay() {
-      return new Date(this.currentYear, this.currentMonth - 1, 1).getDay();
+      return new Date(this.currentYear, this.currentMonth, 1).getDay();
     },
     nextMonth() {
       if (this.isNext) {
         if (this.currentMonth === 12) {
           this.currentYear = this.currentYear + 1;
           this.currentMonth = 1;
-          this.TueDayCount = this.is_leap();
-          this.month_days = [
-            31,
-            28 + this.TueDayCount,
-            31,
-            30,
-            31,
-            30,
-            31,
-            31,
-            30,
-            31,
-            30,
-            31
-          ];
           this.firstDay = new Date(
             this.currentYear,
-            this.currentMonth - 1,
+            this.currentMonth,
             1
           ).getDay();
         } else {
           this.currentMonth = this.currentMonth + 1;
           this.firstDay = new Date(
             this.currentYear,
-            this.currentMonth - 1,
+            this.currentMonth,
             1
           ).getDay();
         }
@@ -194,31 +156,16 @@ export default {
         if (this.currentMonth === 1) {
           this.currentYear = this.currentYear - 1;
           this.currentMonth = 12;
-          this.TueDayCount = this.is_leap();
-          this.month_days = [
-            31,
-            28 + this.TueDayCount,
-            31,
-            30,
-            31,
-            30,
-            31,
-            31,
-            30,
-            31,
-            30,
-            31
-          ];
           this.firstDay = new Date(
             this.currentYear,
-            this.currentMonth - 1,
+            this.currentMonth,
             1
           ).getDay();
         } else {
           this.currentMonth = this.currentMonth - 1;
           this.firstDay = new Date(
             this.currentYear,
-            this.currentMonth - 1,
+            this.currentMonth,
             1
           ).getDay();
         }
@@ -228,7 +175,7 @@ export default {
     isNextFun() {
       // 判断还有没有下个月
       if (this.currentYear >= new Date().getFullYear()) {
-        if (this.currentMonth - 1 === new Date().getMonth()) {
+        if (this.currentMonth === new Date().getMonth()) {
           this.isNext = false;
           this.isPrev = true;
         }
