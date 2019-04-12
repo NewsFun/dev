@@ -2,6 +2,10 @@
 
 .calendar {
     user-select: none;
+    margin-bottom: 20px;
+    border-radius: 2px;
+    background: $c_f;
+    box-shadow: 0px 0px 10px rgba(206,206,206,0.3);
 
     ul {
         margin: 0;
@@ -9,70 +13,19 @@
         list-style: none;
     }
 
-    .day{
-        padding: 10px 0;
-        background: url("../img/week-bg.png") no-repeat center top;
-        &:after {
-            content: '';
-            display: block;
-            height: 0;
-            clear: both;
-            visibility: hidden;
-        }
-
-        li{
-            width: 36px;
-            height: 32px;
-            line-height: 35px;
-            float: left;
-            text-align: right;
-            position: relative;
-
-            i{
-                position: absolute;
-                right: 0;
-                top: 0px;
-                z-index: 2;
-                color: #666;
-                font-size: 14px;
-            }
-
-            &.center:after{
-                position: absolute;
-                left: 19px;
-                top: 5px;
-                content: '';
-                width: 23px;
-                height: 22px;
-                background: #f6f8ff;
-                border-radius: 50%;
-                border: 1px solid #6097ff;
-                z-index: 1;
-            }
-            &.right:after{
-                position: absolute;
-                left: 16px;
-                top: 5px;
-                content: '';
-                width: 23px;
-                height: 22px;
-                background: #f6f8ff;
-                border-radius: 50%;
-                border: 1px solid #6097ff;
-                z-index: 1;
-            }
-        }
+    .eday {
+        width: 14%;
+        line-height: 1;
+        float: left;
+        text-align: center;
+        position: relative;
     }
 
-    .week{
-        height: 39px;
+    .week {
+        height: 40px;
 
-        li{
-            float:left;
-            width: 36px;
-            height: 39px;
-            line-height: 39px;
-            text-align: right;
+        .eday{
+            height: 100%;
             font-size: 14px;
             color: $c_6;
 
@@ -83,36 +36,48 @@
         }
     }
 
+    .day{
+        padding: 10px 0;
+        background: url("../img/week-bg.png") no-repeat center top;
+        background-size: 100% auto;
+
+        &:after {
+            content: '';
+            display: block;
+            height: 0;
+            clear: both;
+            visibility: hidden;
+        }
+
+        .eday{
+            height: 32px;
+        }
+    }
+
     &-title{
         height: 50px;
         line-height: 50px;
         text-align: center;
         padding-top:16px;
 
-        .prevMouth{
+        .prevMouth {
             display: inline-block;
             width: 22px;
             height: 22px;
-            text-align: center;
-            line-height: 22px;
             cursor: pointer;
             background: url("../img/left_arrow_active.png") no-repeat 14px 7px;
-            outline: none;
 
             &.off {
                 background:url("../img/left_arrow.png") no-repeat 14px 7px
             }
         }
 
-        .nextMouth{
+        .nextMouth {
             display: inline-block;
             width: 22px;
             height: 22px;
-            text-align: center;
-            line-height: 22px;
             cursor: pointer;
             background: url("../img/right_arrow_active.png") no-repeat 0px 7px;
-            outline: none;
 
             &.off {
                 background:url("../img/left_arrow.png") no-repeat 14px 7px
@@ -121,7 +86,6 @@
 
         .currentDate{
             color: $c_6;
-            font-size: 12px;
             display: inline-block;
             width: 126px;
 
@@ -131,14 +95,6 @@
                 font-weight: bold;
             }
         }
-    }
-
-    &-wrap{
-        width: 280px;
-        margin-bottom: 20px;
-        border-radius: 2px;
-        background: $c_f;
-        box-shadow: 0px 0px 10px rgba(206,206,206,0.3);
     }
 }
 
