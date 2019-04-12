@@ -1,6 +1,5 @@
 <template>
   <div>
-    <!-- <button @click="popupShow">show</button> -->
     <sector></sector>
   </div>
 </template>
@@ -21,7 +20,6 @@ export default {
   },
   methods: {
     popupShow() {
-      console.log("pop show");
       this.popShow = true;
     },
     popupClose() {

@@ -13,10 +13,10 @@
         <ul class="week">
           <li v-for="(item,index) in weekSign" :key="index">{{item}}</li>
         </ul>
-        <ul class="day" v-html="currentDay"></ul>
-        <!-- <ul class="day">
-          <li v-for="(item, i) in monthDays" :key="i">{{item}}</li>
-        </ul> -->
+        <ul class="day">
+          <li v-for="i in firstDay" :key="i"></li>
+          <li v-for="(item, j) in monthDays" :key="j">{{item}}</li>
+        </ul>
       </div>
     </div>
   </div>
@@ -84,90 +84,27 @@ export default {
     }
   },
   created() {
-    this.firstDay = this.getFirstDay();
-    this.dateFill();
+    // this.dateFill();
   },
   methods: {
-    dateFill() {
-      //填充day
-      var str = "";
-      var tempArr = this.highlightArr;
-      for (var i = 0; i < this.monthDays; i++) {
-        if (this.highlightArr[0] === i + 1) {
-          if (i + 1 <= 9) {
-            str += '<li class="center"><span>' + (i + 1) + "</span></li>";
-          } else {
-            str += '<li class="right"><span>' + (i + 1) + "</span></li>";
-          }
-          tempArr.shift();
-        } else {
-          str += "<li><span>" + (i + 1) + "</span></li>";
-        }
-      }
-      //补充前边位置
-      var frontStr = "";
-      if (this.firstDay > 0) {
-        for (var j = 0; j < this.firstDay; j++) {
-          frontStr += "<li></li>";
-        }
-      }
-      str = frontStr + str;
-      //补充后边位置
-      var endStr = "";
-      if (
-        !((this.monthDays + this.firstDay) % 7 === 0)
-      ) {
-        var mod = (this.monthDays + this.firstDay) % 7;
-        var int = (this.monthDays + this.firstDay) / 7;
-        mod = 7 - mod;
-        for (var i = 0; i < mod; i++) {
-          endStr += "<li></li>";
-        }
-      }
-      str = str + endStr;
-      this.currentDay = str;
-    },
-    getFirstDay() {
-      return new Date(this.currentYear, this.currentMonth, 1).getDay();
-    },
     nextMonth() {
       if (this.isNext) {
-        if (this.currentMonth === 12) {
-          this.currentYear = this.currentYear + 1;
-          this.currentMonth = 1;
-          this.firstDay = new Date(
-            this.currentYear,
-            this.currentMonth,
-            1
-          ).getDay();
+        if (this.currentMonth > 10) {
+          this.currentYear++;
+          this.currentMonth = 0;
         } else {
-          this.currentMonth = this.currentMonth + 1;
-          this.firstDay = new Date(
-            this.currentYear,
-            this.currentMonth,
-            1
-          ).getDay();
+          this.currentMonth++;
         }
       }
       this.isNextFun();
     },
     prevMonth() {
       if (this.isPrev) {
-        if (this.currentMonth === 1) {
-          this.currentYear = this.currentYear - 1;
-          this.currentMonth = 12;
-          this.firstDay = new Date(
-            this.currentYear,
-            this.currentMonth,
-            1
-          ).getDay();
+        if (this.currentMonth < 1) {
+          this.currentYear--;
+          this.currentMonth = 11;
         } else {
-          this.currentMonth = this.currentMonth - 1;
-          this.firstDay = new Date(
-            this.currentYear,
-            this.currentMonth,
-            1
-          ).getDay();
+          this.currentMonth--;
         }
       }
       this.isPrevFun();
