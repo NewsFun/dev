@@ -1,0 +1,79 @@
+@function setSize($n) {
+    @return ($n / 100px * 1rem);
+}
+.eeo-resize-html{
+    .g-toast {
+        padding: setSize(28px) setSize(10px);
+        max-width: setSize(280px);
+        min-width: setSize(100px);
+        line-height: setSize(20px);
+        border-radius: setSize(10px);
+        box-shadow: 0px setSize(6px) setSize(8px) 0px rgba(0, 0, 0, 0.3);
+        font-size: setSize(16px);
+        color: #F5F6F6;
+    }
+      .g-load-box {
+        width: setSize(100px);
+        min-height: setSize(100px);
+        border-radius: setSize(5px);
+        &-frog{
+          width: setSize(57.5px);
+          height: setSize(70px);
+          border-radius: setSize(10px);
+          box-shadow:0px setSize(4px) setSize(32px) 0px rgba(206,223,241,0.7);
+            min-height: setSize(60px);
+            background-size: setSize(57.5px) setSize(70px);
+            
+        }
+      }
+      
+      .g-load-content {
+        padding: 0 setSize(10px);
+        font-size: setSize(14px);
+      }
+      .loading_leaf:before {
+        width: setSize(9.14px);
+        height:setSize(3.08px);
+      }
+      .loading_leaf_0:before {
+        transform: rotate(0deg) translate(setSize(7.92px), 0px);
+      }
+      .loading_leaf_1:before {
+        transform: rotate(30deg) translate(setSize(7.92px), 0px);
+      }
+      
+      .loading_leaf_2:before {
+        transform: rotate(60deg) translate(setSize(7.92px), 0px);
+      }
+      
+      .loading_leaf_3:before {
+        transform: rotate(90deg) translate(setSize(7.92px), 0px);
+      }
+      .loading_leaf_4:before {
+        transform: rotate(120deg) translate(setSize(7.92px), 0px);
+      }
+      .loading_leaf_5:before {
+        transform: rotate(150deg) translate(setSize(7.92px), 0px);
+      }
+      .loading_leaf_6:before {
+        transform: rotate(180deg) translate(setSize(7.92px), 0px);
+      }
+      .loading_leaf_7:before {
+        transform: rotate(210deg) translate(setSize(7.92px), 0px);
+      }
+      
+      .loading_leaf_8:before {
+        transform: rotate(240deg) translate(setSize(7.92px), 0px);
+      }
+      
+      .loading_leaf_9:before {
+        transform: rotate(270deg) translate(setSize(7.92px), 0px);
+      }
+      
+      .loading_leaf_10:before {
+        transform: rotate(300deg) translate(setSize(7.92px), 0px);
+      }
+      .loading_leaf_11:before {
+        transform: rotate(330deg) translate(setSize(7.92px), 0px);
+      }
+}

@@ -1,4 +1,4 @@
-@import "~@/assets/scss/common";
+@import "~@/assets/css/common";
 
 .msgbox {
   &-box {
@@ -7,6 +7,7 @@
 
   &-container {
     position: absolute;
+    top: 0;
     width: 100%;
     height: 100%;
     z-index: 90;
@@ -32,7 +33,7 @@
 
   &-head {
     border-bottom: 1px solid #e5e5e5;
-  
+
     .title {
       text-align: left;
       line-height: 34px;
@@ -45,7 +46,7 @@
     width: 100%;
     box-sizing: border-box;
     overflow: scroll;
-  
+
     .paragraph {
       line-height: 1.2;
       margin: 6px 0;

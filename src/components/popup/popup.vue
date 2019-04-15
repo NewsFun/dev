@@ -2,15 +2,17 @@
   <div class="popup-container" v-show="popShow">
     <div class="popup-cover"></div>
     <transition name="popup" @after-leave="afterLeave">
-      <div class="popup-wrap" v-show="contentShow">
+      <div class="popup-wrap popup-enter-active" v-show="contentShow">
         <div class="popup-close">
-          <a class="icon-close" @click="close">×</a>
+          <div class="icon-close" @click="close">×</div>
         </div>
         <div class="popup-head popup-box">
           <span class="title">{{title}}</span>
         </div>
-        <div class="popup-body popup-box">
-          <slot name="content"></slot>
+        <div class="popup-body">
+          <div class="popup-box">
+            <slot></slot>
+          </div>
         </div>
       </div>
     </transition>
@@ -18,9 +20,7 @@
 </template>
 
 <script>
-import "./css/popup.scss";
-import { setTimeout } from "timers";
-
+/* eslint-disable */
 export default {
   name: "popup",
   data() {
@@ -62,6 +62,7 @@ export default {
   methods: {
     close() {
       this.contentShow = false;
+      // this.afterLeave();
     },
     afterLeave(e) {
       this.popShow = false;
@@ -70,3 +71,8 @@ export default {
   }
 };
 </script>
+<style lang="scss">
+@import "./css/popup.scss";
+</style>
+
+

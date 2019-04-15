@@ -1,24 +1,23 @@
 <template>
-    <div class="msgbox-container" v-if="popShow">
-        <div class="msgbox-cover"></div>
-        <div class="msgbox-wrap">
-            <div class="msgbox-head msgbox-box" v-if="showTitle">
+    <div class="dialog-container" v-if="popShow">
+        <div class="dialog-cover"></div>
+        <div class="dialog-wrap">
+            <div class="dialog-head dialog-box" v-if="showTitle">
                 <span class="title">{{title}}</span>
-                <span class="close" @click="close">×</span>
+                <span class="close" @click="onClose">×</span>
             </div>
-            <div class="msgbox-body msgbox-box">
-                <div :class="contentClass" v-html="content"></div>
+            <div class="dialog-body">
+                <slot></slot>
             </div>
-            <div class="msgbox-footer">
-                <span class="msgbox-btn" :class="btnClass" v-if="showCancelBtn" @click="onCancel">{{cancelText}}</span>
-                <span class="msgbox-btn" :class="btnClass" v-if="showConfirmBtn" @click="handleConfirm">{{confirmText}}</span>
+            <div class="dialog-footer">
+                <span class="dialog-btn" :class="btnClass" v-if="showCancelBtn" @click="onCancel">{{cancelText}}</span>
+                <span class="dialog-btn" :class="btnClass" v-if="showConfirmBtn" @click="handleConfirm">{{confirmText}}</span>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-/* eslint-disable */
 export default {
     name: 'messageBox',
     data() {
@@ -51,10 +50,6 @@ export default {
             type: String,
             default: ''
         },
-        center: {
-            type: Boolean,
-            default: false
-        },
         showCancelBtn: {
             type: Boolean,
             default: true
@@ -63,35 +58,35 @@ export default {
             type: Boolean,
             default: true
         },
+        handleClose: {
+            type: Function,
+            default() {
+                return () => {
+                }
+            }
+        },
         handleCancel: {
             type: Function,
             default() {
-                return () => {}
+                return () => {
+                }
             }
         },
         handleConfirm: {
             type: Function,
             default() {
-                return () => {}
+                return () => {
+                }
             }
         },
-        handleClose: {
-            type: Function,
-            default() {
-                return () => {}
-            }
-        },
-        btnType: {
+        buttonType: {
             type: String,
             default: 'normal'
         }
     },
     computed: {
         btnClass() {
-            return this.btnType === 'solid' ? 'on' : '';
-        },
-        contentClass() {
-            return this.center && 'center';
+            return this.buttonType === 'solid' ? 'on' : ''
         }
     },
     watch: {
@@ -103,17 +98,17 @@ export default {
         this.popShow = this.show
     },
     methods: {
-        close() {
+        onClose() {
             this.popShow = false
             this.handleClose && this.handleClose()
         },
         onCancel() {
-            // this.popShow = false
+            this.popShow = false
             this.handleCancel && this.handleCancel()
         }
     }
 }
 </script>
 <style lang="scss">
-  @import "./css/msg-box.scss";
+  @import "./css/dialog-box.scss";
 </style>
