@@ -2,8 +2,7 @@
   <div class="gc-breadcrumb">
     <ul class="gc-breadcrumb-wrapper">
       <li class="breadcrumb-item" v-for="(item, i) in links" :key="i">
-        <a v-if="item.link" :href="item.link">{{item.text}}</a>
-        <span v-else>{{item.text}}</span>
+        <span :class="linkClass(item.link)" @click="jumpPage(item.link)">{{item.text}}</span>
       </li>
     </ul>
   </div>
@@ -11,23 +10,37 @@
 
 <script>
 export default {
-    name: 'breadCrumb',
-    computed: {
-      lastIndex() {
-        return this.links.length - 1
+  name: "breadCrumb",
+  props: {
+    links: {
+      type: Array,
+      default() {
+        return [];
       }
     },
-    props: {
-        links: {
-            type: Array,
-            default() {
-                return []
-            }
-        }
+    handleBeforeJump: {
+      type: Function,
+      default() {
+        return () => {};
+      }
     }
-}
+  },
+  methods: {
+    linkClass(link) {
+      if (link) return "link";
+      return "";
+    },
+    jumpPage(item) {
+      let jump = this.handleBeforeJump && this.handleBeforeJump(item);
+      if (jump) {
+        let link = item.link;
+        if (link) location.href = link;
+      }
+    }
+  }
+};
 </script>
 
 <style lang="scss" scoped>
-  @import "./bread-crumb.scss";
+@import "./bread-crumb.scss";
 </style>

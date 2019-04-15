@@ -1,7 +1,9 @@
+@import "~@/assets/scss/common";
+
 .gc-breadcrumb {
     line-height: 16px;
     font-size: 12px;
-    color: #B1B2B2;
+    color: $c_grey;
 
     .breadcrumb-item {
         position: relative;
@@ -9,15 +11,13 @@
         padding-right: 15px;
         display: inline-block;
 
-        a,
         span {
-            text-decoration: none;
-            color: #B1B2B2;
+            color: $c_grey;
         }
 
-        a {
+        .link {
             &:hover {
-                color: #09D198;
+                color: $c_on;
             }
         }
 
@@ -29,7 +29,7 @@
             right: 0;
             width: 10px;
             height: 1px;
-            background: #B1B2B2;
+            background: $c_grey;
         }
 
         &:first-child {

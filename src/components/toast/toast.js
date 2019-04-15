@@ -7,7 +7,9 @@ let loadNode = null // 存储loading节点元素
 let showLoadFrog = false // 存储loading显示状态
 let loadNodeFrog = null // 存储loading节点元素
 Toast.install = function (Vue, options) {
-    let opt = { duration: '2000' }
+    let opt = {
+        duration: '2000'
+    }
     for (let property in options) {
         opt[property] = options[property]
     }
@@ -40,8 +42,7 @@ Toast.install = function (Vue, options) {
                 render: function (h) {
                     if (!this.show) return
                     return h(
-                        'div',
-                        {
+                        'div', {
                             class: ['g-toast'],
                             show: this.show,
                             domProps: {
@@ -83,8 +84,7 @@ Toast.install = function (Vue, options) {
                 render: function (h) {
                     if (!this.show) return
                     return h(
-                        'div',
-                        {
+                        'div', {
                             attrs: {
                                 'class': 'g-load-mark'
                             },
@@ -92,25 +92,28 @@ Toast.install = function (Vue, options) {
                         },
                         [
                             h(
-                                'div',
-                                {
+                                'div', {
                                     attrs: {
                                         'class': 'g-load-box'
                                     }
                                 }, [
                                     h(
-                                        'div',
-                                        {
+                                        'div', {
                                             attrs: {
                                                 'class': [this.tip ? 'g-loading' : 'g-loading-nocontent']
                                             }
-                                        }, Array.apply(null, { length: 12 }).map(function (value, index) {
-                                            return h('div', { attrs: { 'class': 'loading_leaf loading_leaf_' + index } })
+                                        }, Array.apply(null, {
+                                            length: 12
+                                        }).map(function (value, index) {
+                                            return h('div', {
+                                                attrs: {
+                                                    'class': 'loading_leaf loading_leaf_' + index
+                                                }
+                                            })
                                         })
                                     ),
                                     h(
-                                        'div',
-                                        {
+                                        'div', {
                                             attrs: {
                                                 'class': 'g-load-content'
                                             },
@@ -145,8 +148,7 @@ Toast.install = function (Vue, options) {
                 render: function (h) {
                     if (!this.show) return
                     return h(
-                        'div',
-                        {
+                        'div', {
                             attrs: {
                                 'class': 'g-load-mark'
                             },
@@ -154,8 +156,7 @@ Toast.install = function (Vue, options) {
                         },
                         [
                             h(
-                                'div',
-                                {
+                                'div', {
                                     attrs: {
                                         'class': 'g-load-box g-load-box-frog'
                                     }
