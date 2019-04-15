@@ -1,0 +1,45 @@
+.gc-breadcrumb {
+    line-height: 16px;
+    font-size: 12px;
+    color: #B1B2B2;
+
+    .breadcrumb-item {
+        position: relative;
+        margin-left: 5px;
+        padding-right: 15px;
+        display: inline-block;
+
+        a,
+        span {
+            text-decoration: none;
+            color: #B1B2B2;
+        }
+
+        a {
+            &:hover {
+                color: #09D198;
+            }
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            transform: translate(0, -50%);
+            top: 50%;
+            right: 0;
+            width: 10px;
+            height: 1px;
+            background: #B1B2B2;
+        }
+
+        &:first-child {
+            margin-left: 0;
+        }
+
+        &:last-child {
+            &:after {
+                display: none;
+            }
+        }
+    }
+}

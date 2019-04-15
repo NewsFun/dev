@@ -76,6 +76,12 @@ export default {
     date: {
       type: String,
       default: ''
+    },
+    handleChangeDate: {
+      type: Function,
+      default() {
+        return () => {}
+      }
     }
   },
   methods: {
