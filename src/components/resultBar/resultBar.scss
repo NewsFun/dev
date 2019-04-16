@@ -1,10 +1,10 @@
-@import "../../assets/scss/common";
+@import "~@/assets/scss/common";
 
 $h_bar: 20px;
 $h_bar_big: 30px;
 $h_icon: 6px;
 
-.koo {
+.orz {
   &-bar {
     display: flex;
     height: $h_bar;
@@ -97,7 +97,7 @@ $h_icon: 6px;
       height: $h_bar_big;
       line-height: $h_bar_big;
 
-      .koo-bar-tips {
+      .orz-bar-tips {
         line-height: $h_bar_big;
 
         &.top {

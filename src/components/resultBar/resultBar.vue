@@ -1,15 +1,15 @@
 <template>
-  <div class="koo-bar" :class="size">
-    <div class="koo-bar-label" :class="labelAlign" :style="labelStyle">{{ label }}</div>
-    <div class="koo-bar-box" :style="lineStyle">
-      <div class="koo-bar-chart" :style="chartStyle">
-        <div v-if="type==='cursor'" class="koo-bar-line">
-          <div class="koo-bar-cursor-title">Your Scaled Score:</div>
+  <div class="orz-bar" :class="size">
+    <div class="orz-bar-label" :class="labelAlign" :style="labelStyle">{{ label }}</div>
+    <div class="orz-bar-box" :style="lineStyle">
+      <div class="orz-bar-chart" :style="chartStyle">
+        <div v-if="type==='cursor'" class="orz-bar-line">
+          <div class="orz-bar-cursor-title">Your Scaled Score:</div>
         </div>
-        <div class="koo-bar-tips" :class="tipsPosition">{{ shownVal }}</div>
+        <div class="orz-bar-tips" :class="tipsPosition">{{ shownVal }}</div>
       </div>
     </div>
-    <div v-if="showMax" class="koo-bar-max">{{ max + unit }}</div>
+    <div v-if="showMax" class="orz-bar-max">{{ max + unit }}</div>
   </div>
 </template>
 

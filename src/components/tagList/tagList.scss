@@ -1,6 +1,6 @@
-@import "../../assets/scss/common";
+@import "~@/assets/scss/common";
 
-@mixin koo-tag {
+@mixin orz-tag {
   display: inline-block;
   font-size: 14px;
   box-sizing: border-box;
@@ -9,9 +9,9 @@
   border-radius: 13px;
 }
 
-.koo {
+.orz {
   &-tag {
-    @include koo-tag;
+    @include orz-tag;
 
     &+& {
       margin-left: 20px;
@@ -36,13 +36,13 @@
     }
 
     &-on {
-      @extend .koo-tag;
+      @extend .orz-tag;
       color: $c_f;
       background-color: $c_on;
     }
 
     &-border {
-      @extend .koo-tag;
+      @extend .orz-tag;
       color: $c_on;
       border: 1px solid $c_on;
     }

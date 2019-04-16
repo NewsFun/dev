@@ -1,12 +1,12 @@
 <template>
-  <div class="koo-tag-list">
-    <div v-if="label" class="koo-tag-labels" :style="labelStyle">
-      <span class="koo-tag-label">{{label}}</span>
-      <span class="koo-tag-separator">{{separator}}</span>
+  <div class="orz-tag-list">
+    <div v-if="label" class="orz-tag-labels" :style="labelStyle">
+      <span class="orz-tag-label">{{label}}</span>
+      <span class="orz-tag-separator">{{separator}}</span>
     </div>
-    <div class="koo-tag-box">
+    <div class="orz-tag-box">
       <a
-        class="koo-tag"
+        class="orz-tag"
         :class="activeClass(item)"
         v-for="(item, i) in tagList"
         :key="i"

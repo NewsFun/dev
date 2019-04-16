@@ -1,5 +1,5 @@
 <template>
-  <div class="koo-result">
+  <div class="orz-result">
     <div
       v-if="hasControlBtn"
       style="margin-right: 10px"
@@ -9,7 +9,7 @@
     >
       <span class="el-icon-arrow-left"></span>
     </div>
-    <ul class="koo-result-box" :class="multiStyle">
+    <ul class="orz-result-box" :class="multiStyle">
       <li v-for="(item, i) in btnList" :key="i" :class="getAnswerClass(item)">
         <a @click="handleItemClick(item)">{{item.no}}</a>
       </li>
@@ -112,7 +112,7 @@ export default {
     // 分页按钮状态样式
     getPaginationClass(state) {
       let pagn = state ? "-light" : "-dark";
-      return "koo-btn-pagn" + pagn;
+      return "orz-btn-pagn" + pagn;
     },
     // 上一页
     onPrev() {
@@ -124,7 +124,7 @@ export default {
     },
     // 显示答案状态样式
     showAnswerClass(item) {
-      let className = "koo-btn-result";
+      let className = "orz-btn-result";
       if (item.answerStatus === 1) {
         className += item.correctStatus ? "-right" : "-wrong";
       } else if (item.answerStatus === 2) {
@@ -134,7 +134,7 @@ export default {
     },
     // 隐藏答案状态样式
     hideAnswerClass(item) {
-      let className = "koo-btn-result";
+      let className = "orz-btn-result";
       if (item.answerStatus === 1) {
         className += "-right";
       }

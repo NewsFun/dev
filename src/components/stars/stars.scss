@@ -21,8 +21,6 @@
 
         &.dark {
             .star {
-                background-image: url("./img/lose.png");
-
                 &.on {
                     background-image: url("./img/lose-active.png");
                 }
