@@ -1,11 +1,11 @@
 <template>
   <div>
-    <sector></sector>
+    <sector :grade="1" :star-type="'dark'"></sector>
   </div>
 </template>
 
 <script>
-import sector from "@/components/calendar/calendar.vue";
+import sector from "@/components/stars/stars.vue";
 
 export default {
   name: "HelloWorld",

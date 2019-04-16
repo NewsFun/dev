@@ -9,6 +9,10 @@ body {
   height: 100%;
 }
 
+ul {
+  list-style: none;
+}
+
 #app {
   margin: 0;
   padding: 0;
@@ -61,7 +65,7 @@ a {
   }
 
   &-disable {
-    color: $c_gray;
+    color: $c_grey;
   }
 
   &-black6 {
@@ -272,11 +276,11 @@ a {
 
       &-light {
         @extend .orz-btn-pagn;
-        color: $c_gray;
-        border-color: $c_gray;
+        color: $c_grey;
+        border-color: $c_grey;
 
         &:hover {
-          background-color: $c_gray;
+          background-color: $c_grey;
           color: $c_f;
         }
       }
@@ -307,14 +311,14 @@ a {
     &-result {
       @extend .orz-btn-pagn;
       color: $c_6;
-      border-color: $c_gray;
+      border-color: $c_grey;
 
       &:hover {
-        background-color: $c_gray;
+        background-color: $c_grey;
       }
 
       &.active {
-        background-color: $c_gray;
+        background-color: $c_grey;
       }
 
       &-default {

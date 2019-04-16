@@ -1,0 +1,32 @@
+.c-star {
+    &-wrapper {
+        list-style: none;
+        display: flex;
+
+        .star {
+            width: 30px;
+            height: 30px;
+            background: url("./img/star.png") center no-repeat;
+            background-size: 90%;
+
+            + .star {
+                margin-left: 4px;
+            }
+
+            &.on {
+                background: url("./img/star-active.png") center no-repeat;
+                background-size: 90%;
+            }
+        }
+
+        &.dark {
+            .star {
+                background-image: url("./img/lose.png");
+
+                &.on {
+                    background-image: url("./img/lose-active.png");
+                }
+            }
+        }
+    }
+}
