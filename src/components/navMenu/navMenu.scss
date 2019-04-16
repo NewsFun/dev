@@ -5,6 +5,7 @@
     &-item {
       font-size: 14px;
     }
+
     // horizontal
     &-row {
       width: 100%;
@@ -24,7 +25,7 @@
 
             .orz-nav-text {
               color: $c_blue;
-              // border-bottom: 3px solid $c_on;
+
               &::after {
                 background-color: $c_blue;
               }
@@ -35,7 +36,6 @@
         &-text {
           position: relative;
           cursor: pointer;
-          // box-sizing: border-box;
           width: 100%;
           height: 100%;
 
@@ -52,6 +52,7 @@
         }
       }
     }
+
     // vertical
     &-list {
       width: 100%;
@@ -80,9 +81,7 @@
             .orz-nav-text {
               margin: 0 -20px;
               color: $c_f;
-              // padding-left: 20px;
               background-color: $c_on;
-              // text-align: center;
             }
           }
         }
