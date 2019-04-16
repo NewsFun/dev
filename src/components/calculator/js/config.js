@@ -1,0 +1,101 @@
+export const CALCULATOR = [{
+  label: 'MR',
+  style: 'memory',
+  callback: 'showMemory'
+}, {
+  label: 'MC',
+  style: 'memory',
+  callback: 'clearMemory'
+}, {
+  label: 'M+',
+  style: 'memory',
+  callback: 'addMemory'
+}, {
+  label: '(',
+  style: 'symbol',
+  callback: 'leftBraces'
+}, {
+  label: ')',
+  style: 'symbol',
+  callback: 'rightBraces'
+}, {
+  label: 7,
+  style: 'number',
+  callback: 'selectNum'
+}, {
+  label: 8,
+  style: 'number',
+  callback: 'selectNum'
+}, {
+  label: 9,
+  style: 'number',
+  callback: 'selectNum'
+}, {
+  label: '/',
+  style: 'symbol',
+  callback: 'calculate'
+}, {
+  label: 'C',
+  style: 'clear',
+  callback: 'clearAll'
+}, {
+  label: 4,
+  style: 'number',
+  callback: 'selectNum'
+}, {
+  label: 5,
+  style: 'number',
+  callback: 'selectNum'
+}, {
+  label: 6,
+  style: 'number',
+  callback: 'selectNum'
+}, {
+  label: '×',
+  style: 'symbol',
+  callback: 'calculate'
+}, {
+  label: 'CE',
+  style: 'clear',
+  callback: 'clearPart'
+}, {
+  label: 1,
+  style: 'number',
+  callback: 'selectNum'
+}, {
+  label: 2,
+  style: 'number',
+  callback: 'selectNum'
+}, {
+  label: 3,
+  style: 'number',
+  callback: 'selectNum'
+}, {
+  label: '−',
+  style: 'symbol',
+  callback: 'calculate'
+}, {
+  label: '√',
+  style: 'symbol',
+  callback: 'calculate'
+}, {
+  label: '±',
+  style: 'symbol',
+  callback: 'plusMinus'
+}, {
+  label: 0,
+  style: 'number',
+  callback: 'selectNum'
+}, {
+  label: '.',
+  style: 'number',
+  callback: 'selectNum'
+}, {
+  label: '+',
+  style: 'symbol',
+  callback: 'calculate'
+}, {
+  label: '=',
+  style: 'memory',
+  callback: 'equal'
+}]

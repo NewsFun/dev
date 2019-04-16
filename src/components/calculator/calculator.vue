@@ -14,7 +14,14 @@
       </div>
     </div>
     <div class="buttons" style="display:inline-block;">
-      <div class="btn-group-justified">
+      <button
+        class="btn"
+        v-for="(item, i) in calculateConfig"
+        :key="i"
+        :class="item.style"
+        @click="onBtnClick(item)"
+      >{{item.label}}</button>
+      <!-- <div class="btn-group-justified">
         <button class="btn memory" @click="showMemory">MR</button>
         <button class="btn memory" @click="clearMemory">MC</button>
         <button class="btn memory" @click="addMemory">M+</button>
@@ -29,7 +36,6 @@
           @click="rightBraces"
         >)</button>
       </div>
-
       <div class="btn-group-justified">
         <button class="btn number" @click="selectNum('7')">7</button>
         <button class="btn number" @click="selectNum('8')">8</button>
@@ -37,7 +43,6 @@
         <button class="btn symbol" @click="calculate('/')">÷</button>
         <button class="btn clear" @click="clearAll">C</button>
       </div>
-
       <div class="btn-group-justified">
         <button class="btn number" @click="selectNum('4')">4</button>
         <button class="btn number" @click="selectNum('5')">5</button>
@@ -45,7 +50,6 @@
         <button class="btn symbol" @click="calculate('*')">×</button>
         <button class="btn clear" @click="clearPart">CE</button>
       </div>
-
       <div class="btn-group-justified">
         <button class="btn number" @click="selectNum('1')">1</button>
         <button class="btn number" @click="selectNum('2')">2</button>
@@ -63,7 +67,7 @@
         </button>
         <button class="btn symbol" @click="calculate('+')">+</button>
         <button class="btn memory" @click="equal">=</button>
-      </div>
+      </div>-->
     </div>
     <div class="transfer">
       <div
@@ -76,7 +80,29 @@
 </template>
 
 <script>
+import { CALCULATOR } from "./js/config.js";
+
 export default {
+  data() {
+    return {
+      handleId: "handle-id",
+      draggableValue: { handle: undefined },
+      showM: false,
+      memory: "0",
+      firstParams: "", // 保存的旧参数
+      calculateConfig: CALCULATOR,
+      calculateType: null, // 运算符号
+      lastParams: "", // 新输入参数
+      result: "0", // 运算结果 = (保存的旧参数 运算符号 新输入的参数)
+      bracesStatus: "left", // 控制左右括号可点击状态
+      calString: "", // 用于计算的字符串
+      bracesString: "", // 括号内的字符串
+      bracesCalculateType: null,
+      addResult: true, // 计算结果时是否能够拼接当前result
+      addPlusMinus: true, // 能否添加负号的控制
+      openLeftBraces: false
+    };
+  },
   props: {
     transferActive: {
       // 控制transfer按钮激活状态
@@ -140,30 +166,15 @@ export default {
     }
   },
   created() {
-    math.config({
-      number: "BigNumber"
-    });
-  },
-  data() {
-    return {
-      handleId: "handle-id",
-      draggableValue: { handle: undefined },
-      showM: false,
-      memory: "0",
-      firstParams: "", // 保存的旧参数
-      calculateType: null, // 运算符号
-      lastParams: "", // 新输入参数
-      result: "0", // 运算结果 = (保存的旧参数 运算符号 新输入的参数)
-      bracesStatus: "left", // 控制左右括号可点击状态
-      calString: "", // 用于计算的字符串
-      bracesString: "", // 括号内的字符串
-      bracesCalculateType: null,
-      addResult: true, // 计算结果时是否能够拼接当前result
-      addPlusMinus: true, // 能否添加负号的控制
-      openLeftBraces: false
-    };
+    // math.config({
+    //   number: "BigNumber"
+    // });
   },
   methods: {
+    onBtnClick(item) {
+      let callback = this[item.callback]
+      callback && callback(item)
+    },
     selectNum(num) {
       if (this.result === "ERROR") return;
       const limit = this.result.indexOf(".") > -1 ? 9 : 8;

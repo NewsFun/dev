@@ -76,88 +76,87 @@
     }
 
     .buttons {
-        .btn-group-justified {
-            display: flex;
-            justify-content: space-between;
+        // .btn-group-justified {
+        //     display: flex;
+        //     justify-content: space-between;
+        // }
+        .btn {
+            overflow: hidden;
+            margin: 1px;
+            border: 1px solid transparent;
+            width: 40px;
+            height: 40px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 21px;
+            font-weight: 400;
+            outline: 0;
+            color: white;
+            cursor: pointer;
 
-            .btn {
-                overflow: hidden;
-                margin: 1px;
-                border: 1px solid transparent;
-                width: 40px;
-                height: 40px;
-                border-radius: 4px;
-                text-align: center;
-                font-size: 21px;
-                font-weight: 400;
-                outline: 0;
-                color: white;
-                cursor: pointer;
+            .btn-plus-minus {
+                margin-top: -6px;
+                text-decoration: underline;
 
-                .btn-plus-minus {
-                    margin-top: -6px;
-                    text-decoration: underline;
-
-                    &:after {
-                        box-sizing: content-box;
-                        content: '+';
-                    }
+                &:after {
+                    box-sizing: content-box;
+                    content: '+';
                 }
+            }
 
-                &.disabled {
-                    opacity: .65;
-
-                    &:hover {
-                        border: none;
-                        box-shadow: none;
-                    }
-                }
-
-                &.memory {
-                    box-shadow: inset -1px -1px 0 #1e3b51, inset -1px 1px 0 #436177, inset 1px -1px 0 #436177, inset 1px 1px 0 #1e3b51;
-                    background-color: #234760;
-
-                    &:active {
-                        background-color: #142935;
-                        box-shadow: inset -1px -1px 0 #364852, inset -1px 1px 0 #10222c, inset 1px -1px 0 #10222c, inset 1px 1px 0 #364852;
-                    }
-                }
-
-                &.symbol {
-                    box-shadow: inset -1px -1px 0 #27536b, inset -1px 1px 0 #4d7991, inset 1px -1px 0 #4d7991, inset 1px 1px 0 #27536b;
-                    background-color: #3a77a0;
-
-                    &:active {
-                        background-color: #2f637f;
-                        box-shadow: inset -1px -1px 0 #4d7991, inset -1px 1px 0 #27536b, inset 1px -1px 0 #27536b, inset 1px 1px 0 #4d7991;
-                    }
-                }
-
-                &.clear {
-                    box-shadow: inset -1px -1px 0 #ad5812, inset -1px 1px 0 #d37e37, inset 1px -1px 0 #d37e37, inset 1px 1px 0 #ad5812;
-                    background-color: #BA5A13;
-
-                    &:active {
-                        background-color: #994c13;
-                        box-shadow: inset -1px -1px 0 #a76636, inset -1px 1px 0 #814011, inset 1px -1px 0 #814011, inset 1px 1px 0 #a76636;
-                    }
-                }
-
-                &.number {
-                    box-shadow: inset -1px -1px 0 #a7a4a9, inset -1px 1px 0 #edf1f5, inset 1px -1px 0 #edf1f5, inset 1px 1px 0 #a7a4a9;
-                    background-color: #ebf0f5;
-                    color: #3a3736;
-
-                    &:active {
-                        background-color: #dcdee0;
-                        box-shadow: inset -1px -1px 0 #e0e2e4, inset -1px 1px 0 #babcbe, inset 1px -1px 0 #babcbe, inset 1px 1px 0 #e0e2e4;
-                    }
-                }
+            &.disabled {
+                opacity: .65;
 
                 &:hover {
-                    border: 1px solid #ebf0f5;
-                    box-shadow: inset 1px 1px 0 #b3b3b3, inset -1px -1px 0 #b3b3b3;
+                    border: none;
+                    box-shadow: none;
                 }
+            }
+
+            &.memory {
+                box-shadow: inset -1px -1px 0 #1e3b51, inset -1px 1px 0 #436177, inset 1px -1px 0 #436177, inset 1px 1px 0 #1e3b51;
+                background-color: #234760;
+
+                &:active {
+                    background-color: #142935;
+                    box-shadow: inset -1px -1px 0 #364852, inset -1px 1px 0 #10222c, inset 1px -1px 0 #10222c, inset 1px 1px 0 #364852;
+                }
+            }
+
+            &.symbol {
+                box-shadow: inset -1px -1px 0 #27536b, inset -1px 1px 0 #4d7991, inset 1px -1px 0 #4d7991, inset 1px 1px 0 #27536b;
+                background-color: #3a77a0;
+
+                &:active {
+                    background-color: #2f637f;
+                    box-shadow: inset -1px -1px 0 #4d7991, inset -1px 1px 0 #27536b, inset 1px -1px 0 #27536b, inset 1px 1px 0 #4d7991;
+                }
+            }
+
+            &.clear {
+                box-shadow: inset -1px -1px 0 #ad5812, inset -1px 1px 0 #d37e37, inset 1px -1px 0 #d37e37, inset 1px 1px 0 #ad5812;
+                background-color: #BA5A13;
+
+                &:active {
+                    background-color: #994c13;
+                    box-shadow: inset -1px -1px 0 #a76636, inset -1px 1px 0 #814011, inset 1px -1px 0 #814011, inset 1px 1px 0 #a76636;
+                }
+            }
+
+            &.number {
+                box-shadow: inset -1px -1px 0 #a7a4a9, inset -1px 1px 0 #edf1f5, inset 1px -1px 0 #edf1f5, inset 1px 1px 0 #a7a4a9;
+                background-color: #ebf0f5;
+                color: #3a3736;
+
+                &:active {
+                    background-color: #dcdee0;
+                    box-shadow: inset -1px -1px 0 #e0e2e4, inset -1px 1px 0 #babcbe, inset 1px -1px 0 #babcbe, inset 1px 1px 0 #e0e2e4;
+                }
+            }
+
+            &:hover {
+                border: 1px solid #ebf0f5;
+                box-shadow: inset 1px 1px 0 #b3b3b3, inset -1px -1px 0 #b3b3b3;
             }
         }
     }
