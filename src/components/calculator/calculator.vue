@@ -14,13 +14,19 @@
       </div>
     </div>
     <div class="buttons" style="display:inline-block;">
-      <button
+      <calc-button
+        v-for="(item, i) in calculateConfig"
+        :key="i"
+        :item-data="item"
+        :handle-click="onBtnClick"
+      ></calc-button>
+      <!-- <button
         class="btn"
         v-for="(item, i) in calculateConfig"
         :key="i"
         :class="item.style"
         @click="onBtnClick(item)"
-      >{{item.label}}</button>
+      >{{item.label}}</button>-->
       <!-- <div class="btn-group-justified">
         <button class="btn memory" @click="showMemory">MR</button>
         <button class="btn memory" @click="clearMemory">MC</button>
@@ -81,8 +87,12 @@
 
 <script>
 import { CALCULATOR } from "./js/config.js";
+import calcButton from "./calculateBtn";
 
 export default {
+  components: {
+    calcButton
+  },
   data() {
     return {
       handleId: "handle-id",
@@ -165,15 +175,10 @@ export default {
       return `${plusMinus}${arr.join(",")}.${decimals}`;
     }
   },
-  created() {
-    // math.config({
-    //   number: "BigNumber"
-    // });
-  },
   methods: {
     onBtnClick(item) {
-      let callback = this[item.callback]
-      callback && callback(item)
+      let callback = this[item.callback];
+      callback && callback(item);
     },
     selectNum(num) {
       if (this.result === "ERROR") return;
