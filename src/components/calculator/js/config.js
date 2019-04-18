@@ -13,27 +13,27 @@ export const CALCULATOR = [{
 }, {
   label: '(',
   style: 'symbol',
-  callback: 'leftBraces'
+  callback: 'addExpression'
 }, {
   label: ')',
   style: 'symbol',
-  callback: 'rightBraces'
+  callback: 'addExpression'
 }, {
   label: 7,
   style: 'number',
-  callback: 'selectNum'
+  callback: 'addExpression'
 }, {
   label: 8,
   style: 'number',
-  callback: 'selectNum'
+  callback: 'addExpression'
 }, {
   label: 9,
   style: 'number',
-  callback: 'selectNum'
+  callback: 'addExpression'
 }, {
   label: '/',
   style: 'symbol',
-  callback: 'calculate'
+  callback: 'addExpression'
 }, {
   label: 'C',
   style: 'clear',
@@ -41,43 +41,44 @@ export const CALCULATOR = [{
 }, {
   label: 4,
   style: 'number',
-  callback: 'selectNum'
+  callback: 'addExpression'
 }, {
   label: 5,
   style: 'number',
-  callback: 'selectNum'
+  callback: 'addExpression'
 }, {
   label: 6,
   style: 'number',
-  callback: 'selectNum'
+  callback: 'addExpression'
 }, {
   label: '×',
   style: 'symbol',
-  callback: 'calculate'
+  value: '*',
+  callback: 'addExpression'
 }, {
   label: 'CE',
   style: 'clear',
-  callback: 'clearPart'
+  callback: 'delExpression'
 }, {
   label: 1,
   style: 'number',
-  callback: 'selectNum'
+  callback: 'addExpression'
 }, {
   label: 2,
   style: 'number',
-  callback: 'selectNum'
+  callback: 'addExpression'
 }, {
   label: 3,
   style: 'number',
-  callback: 'selectNum'
+  callback: 'addExpression'
 }, {
-  label: '−',
+  label: '-',
   style: 'symbol',
-  callback: 'calculate'
+  callback: 'addExpression'
 }, {
   label: '√',
   style: 'symbol',
-  callback: 'calculate'
+  callback: 'addExpression'
 }, {
   label: '±',
   style: 'symbol',
@@ -85,15 +86,15 @@ export const CALCULATOR = [{
 }, {
   label: 0,
   style: 'number',
-  callback: 'selectNum'
+  callback: 'addExpression'
 }, {
   label: '.',
   style: 'number',
-  callback: 'selectNum'
+  callback: 'addExpression'
 }, {
   label: '+',
   style: 'symbol',
-  callback: 'calculate'
+  callback: 'addExpression'
 }, {
   label: '=',
   style: 'memory',
