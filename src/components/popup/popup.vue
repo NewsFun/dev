@@ -20,7 +20,6 @@
 </template>
 
 <script>
-/* eslint-disable */
 export default {
   name: "popup",
   data() {

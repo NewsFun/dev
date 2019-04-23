@@ -28,20 +28,7 @@
 <script>
 import "./css/calendar.scss";
 
-const MONTH_SIGN = [
-  "Jan.",
-  "Feb.",
-  "Mar.",
-  "Apr.",
-  "May.",
-  "Jun.",
-  "Jul.",
-  "Aug.",
-  "Sep.",
-  "Oct.",
-  "Nov.",
-  "Dec."
-];
+const MONTH_SIGN = ["Jan.", "Feb.", "Mar.", "Apr.", "May.", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."];
 const DATE = new Date();
 const YEAR = DATE.getFullYear();
 const MONTH = DATE.getMonth();
